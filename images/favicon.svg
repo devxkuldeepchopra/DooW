@@ -1,0 +1,28 @@
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="102" height="102" id="canvas_background" fill="none"/>
+  <g id="canvasGrid" display="none">
+   <rect id="svg_1" width="100%" height="100%" x="0" y="0" stroke-width="0" fill="url(#gridpattern)"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <ellipse fill="none" stroke-width="8.5" cx="48.401961" cy="49.117645" id="svg_3" rx="40.999999" ry="40" stroke="#000000"/>
+  <rect fill="#000000" stroke-width="0" x="6.007215" y="47.117645" width="16.894744" height="7" id="svg_6" stroke="#7f007f"/>
+  <rect fill="#000000" stroke-width="0" x="74.656339" y="47.117645" width="17.245621" height="7" id="svg_7" stroke="#7f007f"/>
+  <rect fill="#000000" stroke="#007fff" stroke-width="0" x="39.901958" y="78.117645" width="17" height="7" id="svg_9" transform="rotate(-90.43331909179688 48.40195846557618,81.61764526367189) "/>
+  <rect fill="#000000" stroke="#000000" stroke-width="0" x="39.901958" y="11.117645" width="17" height="7" id="svg_10" transform="rotate(-90.43331909179688 48.40195846557617,14.617645263671875) "/>
+  <path fill="#000000" stroke-width="0" stroke-opacity="null" d="m21.305291,25.068259c0,0 10.74302,48.05429 10.74302,48.05429c0,0 11.12669,-25.96482 11.51037,-25.96482c0.38368,0 19.56764,29.0651 19.56764,29.0651c0,0 15.73085,-51.92964 15.63445,-51.92982c0.0964,0.00018 -17.55285,32.55309 -17.55285,32.55309c0,0 -14.19613,-27.51496 -14.19613,-27.51496c0,0 -13.04509,27.12742 -13.04509,27.12742c0,0 -12.66141,-31.3903 -12.66141,-31.3903z" id="svg_32" stroke="#007fff"/>
+  <path fill="#7f0000" stroke-width="0" stroke-opacity="null" d="m23.059671,27.121129c0,0 9.95574,44.80739 9.95574,44.80739c0,0 10.3113,-24.21044 10.66687,-24.21044c0.35556,0 18.13367,27.10124 18.13367,27.10124c0,0 14.57805,-48.42089 14.48872,-48.42105c0.08933,0.00016 -16.26653,30.35356 -16.26653,30.35356c0,0 -13.1558,-25.65585 -13.1558,-25.65585c0,0 -12.08912,25.2945 -12.08912,25.2945c0,0 -11.73355,-29.26935 -11.73355,-29.26935z" id="svg_37" stroke="#007fff"/>
+  <rect fill="#7f0000" stroke="#007fff" stroke-width="0" x="40.954586" y="12.521149" width="17" height="7" id="svg_39" transform="rotate(-90.43331909179688 49.454586029052734,16.021148681640625) "/>
+  <rect fill="#7f0000" stroke-width="0" x="75.358091" y="47.468521" width="17.245621" height="7" id="svg_40" stroke="#7f007f"/>
+  <rect fill="#7f0000" stroke-width="0" x="7.410719" y="48.170273" width="16.894744" height="7" id="svg_41" stroke="#7f007f"/>
+  <rect fill="#7f0000" stroke="#007fff" stroke-width="0" x="41.305463" y="77.766769" width="17" height="7" id="svg_42" transform="rotate(-90.43331909179688 49.805461883544915,81.26676940917969) "/>
+  <ellipse fill="none" stroke-width="8.5" cx="48.051093" cy="48.415892" id="svg_38" rx="40.999999" ry="40" stroke="#7f0000"/>
+  <text stroke="#000000" transform="rotate(-0.07169400900602341 48.847591400146364,9.77414703369457) matrix(0.5165236494235015,0,0,0.30263281291766575,11.532794802688906,14.781774796311153) " xml:space="preserve" text-anchor="start" font-family="'Courier New', Courier, monospace" font-size="24" id="svg_4" y="-10.282828" x="43.229823" fill="#000000">DOOM</text>
+  <text stroke="#ffffff" transform="rotate(-0.07169400900602341 48.06426620483229,10.166171073913398) matrix(0.5165236494235015,0,0,0.30263281291766575,11.532794802688906,14.781774796311153) " xml:space="preserve" text-anchor="start" font-family="'Courier New', Courier, monospace" font-size="24" id="svg_5" y="-8.984465" x="41.708393" fill="#ffffff">DOOM</text>
+ </g>
+</svg>

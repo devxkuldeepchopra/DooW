@@ -1,0 +1,26 @@
+<svg width="500" height="87" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#6d026d" id="canvas_background" height="89" width="502" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect stroke="#000" transform="rotate(-0.049637239426374435 459.9818115234208,47.49048614501879) " id="svg_2" height="17.785944" width="50.306432" y="38.597515" x="434.82858" stroke-width="1.5" fill="#083734"/>
+  <path id="svg_3" d="m460.242509,47.324996l17.000014,-16.499997l17.000014,16.499997l-17.000014,16.499997l-17.000014,-16.499997z" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#729C62"/>
+  <text transform="matrix(3.378655590774394,0,0,1.949037780282668,-205.32769383568998,-16.9850024337659) " font-style="normal" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_4" y="32.36" x="81" stroke-width="0" fill="#000000">Tutorials</text>
+  <text transform="matrix(3.378655590774393,0,0,1.949037780282668,-208.32769383568998,-22.9850024337659) " font-style="normal" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_5" y="32.36" x="81" stroke-width="0" fill="#D3BEE7">Tutorials</text>
+  <path id="svg_6" d="m43.2875,67.230004l187.000007,-12.500001l187.000007,12.500001l-187.000007,12.500001l-187.000007,-12.500001z" stroke-width="1.5" fill="#273141"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_7" y="74" x="159.5" stroke-opacity="null" stroke-width="0" stroke="null" fill="#000000">Java</text>
+  <text stroke="null" transform="matrix(1.9233543872833252,0,0,1.814814805984497,-212.83318626880646,-62.740740060806274) " xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_8" y="80.816327" x="227.38045" stroke-opacity="null" stroke-width="0" fill="#000000">C</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_9" y="74" x="268.5" stroke-opacity="null" stroke-width="0" stroke="null" fill="#000000">Php</text>
+  <text stroke="null" transform="matrix(1.9233543872833252,0,0,1.814814805984497,-212.83318626880646,-62.740740060806274) " xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_10" y="81.918367" x="226.3406" stroke-opacity="null" stroke-width="0" fill="#D3BEE7">C</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_11" y="73" x="266.5" stroke-opacity="null" stroke-width="0" stroke="null" fill="#D3BEE7">Php</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_12" y="73" x="157.5" stroke-opacity="null" stroke-width="0" stroke="null" fill="#D3BEE7">Java</text>
+  <path opacity="0.15" id="svg_13" d="m5.497501,48.495002l112.499996,-46.500002l112.499996,46.500002l-112.499996,46.500002l-112.499996,-46.500002z" stroke-opacity="null" stroke-width="0" stroke="null" fill="#000000"/>
+  <ellipse id="svg_14" cy="35" cx="464.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="null" fill="#000000"/>
+ </g>
+</svg>

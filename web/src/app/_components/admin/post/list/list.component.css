@@ -1,0 +1,16 @@
+.btn-primary-outline {
+    background-color: transparent;
+    border-color: #ccc;
+    border:0;
+  
+  }
+  .btn-primary-outline:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 0.2rem transparent;
+  }
+  .fa-toggle-on {
+    color: #28a745;
+  }
+  .fa-toggle-off {
+    color: #6c757d;
+  }

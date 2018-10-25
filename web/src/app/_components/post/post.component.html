@@ -1,0 +1,25 @@
+    <div class="grid-page" *ngIf="posts">
+      <div class="row" id="post-grid">  
+          <div class="col-sm-4 grid-gap" *ngFor="let post of posts">
+            <div class="grid-box">
+              <a routerLink="{{post.Url}}" class="grid-link">
+                <img src="../../../assets/images/grid.jpg" />
+                  <span class="grid-box-title" title="{{post.Title}}">{{post.Title}}</span>
+              </a>
+            </div>
+            
+          </div>
+      </div>
+      <nav aria-label="...">
+        <ul class="pagination pagination-sm" id="grid-pagination">
+            <li class="page-item" [ngClass]="{'active': i==page}"  *ngFor="let i of pagination"><a class="page-link" (click)="GetPostByPage(i)">{{i}}</a></li>
+        </ul>
+      </nav>
+    </div>  
+      <div class="post-page" *ngIf="post.isPost">
+        <h1 id="post-title"></h1>
+        {{post.Url}}
+        <h5>Title description, Dec 7, 207</h5>
+        <div ><img src="" class="post-image" id="post-image"></div>
+        <p id="post-post"></p>
+      </div>

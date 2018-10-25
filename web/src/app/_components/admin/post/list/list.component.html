@@ -1,0 +1,54 @@
+<div class="container">
+        <a [routerLink]="['/addpost']"><button type="button" class="btn btn-info">Add Post</button></a>
+        <a [routerLink]="['/addCategory']"><button type="button" class="btn btn-info">Add Category</button></a>
+  <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="20">
+    <thead>
+    <tr>
+        <th>
+            <mfDefaultSorter by="Title">Title</mfDefaultSorter>
+        </th>
+  
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of mf.data">
+        <td>{{item.Title}}</td>
+        <td>  
+            <!-- <button class="btn btn-danger fa fa-trash" data-toggle="modal" data-target="#myModal" (click)="getId(item)" id="item.Id" #item.Id> Delete </button> &nbsp; -->
+            <button style="font-size:42px;" aria-hidden="true" class="fa btn btn-primary-outline" [ngClass]="{'fa-toggle-off': item.IsActive == 0, 'fa-toggle-on': item.IsActive == 1 }" id="item.Id" (click)="Active(item.Id,item.IsActive)">
+                    <!-- <span *ngIf="item.IsActive==1">ON</span>
+                    <span *ngIf="item.IsActive==0">OFF</span> -->
+                  </button>  
+            <button class="btn btn-primary fa fa-area-chart" routerLink="/editpost/{{item.Url}}"> Edit </button>  &nbsp;
+            <button
+                class="btn btn-danger fa fa-trash"
+                mwlConfirmationPopover
+                [popoverTitle]="popoverTitle"
+                [popoverMessage]="popoverMessage"
+                placement="left"
+                (confirm)="ConfirmDelete(item)"
+                (cancel)="cancelClicked = true">
+                Delete
+            </button>        
+        </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+        </td>
+    </tr>
+    </tfoot>
+  </table>
+  </div>
+  
+  <app-delete [postId]="PostId"></app-delete>
+  
+  <ngx-spinner
+  bdColor = "rgba(51, 51, 51, 0.8)"
+  size = "medium"
+  color = "#fff"
+  type = "pacman"
+  ></ngx-spinner>

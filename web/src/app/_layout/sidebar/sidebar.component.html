@@ -1,0 +1,10 @@
+<div class="row">  
+    <div class="col-sm-12 side-grid" *ngFor="let post of posts">
+      <div class="side-box">
+          <a routerLink="{{post.Url}}" class="side-link">
+            <img src="../../../assets/images/side.jpg" />
+            <span class="side-box-title" title="{{post.Title}}">{{post.Title}}</span>
+          </a>
+      </div>
+    </div>
+</div>
