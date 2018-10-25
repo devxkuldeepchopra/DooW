@@ -23,6 +23,7 @@ import { AdminComponent } from './_components/admin/admin.component';
 import { AddComponent } from './_components/admin/post/add/add.component';
 import { ListComponent } from './_components/admin/post/list/list.component';
 import { CategoryComponent } from './_components/admin/post/category/category.component';
+import { ListCategoryComponent } from './_components/admin/post/category/list-category/list-category.component';
 
 @NgModule({
   declarations: [
