@@ -50,7 +50,7 @@ export class ListComponent implements OnInit {
       debugger; 
       this.PostId = data.Id;
     }
-    ConfirmDelete(Delete){
+    ConfirmDelete(Delete) {
       this.spinner.show();
      
       this._post.DeletePost(Delete.Id).subscribe((res:any) => { 

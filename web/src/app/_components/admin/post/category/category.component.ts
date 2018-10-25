@@ -17,34 +17,36 @@ export class CategoryComponent implements OnInit {
   post : any = {};
   thumbnailPath: string = "assets/images/thumbnaillogo.png";
   fileToUpload: File = null;
-  constructor(private activeRoute : ActivatedRoute,
+
+  constructor( private activeRoute : ActivatedRoute,
     private fb:FormBuilder,
-  private postservice : PostService,
-private toastr : ToastrService ) { }
+    private postservice : PostService,
+    private toastr : ToastrService ) { }
+
   validation_messages = {
     'title': [
       { type: 'required', message: 'Contact name is required' }
     ]
   }
+
   ngOnInit() {
-     let url = this.activeRoute.snapshot.params.id;
+     let id = this.activeRoute.snapshot.params.id;
      this.Form();
-     if(url)
-       this.GetPostByUrl(url)
+     if(id)
+       this.GetCategoryById(id)
   
   }
-  GetPostByUrl(url){
-    this.postservice.GetPostByUrl(url).subscribe((data:any)=>{
+
+  GetCategoryById(id) {
+    this.postservice.GetCategoryById(id).subscribe((data:any)=>{
       debugger;
       let body = data[0];
-     this.PostForm.reset({
-       id : body.Id,
-       title : body.Title,
-       description : body.Description,
-       video : body.Video,
-       mypost : body.Mypost
-     });
-    this.thumbnailPath = 'assets/uploads/'+body.ImageUrl;
+      this.PostForm.reset({
+        id : body.Id,
+        title : body.Title,
+        icon : body.Icon        
+      });
+      this.thumbnailPath = 'assets/uploads/'+body.ImageUrl;
     });
   }
 
@@ -54,9 +56,10 @@ private toastr : ToastrService ) { }
       title : new FormControl('',{
         validators : Validators.compose([
           Validators.required
-        ]),
+        ]),        
         updateOn: 'change'
-      })
+      }),
+      icon: new FormControl()
     },
     {updateOn: 'submit'})
   }
@@ -79,4 +82,5 @@ private toastr : ToastrService ) { }
     this.toastr.success(data);
     })
   }
+
 }

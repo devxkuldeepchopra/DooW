@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
+
   PostForm : FormGroup;
   id: FormControl;
   postcatid : FormControl;
@@ -18,15 +19,20 @@ export class AddComponent implements OnInit {
   categories : any = [];
   thumbnailPath: string = "assets/images/thumbnaillogo.png";
   fileToUpload: File = null;
+
+  // Constructor 
   constructor(private activeRoute : ActivatedRoute,
     private fb:FormBuilder,
-  private postservice : PostService,
-private toastr : ToastrService ) { }
+    private postservice : PostService,
+    private toastr : ToastrService ) { }
+
+  // Validation Message For Reactive Form
   validation_messages = {
     'title': [
       { type: 'required', message: 'Contact name is required' }
     ]
   }
+
   ngOnInit() {
     this.GetCategory();
      let url = this.activeRoute.snapshot.params.id;
@@ -35,23 +41,24 @@ private toastr : ToastrService ) { }
        this.GetPostByUrl(url)
   
   }
+
   GetPostByUrl(url){
     this.postservice.GetPostByUrl(url).subscribe((data:any)=>{
       debugger;
       let body = data[0];
-     this.PostForm.reset({
-       id : body.PostId,
-       postcatid: body.PostCatId,
-       title : body.Title,
-       description : body.Description,
-       video : body.Video,
-       mypost : body.Mypost,
-       category: body.CatId,
-       fileName : body.ImageUrl
-     });
-     // uncomment on live
- //   this.thumbnailPath = 'assets/uploads/'+body.ImageUrl;
-    this.thumbnailPath = 'http://doomw.com/web/assets/images/uploads/'+body.ImageUrl;
+      this.PostForm.reset({
+        id : body.PostId,
+        postcatid: body.PostCatId,
+        title : body.Title,
+        description : body.Description,
+        video : body.Video,
+        mypost : body.Mypost,
+        category: body.CatId,
+        fileName : body.ImageUrl
+      });
+      // uncomment on live
+      // this.thumbnailPath = 'assets/uploads/'+body.ImageUrl;
+      this.thumbnailPath = 'http://doomw.com/web/assets/images/uploads/'+body.ImageUrl;
     });
   }
 
@@ -102,8 +109,5 @@ private toastr : ToastrService ) { }
     this.categories = data;
     })
   }
-
-
-
 
 }

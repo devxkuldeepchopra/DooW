@@ -9,13 +9,16 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PostService {
+
   private apiUrl = environment.apiUrl;
   //private apiUrl = 'http://localhost:8080/server/post.php';
   constructor(private http: HttpClient) { }
   // ResponseData get the response from api
+
   ResponseData(body): any {
     return this.http.post<any[]>(this.apiUrl, body, httpOptions);
   }
+
   ToSeoUrl(url) {
     return url.toString()               // Convert to string
       .normalize('NFD')               // Change diacritics
@@ -28,12 +31,14 @@ export class PostService {
       .replace(/^-*/, '')              // Remove starting dashes
       .replace(/-*$/, '');             // Remove trailing dashes
   }
+
   GetPost(): Observable<any[]> {
     var reqdata = {
       'action': 'GetPostAdmin'
     };
     return this.ResponseData(JSON.stringify(reqdata));
   }
+
   ActivatePost(id, activate): Observable<any[]> {
     var reqdata = {
       'action': 'ActivatePost',
@@ -100,7 +105,6 @@ export class PostService {
   }
 
   AddCategory(fileToUpload: File, data) {
-    debugger;
     const form_data: FormData = new FormData();
     if (fileToUpload != null) {
       var file_data = fileToUpload;
@@ -114,15 +118,12 @@ export class PostService {
       form_data.append('filename', filename);
       form_data.append('extension', extension);
     }
-
-  //  var url = this.ToSeoUrl(data.title);
+    else {
+      form_data.append('filename', data.icon );
+    }
     form_data.append('id', data.id);
     form_data.append('action', 'InsertCategory');
     form_data.append('title', data.title);
-   // form_data.append('description', data.description);
-  //  form_data.append('video', data.video);
-  //  form_data.append('mypost', data.mypost);
- //  form_data.append('url', url);
     return this.http.post<any[]>(this.apiUrl, form_data);
 
   }
@@ -134,8 +135,20 @@ export class PostService {
     return this.ResponseData(JSON.stringify(reqdata));
   }
 
+  GetCategoryById(id): Observable<any> {
+    var reqdata = {
+      'action': 'GetCategoryById',
+      'id': id,
+    };
+    return this.ResponseData(JSON.stringify(reqdata));
+  }
 
-
-
+  DeleteCategory(id) {
+    var reqdata = {
+      'action': 'DeleteCategory',
+      'id': id,
+    };
+    return this.ResponseData(JSON.stringify(reqdata));
+  }
 
 }

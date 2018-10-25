@@ -14,3 +14,26 @@
   .fa-toggle-off {
     color: #6c757d;
   }
+  .btn-custom {
+    font-size: 12px;
+    margin: 9px 0px;
+    padding: 5px;
+  }
+  .action-col {
+    padding: 0 !important;
+  }
+  .btn-primary-custom {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+  }
+  .btn-primary-custom:hover {
+    color: #fff;
+    background-color: #3dc1d6;
+    border-color: #17a2b8;
+  }
+  .btn-primary-custom a {
+    color: #fff;
+    text-decoration: none !important;
+  }
+  
