@@ -1,6 +1,8 @@
 <div class="container">
-  <a [routerLink]="['/addCategory']"><button type="button" class="btn btn-info btn-custom"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add Category</button></a>
-<table class="table table-striped" [mfData]="categories" #mf="mfDataTable" [mfRowsOnPage]="20">
+  <a [routerLink]="['/addCategory']"><button type="button" class="btn btn-info btn-custom"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add Category</button></a>&nbsp;
+  <a [routerLink]="['/posts']"><button type="button" class="btn btn-info btn-custom"><i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;Manage Post</button></a>
+
+  <table class="table table-striped" [mfData]="categories" #mf="mfDataTable" [mfRowsOnPage]="20">
 <thead>
 <tr>
   <th>

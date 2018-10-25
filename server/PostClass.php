@@ -6,13 +6,11 @@ class Post
 
 	private $conn;
 
-	public function __construct($conn) 
-	{
+	public function __construct($conn) {
 		$this->conn = $conn;
 	}
 
-	public function GetPost($page,$content,$rendPage)
-	{
+	public function GetPost($page,$content,$rendPage) {
 		$limit = 0;
 		$upto = $content;
 		$data = array();
@@ -29,16 +27,16 @@ class Post
         return $data;
 
 	}
-	public function GetPostAdmin()
-	{
+
+	public function GetPostAdmin() {
 		$query = $this->conn->prepare("SELECT * FROM `post`");			
 		$query->execute();
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		$data['post'] = $result;	
         return $data;
 	}
-	public function ActivatePost($id,$active)
-	{
+
+	public function ActivatePost($id,$active) {
 		$activate = (int) $active == 1 ? 0 : 1;
 		$id = (int) $id;
 		$query = $this->conn->prepare("UPDATE `post` SET `IsActive` = :isactive WHERE `post`.`Id` = :id");	
@@ -49,7 +47,7 @@ class Post
         return $this->conn->lastInsertId();
 	}
 
-	public function GetPostByPath($url){		
+	public function GetPostByPath($url) {		
 		//$query = $this->conn->prepare("SELECT * FROM `post` LEFT OUTER JOIN `postvideo` ON `post`.`Id` = `postvideo`.`PostId` WHERE `post`.`Url` = :url");	
 		$query = $this->conn->prepare("SELECT post.Id AS PostId, Title,Description,Post,Url,ImageUrl,PostOn,post.View,IsActive,Video, postcategory.Id As PostCatId, category.Id As CatId, category.Name AS CatName, category.Icon AS CatIcon FROM (((`post` LEFT OUTER JOIN `postcategory` ON `post`.`Id` = `postcategory`.`PostId`)LEFT OUTER JOIN postvideo ON postvideo.PostId = post.Id)LEFT OUTER JOIN category ON postcategory.CateogyId = category.Id) WHERE `post`.`Url` = :url");	
 		$query->bindParam(':url', $url);
@@ -58,7 +56,7 @@ class Post
         return $result;
 	}
 
-	public function InsertPost($id,$postCatid,$title,$description,$post,$url,$ImageUrl,$video,$catid){
+	public function InsertPost($id,$postCatid,$title,$description,$post,$url,$ImageUrl,$video,$catid) {
 		$stmt1;
 		$catPost;
         $postId;
@@ -107,7 +105,7 @@ class Post
 
 	public function UpdatePost(){}
 
-	public function DeletePost($id){
+	public function DeletePost($id) {
 		$query = $this->conn->prepare("DELETE FROM `postvideo` WHERE `PostId`= :id");
 		$query->bindParam(':id', $id);
 		$query->execute();
@@ -122,9 +120,9 @@ class Post
 
 	}
 
-	public function GetPostById(){}
+	public function GetPostById() {}
 
-	public function PostPagination(){
+	public function PostPagination() {
 		$query = $this->conn->prepare("SELECT COUNT(*) as total FROM `post`");
 		$query->execute();
 		$count = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -132,7 +130,7 @@ class Post
 		return $data;
 	}
 
-	public function ImageUpload($image){
+	public function ImageUpload($image) {
 		$query = $this->conn->prepare("INSERT INTO `post` (`ImageUrl`) VALUES (:ImageUrl);");
 		$query->bindParam(':ImageUrl', $image);
 		$query->execute();
@@ -140,7 +138,7 @@ class Post
 
 	}
 	
-	public function AddView($view,$id){
+	public function AddView($view,$id) {
 		$query = $this->conn->prepare("UPDATE `post` SET `View` = :view WHERE `post`.`Id` = :id;");
 		$query->bindParam(':view',$view);
 		$query->bindParam(':id',$id);
@@ -148,8 +146,7 @@ class Post
 		return  $this->conn->lastInsertId();	
 	}
 
-	public function Search($sQuery)
-	{
+	public function Search($sQuery)	{
 		$search = explode(' ' , $sQuery);
 		$sizeS = sizeof($search);
 		$qs = "SELECT `Id`,`Title`,`Url`,`ImageUrl`, `View` FROM `post` WHERE ";
@@ -175,40 +172,65 @@ class Post
         return $result;
 	}
 
-	public function GetCategory(){	
+	public function GetCategory() {	
 		$query = $this->conn->prepare("SELECT * FROM `category`");			
 		$query->execute();
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
         return $result;
 	}
 
-	public function GetCategoryById($id){		
-		$query = $this->conn->prepare("SELECT * FROM `category` WHERE `Id` = :id");	
-		$query->bindParam(':url', $id);
-		$query->execute();		
-		$result = $query->fetchAll(PDO::FETCH_ASSOC);	
-        return $result;
+	public function GetCategoryById($id) {		
+		try {
+			$query = $this->conn->prepare("SELECT * FROM `category` WHERE `Id` = :id");	
+			$query->bindParam(':id', $id);
+			$query->execute();		
+			$result = $query->fetchAll(PDO::FETCH_ASSOC);	
+			return $result;
+		}
+		catch(Exception $e){
+			return $e->getMessage();
+		}    
 	}
 
-	public function InsertCategory($id,$cname,$icon) {		
-		$stmt1;
-		if($id){
-			$id = (int) $id;
-			$stmt1 = $this->conn->prepare("UPDATE `category` SET `Name` = :cname, `Icon` = :icon WHERE `post`.`Id` = :id");			
-			$stmt1->bindParam(':id', $id);
+	public function InsertCategory($id,$cname,$icon) {	
+		try {
+			$stmt1;
+			if($id != "null" && $id){
+				$id = (int) $id;
+				$stmt1 = $this->conn->prepare("UPDATE `category` SET `Name` = :cname, `Icon` = :icon WHERE `category`.`Id` = :id");			
+				$stmt1->bindParam(':id', $id);
+			}
+			else{
+				$stmt1 = $this->conn->prepare("INSERT INTO `category` ( `Name`, `Icon`) VALUES (:cname, :icon);");
+			}			
+			$stmt1->bindParam(':cname', $cname);
+			$stmt1->bindParam(':icon', $icon);
+			$stmt1->execute();
+			return  $this->conn->lastInsertId();	
+		}	
+		catch(Exception $ex) {
+			return $e->getMessage();
 		}
-		else{
-			$stmt1 = $this->conn->prepare("INSERT INTO `category` ( `Name`, `Icon`) VALUES (:cname, :icon);");
-		}			
-		$stmt1->bindParam(':cname', $cname);
-		$stmt1->bindParam(':icon', $icon);
-		$stmt1->execute();
-		return  $this->conn->lastInsertId();	
+		
 	}
 
 	public function Updatecategory(){}
 
-	public function Deletecategory(){}
+	public function DeleteCategoryById($id) {
+		try {
+			$query = $this->conn->prepare("DELETE FROM `postcategory` WHERE `postcategory`.`CateogyId` = :id");
+			$query->bindParam(':id', $id);
+			$query->execute();
+			$query = $this->conn->prepare("DELETE FROM `category` WHERE `Id`= :id");
+			$query->bindParam(':id', $id);
+			$query->execute();
+			$count = $query->rowCount();
+			return $count;
+		}
+		catch(Exception $ex) {
+			return $ex.getMessage();
+		}
+	}
 
 
 

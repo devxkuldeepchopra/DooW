@@ -20,19 +20,13 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 // $result = Token::validate($token, 'secret');
 
 $model; 
-
-if($data = json_decode(file_get_contents("php://input"))){
-
-	$model = $data;
-
-}
+	if($data = json_decode(file_get_contents("php://input"))) {
+		$model = $data;
+	}
 
 	require_once('PostClass.php');
-
 	include 'conn.php';
-
 	$Post = new Post($conn);
-
 	$action="";
 
 	if (isset($model)) {
@@ -59,16 +53,19 @@ if($data = json_decode(file_get_contents("php://input"))){
 			$Data = $Post->GetPost($page,$content,$randPage);
 			echo json_encode($Data);
 		}
+
 		if ($action == 'GetPostAdmin') {
 			$Data = $Post->GetPostAdmin();
 			echo json_encode($Data);
 		}
+
 		if ($action == 'ActivatePost') {
                         $activate= $model ? $model->activate: $_POST["activate"];
                         $id = $model ? $model->id: $_POST["id"];
 			$Data = $Post->ActivatePost($id,$activate);
 			echo json_encode($Data);
 		}
+
 		if ($action == 'SearchPost') {
 			$search = $model ? $model->search : $_POST["search"];
 			if(!$search){return false;}
@@ -140,6 +137,7 @@ if($data = json_decode(file_get_contents("php://input"))){
 			$Data = $Post->GetCategory();
 			echo json_encode($Data);
 		}
+		
 		if ($action == 'InsertCategory') {
 			if(isset($_FILES['file'])) {
 				if ( $_FILES['file']['error'] > 0 ) {
@@ -164,6 +162,17 @@ if($data = json_decode(file_get_contents("php://input"))){
 			}
 		}
 
+		if ($action == 'GetCategoryById') {
+			$id = $model ? $model->id : $_POST['id'];
+			$Data = $Post->GetCategoryById($id);
+			echo json_encode($Data);
+		}
+
+		if ($action == 'DeleteCategory') {
+			$id = $model ? $model->id : $_POST['id'];
+			$Data = $Post->DeleteCategoryById($id);
+			echo json_encode($Data);
+		}
 	}
 
 	

@@ -25,11 +25,13 @@ export class CategoryComponent implements OnInit {
 
   validation_messages = {
     'title': [
-      { type: 'required', message: 'Contact name is required' }
+      { type: 'required', message: 'Name is required' },
+      { type: 'maxlength', message: 'Name Should not be exceeded more than 20 characters' }
     ]
   }
 
   ngOnInit() {
+    debugger;
      let id = this.activeRoute.snapshot.params.id;
      this.Form();
      if(id)
@@ -38,15 +40,23 @@ export class CategoryComponent implements OnInit {
   }
 
   GetCategoryById(id) {
-    this.postservice.GetCategoryById(id).subscribe((data:any)=>{
+    debugger;
+    this.postservice.GetCategoryById(id).subscribe((data:any) => {
       debugger;
-      let body = data[0];
+      console.log(data);
+      let body = data[0];      
+      if(body.Icon != null) {
+        // this.thumbnailPath = 'assets/images/icon/'+body.ImageUrl;
+        this.thumbnailPath = 'http://doomw.com/web/assets/images/icon/'+body.Icon;
+      }
       this.PostForm.reset({
         id : body.Id,
-        title : body.Title,
+        title : body.Name,
         icon : body.Icon        
       });
-      this.thumbnailPath = 'assets/uploads/'+body.ImageUrl;
+    },
+    (error : any) => {
+      console.log(error);
     });
   }
 
@@ -55,6 +65,7 @@ export class CategoryComponent implements OnInit {
       id: new FormControl(''),
       title : new FormControl('',{
         validators : Validators.compose([
+          Validators.maxLength(20),
           Validators.required
         ]),        
         updateOn: 'change'
@@ -73,13 +84,18 @@ export class CategoryComponent implements OnInit {
     reader.readAsDataURL(this.fileToUpload);
   }
 
-  AddPost(value) {
+  AddCategory(value) {
     debugger;
     this.postservice.AddCategory(this.fileToUpload,value).subscribe((data: any)=>{
     debugger;
-    this.Form();
+    var updated = "Updated.";
+    if(data == "0"){ this.toastr.success(updated); return;}
+    this.toastr.success("Added :"+data);
     this.thumbnailPath = "assets/images/thumbnaillogo.png";
-    this.toastr.success(data);
+    this.PostForm.reset();
+    },
+    (error : any) => {
+      console.log(error);
     })
   }
 

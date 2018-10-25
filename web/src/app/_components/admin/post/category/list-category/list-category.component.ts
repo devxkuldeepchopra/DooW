@@ -33,6 +33,7 @@ export class ListCategoryComponent implements OnInit {
   }
 
   ConfirmDelete(deleteCategory) {
+    debugger;
     this.spinner.show();   
     this._post.DeleteCategory(deleteCategory.Id).subscribe((res:any) => { 
       this.spinner.hide();
