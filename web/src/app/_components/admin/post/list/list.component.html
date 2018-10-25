@@ -1,6 +1,6 @@
 <div class="container">
-        <a [routerLink]="['/addpost']"><button type="button" class="btn btn-info btn-custom"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add Post</button></a>
-        <!-- <a [routerLink]="['/addCategory']"><button type="button" class="btn btn-info">Add Category</button></a> -->
+        <a [routerLink]="['/addpost']"><button type="button" class="btn btn-info btn-custom"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add Post</button></a>&nbsp;
+        <a [routerLink]="['/manage-category']"><button type="button" class="btn btn-info btn-custom"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Manage Category</button></a>
   <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="20">
     <thead>
     <tr>
@@ -45,7 +45,7 @@
   </table>
   </div>
   
-  <app-delete [postId]="PostId"></app-delete>
+  <!-- <app-delete [postId]="PostId"></app-delete> -->
   
   <ngx-spinner
   bdColor = "rgba(51, 51, 51, 0.8)"
