@@ -6,16 +6,18 @@ import { AdminComponent } from './_components/admin/admin.component';
 import { AddComponent } from './_components/admin/post/add/add.component';
 import { ListComponent } from './_components/admin/post/list/list.component';
 import { CategoryComponent } from './_components/admin/post/category/category.component';
+import { ListCategoryComponent } from './_components/admin/post/category/list-category/list-category.component';
 
 const appRoutes : Routes = [
 
-   {path: '', component: AdminComponent, pathMatch: 'full' },
+   { path: '', component: AdminComponent, pathMatch: 'full' },
    { path: 'dashboard', component: DashboardComponent },
    { path: 'addpost', component: AddComponent },
-   { path: 'addCategory', component: CategoryComponent },
    { path: 'editpost/:id', component: AddComponent },
+   { path: 'addCategory', component: CategoryComponent },
+   { path: 'editCategory/:id', component: CategoryComponent },
    { path: 'posts', component: ListComponent },
-   
+   { path : 'manage-category', component: ListCategoryComponent},
     {
         path : '', 
         component : LayoutComponent,
