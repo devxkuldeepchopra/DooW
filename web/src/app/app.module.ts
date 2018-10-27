@@ -24,6 +24,8 @@ import { AddComponent } from './_components/admin/post/add/add.component';
 import { ListComponent } from './_components/admin/post/list/list.component';
 import { CategoryComponent } from './_components/admin/post/category/category.component';
 import { ListCategoryComponent } from './_components/admin/post/category/list-category/list-category.component';
+import { AuthGuard } from './_auth/auth.guard';
+import { AuthInterceptor } from './_auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,14 @@ import { ListCategoryComponent } from './_components/admin/post/category/list-ca
       confirmButtonType: 'danger' // set defaults here
     })
   ],
-  providers: [],
+  providers: [  
+    AuthGuard,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptor,
+      multi : true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

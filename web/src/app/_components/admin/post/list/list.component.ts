@@ -28,6 +28,7 @@ export class ListComponent implements OnInit {
     ngOnInit() {
       this.spinner.show();
       this._post.GetPost().subscribe((data:any)=>{
+        debugger;
         this.spinner.hide();        
         this.data = data.post;
       })

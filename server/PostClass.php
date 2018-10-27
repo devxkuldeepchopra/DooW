@@ -9,7 +9,9 @@ class Post
 	public function __construct($conn) {
 		$this->conn = $conn;
 	}
+	// pubic function GenerateToken() {
 
+	// }
 	public function GetPost($page,$content,$rendPage) {
 		$limit = 0;
 		$upto = $content;

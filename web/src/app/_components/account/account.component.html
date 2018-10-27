@@ -1,3 +1,33 @@
-<p>
-  account works!
-</p>
+<div class="container">
+    <form [formGroup]="PostForm" novalidate (ngSubmit)="Login(PostForm.value)" autocomplete="off">    
+      
+          <div class="form-group">
+              <label class="label-lg">Username<span class="sign-astric">*</span></label>
+              <input type="text" formControlName="userName" class="form-control" id="userName">  
+          </div>
+          <span *ngFor="let validation of validation_messages.userName">
+                  <span class="text-danger-error field-validation-error" *ngIf="PostForm.get('userName').hasError(validation.type) 
+                      && (PostForm.get('userName').dirty || PostForm.get('userName').touched)">{{validation.message}}
+                  </span>
+          </span>
+          <div class="form-group">
+              <label class="label-lg">Password<span class="sign-astric">*</span></label>
+              <input type="password" formControlName="password" class="form-control" id="password">  
+          </div>
+          <span *ngFor="let validation of validation_messages.password">
+                  <span class="text-danger-error field-validation-error" *ngIf="PostForm.get('password').hasError(validation.type) 
+                      && (PostForm.get('password').dirty || PostForm.get('password').touched)">{{validation.message}}
+                  </span>
+          </span>
+    
+      
+        <div class="form-group mt10">
+            <label class="label-lg"></label>
+            <input [disabled]="!PostForm.valid" class="btn btn-primary" type="submit" />
+        </div>
+    
+    
+    </form>
+    </div>
+    
+  

@@ -31,7 +31,15 @@ export class PostService {
       .replace(/^-*/, '')              // Remove starting dashes
       .replace(/-*$/, '');             // Remove trailing dashes
   }
-
+  Login(val): Observable<any> {
+    debugger;
+    var reqdata = {
+      'action': 'token',
+      'username': val.userName,
+      'password': val.password
+    };
+    return this.ResponseData(JSON.stringify(reqdata));
+  }
   GetPost(): Observable<any[]> {
     var reqdata = {
       'action': 'GetPostAdmin'
