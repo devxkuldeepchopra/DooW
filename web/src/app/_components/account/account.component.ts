@@ -96,7 +96,7 @@ export class AccountComponent implements OnInit {
     debugger;
     if(data) {
       localStorage.setItem('userToken',data);
-      this.router.navigateByUrl('/posts');
+      this.router.navigateByUrl('/admin/posts');
       return true;
     }
     else {

@@ -26,6 +26,7 @@ import { CategoryComponent } from './_components/admin/post/category/category.co
 import { ListCategoryComponent } from './_components/admin/post/category/list-category/list-category.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { AuthInterceptor } from './_auth/auth.interceptor';
+import { HeaderAdminComponent } from './_layout/header-admin/header-admin.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AuthInterceptor } from './_auth/auth.interceptor';
     AddComponent,
     ListComponent,
     CategoryComponent,
-    ListCategoryComponent
+    ListCategoryComponent,
+    HeaderAdminComponent
   ],
   imports: [
     BrowserModule,

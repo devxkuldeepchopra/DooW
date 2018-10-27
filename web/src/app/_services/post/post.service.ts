@@ -38,7 +38,8 @@ export class PostService {
       'username': val.userName,
       'password': val.password
     };
-    return this.ResponseData(JSON.stringify(reqdata));
+    var reqHeader = new HttpHeaders({'Content-Type': 'application/json','No-Auth':'True' });
+    return this.http.post<any[]>(this.apiUrl, JSON.stringify(reqdata),  {headers :  reqHeader});
   }
   GetPost(): Observable<any[]> {
     var reqdata = {

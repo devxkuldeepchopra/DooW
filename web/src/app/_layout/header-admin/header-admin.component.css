@@ -1,0 +1,10 @@
+.btn-custom {
+    font-size: 12px;
+    margin: 9px 0px;
+    padding: 5px;
+    float: right;
+    margin-right: 9.5%;
+    background-color: var(--success);
+    border-color: var(--success);
+  }
+  
