@@ -1,6 +1,6 @@
 <div class="container">
-        <a [routerLink]="['/addpost']"><button type="button" class="btn btn-info btn-custom"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add Post</button></a>&nbsp;
-        <a [routerLink]="['/manage-category']"><button type="button" class="btn btn-info btn-custom"><i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;Manage Category</button></a>
+        <a [routerLink]="['/admin/addpost']"><button type="button" class="btn btn-info btn-custom"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add Post</button></a>&nbsp;
+        <a [routerLink]="['/admin/manage-category']"><button type="button" class="btn btn-info btn-custom"><i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;Manage Category</button></a>
   <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="20">
     <thead>
     <tr>
@@ -20,7 +20,7 @@
                     <!-- <span *ngIf="item.IsActive==1">ON</span>
                     <span *ngIf="item.IsActive==0">OFF</span> -->
                   </button>  
-            <button class="btn btn-primary fa fa-area-chart" routerLink="/editpost/{{item.Url}}"> Edit </button>  &nbsp;
+            <button class="btn btn-primary fa fa-area-chart" routerLink="/admin/editpost/{{item.Url}}"> Edit </button>  &nbsp;
             <button
                 class="btn btn-danger fa fa-trash"
                 mwlConfirmationPopover
