@@ -510,16 +510,16 @@ input.input-search:focus {
         border-radius: 0;
         float: left;
         width: 100%;
-        height: 100px;
+        height: 67px;
         background: #bf0707;
     }
     .logo {
         float: left;
-        width: 142px;
-        height: 84px;
+        width: 169px;
+        height: 55px;
         background: url(../images/logo-hd.svg) no-repeat center;
-        margin: 16px;
-        background-size: 149px 56px;
+        margin: 8px;
+        background-size: 171px 56px;
     }
     .nav {
         float: left;
@@ -529,13 +529,14 @@ input.input-search:focus {
     .nav-content {
         display: block !important;
         float: left;
-        height: 56px;
+        height: 28px;
         background: none;
         position: unset;
         width: 72%;
-        margin: 32px 0%;
+        margin: 9px 0%;
         right: unset;
     }
+    
     .nav-content ul {
         float: left;
         width: 100%;
@@ -557,9 +558,10 @@ input.input-search:focus {
     .search {
         float: left;
         width: 28%;
-        height: 56px;
-        margin: 32px 1%;
+        height: 47px;
+        margin: 11px 1%;
     }
+    
     .input-search {
         float: left;
         width: 68%;
@@ -667,7 +669,7 @@ input.input-search:focus {
     .post-col {
         float: left;
         width: 64%;
-        background: #fffaed;
+        background: #ffffff;
         margin-right: 0%;
     }
     .post-col h1 {
@@ -712,7 +714,7 @@ div#search-content {
     width: 22%;
     height: auto;
     position: absolute;
-    top: 97px;
+    top: 63px;
     right: 10%;
     background: #bf0707;
     padding: 0.5%;
