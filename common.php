@@ -63,6 +63,8 @@
     
     // $ads='';
    
-    
+    function RemoveNull($value) {
+        return $value != "null" ? $value : "";
+    }
 
 ?>
