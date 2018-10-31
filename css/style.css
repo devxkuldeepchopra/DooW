@@ -4,7 +4,26 @@ body {
     margin: 0px 0;
     background: #ffffff;
 }
-
+.post-article.post-des {
+    display: none;
+}
+span.side-view {
+    float: left;
+    width: 54%;
+    color: #969292;
+    font-family: monospace;
+    font-size: 11px;
+    margin-left: 2px;
+}
+span.title {
+    width: 54%;
+    float: left;
+    margin: -3px 2px;
+    color: #434343;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9em;
+    line-height: 1.4em;
+}
 div#search-content {
     float: right;
     width: 69%;
@@ -346,8 +365,8 @@ input.input-search:focus {
     border: 0;
 }
 .footer {
-    border-bottom: 18px solid #000000;
-    border-radius: 0px 0px 20px 20px;
+    border-bottom: 3px solid #750101;
+    border-radius: 0;
     float: left;
     width: 100%;
     margin-top: 6px;

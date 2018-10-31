@@ -18,9 +18,10 @@
 
 }
 .uploaded-img {
-    height: 130px !important;
-    width: 249px !important;
+    height: 129px !important;
+    width: 247px !important;
     float: left;
+    margin-left: -14px;
 }
 .add-category {
     font-size: 14px;

@@ -65,7 +65,7 @@ export class CategoryComponent implements OnInit {
       id: new FormControl(''),
       title : new FormControl('',{
         validators : Validators.compose([
-          Validators.maxLength(20),
+          Validators.maxLength(200),
           Validators.required
         ]),        
         updateOn: 'change'

@@ -23,7 +23,7 @@
         <select class="form-control" id="category" formControlName="category">
           <option *ngFor="let category of categories" [value]="category.Id">{{category.Name}}</option>
         </select>
-        <a [routerLink]="['/addCategory']"><button type="button" class="btn fa fa-plus add-category">Add Category</button></a>
+        <a [routerLink]="['/admin/addCategory']"><button type="button" class="btn fa fa-plus add-category">Add Category</button></a>
       </div>
     <!-- <span *ngFor="let validation of validation_messages.description">
             <span class="text-danger-error field-validation-error" *ngIf="PostForm.get('description').hasError(validation.type) 
