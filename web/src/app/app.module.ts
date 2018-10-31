@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
@@ -59,7 +60,10 @@ import { HeaderAdminComponent } from './_layout/header-admin/header-admin.compon
     AngularFontAwesomeModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here
-    })
+    }),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
+
   ],
   providers: [  
     AuthGuard,

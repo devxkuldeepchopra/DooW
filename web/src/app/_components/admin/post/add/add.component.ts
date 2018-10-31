@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, Routes, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { PostService } from '../../../../_services/post/post.service';
@@ -19,12 +19,12 @@ export class AddComponent implements OnInit {
   categories : any = [];
   thumbnailPath: string = "assets/images/thumbnaillogo.png";
   fileToUpload: File = null;
-
+  // public editorContent: string = 'My Document\'s Title'
   // Constructor 
   constructor(private activeRoute : ActivatedRoute,
     private fb:FormBuilder,
     private postservice : PostService,
-    private toastr : ToastrService ) { }
+    private toastr : ToastrService, private ef:ElementRef ) { }
 
   // Validation Message For Reactive Form
   validation_messages = {
@@ -32,7 +32,45 @@ export class AddComponent implements OnInit {
       { type: 'required', message: 'Contact name is required' }
     ]
   }
+  public options: Object = {
+    charCounterCount: true,
+    imageUploadParam: 'image_param',
+    imageUploadURL: 'assets/uploads',
+    imageUploadParams: {id: 'my_editor'},
+    imageUploadMethod: 'POST',
+    imageMaxSize: 5 * 1024 * 1024,
+    imageAllowedTypes: ['jpeg', 'jpg', 'png'],
+    events: {
+      'froalaEditor.initialized':  function () {
+        debugger;
+      console.log('initialized');
+    },
+      'froalaEditor.image.beforeUpload':  function  (e,  editor,  images) {
+        debugger;
+        //Your code 
+        if  (images.length) {
+        // Create a File Reader.
+        const  reader  =  new  FileReader();
+        // Set the reader to insert images when they are loaded.
+        reader.onload  =  (ev)  =>  {
+        const  result  =  ev.target['result'];
+        editor.image.insert(result,  null,  null,  editor.image.get());
+        console.log(ev,  editor.image,  ev.target['result'])
+      };
+      // Read image as base64.
+      reader.readAsDataURL(images[0]);
+    }
+    // Stop default upload chain.
+    return  false;
+  }
 
+}
+}
+  feditor(){
+    debugger;
+    this.options;
+   
+  }
   ngOnInit() {
     this.GetCategory();
      let url = this.activeRoute.snapshot.params.id;
@@ -52,13 +90,16 @@ export class AddComponent implements OnInit {
         title : body.Title,
         description : body.Description,
         video : body.Video,
-        mypost : body.Mypost,
+        mypost : body.Post,
         category: body.CatId,
         fileName : body.ImageUrl
       });
       // uncomment on live
       // this.thumbnailPath = 'assets/uploads/'+body.ImageUrl;
-      this.thumbnailPath = 'http://doomw.com/web/assets/images/uploads/'+body.ImageUrl;
+      if(body.ImageUrl && body.ImageUrl != "null"){
+        this.thumbnailPath = 'http://doomw.com/web/assets/images/uploads/'+body.ImageUrl;
+      }
+     
     });
   }
 
