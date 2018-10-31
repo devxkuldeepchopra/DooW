@@ -48,39 +48,45 @@ class Post
 
 	public function GetPostByPath($url) {		
 		//$query = $this->conn->prepare("SELECT * FROM `post` LEFT OUTER JOIN `postvideo` ON `post`.`Id` = `postvideo`.`PostId` WHERE `post`.`Url` = :url");	
-		$query = $this->conn->prepare("SELECT post.Id AS PostId, Title,Description,Post,Url,ImageUrl,PostOn,post.View,IsActive,Video, postcategory.Id As PostCatId, category.Id As CatId, category.Name AS CatName, category.Icon AS CatIcon FROM (((`post` LEFT OUTER JOIN `postcategory` ON `post`.`Id` = `postcategory`.`PostId`)LEFT OUTER JOIN postvideo ON postvideo.PostId = post.Id)LEFT OUTER JOIN category ON postcategory.CateogyId = category.Id) WHERE `post`.`Url` = :url");	
+		$query = $this->conn->prepare("SELECT post.Id AS PostId, Title,Description,Post,Url,ImageUrl,PostOn,post.View,IsActive, postcategory.Id As PostCatId, category.Id As CatId, category.Name AS CatName, category.Icon AS CatIcon FROM ((`post` LEFT OUTER JOIN `postcategory` ON `post`.`Id` = `postcategory`.`PostId`)LEFT OUTER JOIN category ON postcategory.CateogyId = category.Id) WHERE `post`.`Url` = :url");	
 		$query->bindParam(':url', $url);
 		$query->execute();		
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);	
         return $result;
 	}
 
-	public function InsertPost($id,$postCatid,$title,$description,$post,$url,$ImageUrl,$video,$catid) {
+	public function InsertPost($id,$postCatid,$title,$description,$post,$url,$ImageUrl,$catid) {
 		$stmt1;
 		$catPost;
         $postId;
 		if($id != "null" && $id){
 			$id = (int) $id;
 			$stmt1 = $this->conn->prepare("UPDATE `post` SET `Title` = :title, `Description` = :description, `Post` = :post, `Url` = :url, `ImageUrl` = :imageUrl WHERE `post`.`Id` = :id");			
-			$stmt2 = $this->conn->prepare("UPDATE `postvideo` SET `Video` = :video WHERE `postvideo`.`Id` = :id;");				
 			$stmt1->bindParam(':id', $id);
-			$stmt2->bindParam(':id', $id);
-
+			// if($video)
+			// {
+			// 	$stmt2 = $this->conn->prepare("UPDATE `postvideo` SET `Video` = :video WHERE `postvideo`.`Id` = :id;");	
+			// 	$stmt2->bindParam(':id', $id);
+			// 	$stmt2->bindParam(':video', $video);	
+			// }
 		}
 		else{
 			$stmt1 = $this->conn->prepare("INSERT INTO `post` (`Title`, `Description`, `Post`, `Url`, `ImageUrl`) VALUES (:title, :description, :post, :url, :imageUrl)");
-			$stmt2 = $this->conn->prepare("INSERT INTO `postvideo` (`PostId`, `Video`) VALUES (LAST_INSERT_ID(), :video);");
+			// if($video)
+			// {
+			// 	$stmt2 = $this->conn->prepare("INSERT INTO `postvideo` (`PostId`, `Video`) VALUES (LAST_INSERT_ID(), :video);");
+			// 	$stmt2->bindParam(':video', $video);	
+			// }
 		}
 		$stmt1->bindParam(':title', $title);
 		$stmt1->bindParam(':description', $description);
 		$stmt1->bindParam(':post', $post);
 		$stmt1->bindParam(':url', $url);
-		$stmt1->bindParam(':imageUrl', $ImageUrl);	
-		$stmt2->bindParam(':video', $video);	
+		$stmt1->bindParam(':imageUrl', $ImageUrl);		
 		$stmt1->execute();
 		$postId = $this->conn->lastInsertId();
 		$postReturn = $postId;
-		$stmt2->execute();			
+		// $stmt2->execute();			
 		if($postCatid != "null" && $postCatid || $catid != "null" && $catid) 
 		{
 			if($postCatid != "null" && $postCatid)

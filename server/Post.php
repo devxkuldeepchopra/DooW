@@ -97,13 +97,13 @@ $model;
 					if(move_uploaded_file($_FILES['file']['tmp_name'], $path . $newFile))
 					{
 						
-						$Data = $Post->InsertPost($_POST['id'],$_POST['postcatid'],$_POST['title'],$_POST['description'],$_POST['mypost'],$_POST['url'],$newFile,$_POST['video'],$_POST['catid']);
+						$Data = $Post->InsertPost($_POST['id'],$_POST['postcatid'],$_POST['title'],$_POST['description'],$_POST['mypost'],$_POST['url'],$newFile,$_POST['catid']);
 						echo json_encode($Data);
 					}
 				}	
 			}
 			else{
-				$Data = $Post->InsertPost($_POST['id'],$_POST['postcatid'],$_POST['title'],$_POST['description'],$_POST['mypost'],$_POST['url'],$_POST['filename'],$_POST['video'],$_POST['catid']);
+				$Data = $Post->InsertPost($_POST['id'],$_POST['postcatid'],$_POST['title'],$_POST['description'],$_POST['mypost'],$_POST['url'],$_POST['filename'],$_POST['catid']);
 				echo json_encode($Data);
 			}
 

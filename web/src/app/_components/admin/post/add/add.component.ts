@@ -86,7 +86,6 @@ RemoveNull(val){
         postcatid: body.PostCatId,
         title : body.Title,
         description : this.RemoveNull(body.Description),
-        video : body.Video,
         mypost : this.RemoveNull(body.Post),
         category: body.CatId,
         fileName : body.ImageUrl
@@ -110,7 +109,6 @@ RemoveNull(val){
         updateOn: 'change'
       }),
       description : new FormControl(''),
-      video : new FormControl(),
       mypost : new FormControl(),
       category: new FormControl(),
       fileName: new FormControl()

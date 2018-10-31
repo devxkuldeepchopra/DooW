@@ -89,7 +89,6 @@ export class PostService {
     form_data.append('action', 'InsertPost');
     form_data.append('title', data.title);
     form_data.append('description', data.description);
-    form_data.append('video', data.video);
     form_data.append('mypost', data.mypost);
     form_data.append('url', url);
     form_data.append('catid', data.category);
