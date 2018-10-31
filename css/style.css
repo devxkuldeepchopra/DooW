@@ -4,10 +4,7 @@ body {
     margin: 0px 0;
     background: #ffffff;
 }
-.post-article.post-des {
-    font-style: italic;
-    font-size: 12px;
-}
+
 div#search-content {
     float: right;
     width: 69%;

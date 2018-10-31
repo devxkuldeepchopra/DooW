@@ -1,4 +1,6 @@
+
 <div class="container">
+                <h1 class="text-primary bg-light text-dark">{{addPost}}</h1>
 <form [formGroup]="PostForm" novalidate (ngSubmit)="AddPost(PostForm.value)" autocomplete="off">    
   
       <div class="form-group">
@@ -12,20 +14,27 @@
       </span>
 
   
-    <div class="form-group">
+    <div class="form-group des">
         <label class="label-lg">Description<span class="sign-astric">*</span></label>
         <input type="text" formControlName="description" class="form-control" id="description">  
     </div>
+    <div class="form-group  cat">
+        <label for="category">Category</label>
+        <select class="form-control" id="category" formControlName="category">
+          <option *ngFor="let category of categories" [value]="category.Id">{{category.Name}}</option>
+        </select>
+        <a [routerLink]="['/addCategory']"><button type="button" class="btn fa fa-plus add-category">Add Category</button></a>
+      </div>
     <!-- <span *ngFor="let validation of validation_messages.description">
             <span class="text-danger-error field-validation-error" *ngIf="PostForm.get('description').hasError(validation.type) 
                 && (PostForm.get('description').dirty || PostForm.get('description').touched)">{{validation.message}}
             </span>
     </span> -->
 
-  <div class="form-group">
+  <!-- <div class="form-group">
       <label class="label-lg">Video Embed:<span class="sign-astric">*</span></label>
       <input type="text" formControlName="video" class="form-control" id="video">  
-  </div>
+  </div> -->
 
   <!-- <span *ngFor="let validation of validation_messages.video">
           <span class="text-danger-error field-validation-error" *ngIf="PostForm.get('video').hasError(validation.type) 
@@ -46,14 +55,6 @@
      
   </div> -->
 
-  <div class="form-group group">
-    <label class="control-label col-sm-2" for="thumbnail">Thumbnail:</label>
-    <div class="col-sm-10 col-img">
-        <input type="file" accept="image/*" class="styled" id="thumbnail" (change)="handleFileInput($event.target.files)" />
-      <!-- <input type="file" name="logo" id="pic" class="styled"> -->
-      <img [src]="thumbnailPath" class="uploaded-img" id="uploaded-img"/>
-    </div>
-  </div>
 
   <div class="form-group">
       <label class="label-lg">MyPost<span class="sign-astric">*</span></label>
@@ -66,15 +67,17 @@
           </span>
   </span> -->
   <!-- <div [froalaEditor]='options' [(froalaModel)]="editorContent" (keyup)="feditor()"></div> -->
-  <div class="form-group">
-    <label for="category">Category</label>
-    <select class="form-control" id="category" formControlName="category">
-      <option *ngFor="let category of categories" [value]="category.Id">{{category.Name}}</option>
-    </select>
-    <a [routerLink]="['/addCategory']"><button type="button" class="btn fa fa-plus add-category">Add Category</button></a>
+
+  <div class="form-group group thumb">
+    <label class="control-label col-sm-2" for="thumbnail">Thumbnail:</label>
+    <div class="col-sm-10 col-img">
+        <input type="file" accept="image/*" class="styled" id="thumbnail" (change)="handleFileInput($event.target.files)" />
+      <!-- <input type="file" name="logo" id="pic" class="styled"> -->
+      <img [src]="thumbnailPath" class="uploaded-img" id="uploaded-img"/>
+    </div>
   </div>
 
-    <div class="form-group mt10">
+    <div class="form-group mt10 cus-btn">
         <label class="label-lg"></label>
         <input [disabled]="!PostForm.valid" class="btn btn-primary" type="submit" />
     </div>

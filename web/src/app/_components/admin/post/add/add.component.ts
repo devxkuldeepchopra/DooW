@@ -19,6 +19,7 @@ export class AddComponent implements OnInit {
   categories : any = [];
   thumbnailPath: string = "assets/images/thumbnaillogo.png";
   fileToUpload: File = null;
+  addPost : string ;
   // public editorContent: string = 'My Document\'s Title'
   // Constructor 
   constructor(private activeRoute : ActivatedRoute,
@@ -29,9 +30,10 @@ export class AddComponent implements OnInit {
   // Validation Message For Reactive Form
   validation_messages = {
     'title': [
-      { type: 'required', message: 'Contact name is required' }
+      { type: 'required', message: 'Title is required' }
     ]
   }
+
   public options: Object = {
     charCounterCount: true,
     imageUploadParam: 'image_param',
@@ -47,50 +49,45 @@ export class AddComponent implements OnInit {
     },
       'froalaEditor.image.beforeUpload':  function  (e,  editor,  images) {
         debugger;
-        //Your code 
         if  (images.length) {
-        // Create a File Reader.
         const  reader  =  new  FileReader();
-        // Set the reader to insert images when they are loaded.
         reader.onload  =  (ev)  =>  {
         const  result  =  ev.target['result'];
         editor.image.insert(result,  null,  null,  editor.image.get());
         console.log(ev,  editor.image,  ev.target['result'])
       };
-      // Read image as base64.
       reader.readAsDataURL(images[0]);
     }
-    // Stop default upload chain.
     return  false;
   }
 
 }
-}
-  feditor(){
-    debugger;
-    this.options;
-   
   }
+
   ngOnInit() {
     this.GetCategory();
+    this.addPost="Add Post";
      let url = this.activeRoute.snapshot.params.id;
      this.Form();
      if(url)
        this.GetPostByUrl(url)
   
   }
-
+RemoveNull(val){
+  return val == "null" ? "" : val;
+}
   GetPostByUrl(url){
     this.postservice.GetPostByUrl(url).subscribe((data:any)=>{
       debugger;
+      this.addPost = "Update Post";
       let body = data[0];
       this.PostForm.reset({
         id : body.PostId,
         postcatid: body.PostCatId,
         title : body.Title,
-        description : body.Description,
+        description : this.RemoveNull(body.Description),
         video : body.Video,
-        mypost : body.Post,
+        mypost : this.RemoveNull(body.Post),
         category: body.CatId,
         fileName : body.ImageUrl
       });
@@ -98,8 +95,7 @@ export class AddComponent implements OnInit {
       // this.thumbnailPath = 'assets/uploads/'+body.ImageUrl;
       if(body.ImageUrl && body.ImageUrl != "null"){
         this.thumbnailPath = 'http://doomw.com/web/assets/images/uploads/'+body.ImageUrl;
-      }
-     
+      }     
     });
   }
 
