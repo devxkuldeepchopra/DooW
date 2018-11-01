@@ -4,7 +4,7 @@
 
             <a href="'.$headContent->baseUrl.'" class="doomw-link">
                 <div class="logo-doomw">
-                    <span class="doom">Doom </span>
+                    <span class="doom">DOOM </span>
                     <span class="doomw">W</span>
                 </div>
             </a>
