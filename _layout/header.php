@@ -2,7 +2,12 @@
 
     $html->header  =  '<div class="header" id="test">
 
-        	<a href="'.$headContent->baseUrl.'"><div class="logo"></div></a>
+            <a href="'.$headContent->baseUrl.'" class="doomw-link">
+                <div class="logo-doomw">
+                    <span class="doom">Doom </span>
+                    <span class="doomw">W</span>
+                </div>
+            </a>
         	<div class="nav">
                 <div class="menu" id="menu" onClick="showMenu()"></div>
                 <div class="close"  onClick="showMenu()" id="close">

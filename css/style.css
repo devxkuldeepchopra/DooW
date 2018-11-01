@@ -24,6 +24,29 @@ span.title {
     font-size: 0.9em;
     line-height: 1.4em;
 }
+/* new added - 1-11-18 */
+a.doomw-link {
+    text-decoration: none;
+    float: left;
+    color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 28px;
+    margin: 15px 5px;
+    font-family: 'Bree Serif', serif;
+}
+span.doom {
+    background: #d0656f;
+    padding: 0px 4px;
+    float: left;
+}
+
+span.doomw {
+    float: left;
+    background: #c14747;
+    padding: 0px 5px;
+    border-radius: 0px;
+}
 div#search-content {
     float: right;
     width: 69%;
@@ -32,9 +55,10 @@ div#search-content {
     position: absolute;
     top: 49px;
     right: 2%;
-    background: #bf0707;
+    background: #80c8bd;
     padding: 0.5%;
 }
+
 .search-content input {
     background: transparent;
     border: 0;
@@ -87,11 +111,12 @@ div#search-content {
    color: #ffffff;
 }
 .header {
-    border-top: 3px solid #750101;
-    border-radius: 0px 0px 0px 0px;
+    border-top: 10px solid #019b9f;
+    border-radius: 0;
     float: left;
     width: 100%;
-    background: #bf0707;
+    background: #80c8bd;
+    border-bottom: 1px solid #23898c4f;
 }
 .ads {
     float: left;
@@ -532,13 +557,14 @@ input.input-search:focus {
         margin: 0px 4%;
         background: #e6e6e6;
     }
+
     .header {
-        border-top: 10px solid #750101;
+        border-top: 10px solid #019b9f;
         border-radius: 0;
         float: left;
         width: 100%;
-        height: 67px;
-        background: #bf0707;
+        background: #80c8bd;
+        border-bottom: 1px solid #23898c4f;
     }
     .logo {
         float: left;
@@ -749,7 +775,7 @@ div#search-content {
     position: absolute;
     top: 63px;
     right: 10%;
-    background: #bf0707;
+    background: #80c8bd;
     padding: 0.5%;
 }
 .footer {
