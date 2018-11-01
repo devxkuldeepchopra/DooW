@@ -33,7 +33,7 @@
 
                 </div>
 
-        		<form class="search" action="searchContent" method="post">
+        		<form class="search" action="searchContent" method="post" autocomplete="off">
                     <input class="input-search" type="text" placeholder="Search" name="search" onkeyup="Search(this.value)"/>
                     <input class="search-submit" type="submit" value="" />
                 </form>

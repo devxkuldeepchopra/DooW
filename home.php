@@ -11,7 +11,7 @@
                                 <a href="'.$post->Url.'">
                                     <img src="'.$uploadImgPath.$post->ImageUrl.'" alt="'.$post->Title.'" />
 <span class="views">view '.$post->View.'</span>
-                                    <li class="title" title="'.$post->Title.'">'.$post->Title.'</li>
+                                    <span class="title" title="'.$post->Title.'">'.$post->Title.'</span>
                                 </a>
                             </div>';
     }
