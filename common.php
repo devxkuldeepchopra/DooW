@@ -15,7 +15,7 @@
     $uploadImgPath = "web/assets/images/uploads/";
 	$Post = new Post($conn);
     $httpRequest= (object) array(
-        'apiUrl'=>'http://jiofox.com/server/post.php',
+        'apiUrl'=>'http://doomw.com/server/post.php',
         'Post'=>'POST', 'Get'=>'GET'
     );
     $content= (object) array(
@@ -55,7 +55,7 @@
         <link rel="canonical" href="'.$headContent->baseUrl.$headContent->url.'"/>
         <meta property="og:image:alt" content="'.$headContent->url.'"/>
         <meta name="robots" content=" index, follow "/>
-        <link rel="icon" href="images/favicon.png" sizes="16x16 32x32" type="image/png"> 
+        <link rel="icon" href="/images/favicon.png" sizes="16x16 32x32" type="image/png"> 
     ';
     }
     $totalRows = $Post->PostPagination();

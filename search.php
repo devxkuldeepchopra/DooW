@@ -1,8 +1,10 @@
 <?php 
     //require_once("pagination.php");     
-   if(isset($_POST['search']) && $_POST['search']!="") 
+   // echo "search+++".$_GET['q'];
+   if(isset($_GET['q']) && $_GET['q']!="") 
+  // if($search) 
    {
-        $search = $_POST['search'];
+        $search = $_GET['q'];
         $contentHome = '<div class="col-1" id="post-col"><h2>Result for: </h2><h1>'.$search.'</h1>'; 
         $post = $Post->Search($search);
         if(sizeof($post)>0) 
@@ -13,8 +15,8 @@
             foreach($post as $post)
             {
                 $contentHome .=  '<div class="grid-box">
-                <a href="'.$post->Url.'">
-                <img src="'.$uploadImgPath.$post->ImageUrl.'" alt="'.$post->Title.'" />
+                <a href="/'.$post->Url.'">
+                <img src="/'.$uploadImgPath.$post->ImageUrl.'" alt="'.$post->Title.'" />
                 <span class="views">view '.$post->View.'</span>
                 <span class="title" title="'.$post->Title.'">'.$post->Title.'</span>
                 </a></div>
@@ -31,6 +33,6 @@
     }
     else
     {
-        header('Location: /');
+       header('Location: /');
     }
 ?>

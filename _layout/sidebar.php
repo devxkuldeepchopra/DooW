@@ -33,8 +33,8 @@ foreach($arrRN as $randPage){
    
             foreach($Data['post'] as $post){
                 $sidebar.='<div class="side-box">
-                                <a href="'.$post['Url'].'">
-                                <img src="'.$uploadImgPath.$post['ImageUrl'].'" alt="'.$post['Title'].'"/>
+                                <a href="/'.$post['Url'].'">
+                                <img src="/'.$uploadImgPath.$post['ImageUrl'].'" alt="'.$post['Title'].'"/>
                                 <span class="side-view">view '.$post['View'].'</span>
                                 <span class="title" title="'.$post['Title'].'">'.$post['Title'].'</span>
                             </a></div>';

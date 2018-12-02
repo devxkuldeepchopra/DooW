@@ -20,7 +20,6 @@ include '_layout/footer.php';
         require_once("home.php");  
     }
     else if($path == "searchContent"){
-        
         require_once("search.php");  
     }
     else{    
@@ -36,15 +35,17 @@ echo '<!DOCTYPE html>
         <html lang="en-US" prefix="og: http://ogp.me/ns#">   
         <meta name="viewport" content="width=device-width, initial-scale=1">
            '.head($headContent).' 
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="/css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Rubik:500|Roboto:100,400,500,900|Sawarabi+Gothic|Economica:700|Yanone+Kaffeesatz" rel="stylesheet">
        <script>
-        function showMenu() {
-            var x = document.getElementById("menu-list").style ;
-            var m = document.getElementById("menu").style;
-            var c = document.getElementById("close").style;
-            x.display == "block" ? (x.display = "none",c.display = "none", m.display = "block") : (x.display = "block", c.display = "block", m.display = "none");
-        } 
+       function showMenu() {
+        debugger;
+        var x = document.getElementById("menu-content").style ;
+        var m = document.getElementById("menu-btn").style;
+        var c = document.getElementById("close").style;
+        x.display == "block" ? (x.display = "none",c.display = "none", m.display = "block") : (x.display = "block", c.display = "block", m.display = "none");
+    } 
+       
         </script>
         </head>
     <body>
@@ -61,6 +62,7 @@ echo '<!DOCTYPE html>
 }
 ?>
 <script> 
+
 var screenResolution = (prop) =>{ 
         var w = window,
         d = document,
@@ -97,7 +99,7 @@ function Search(search) {
 }
 function livesearch(){
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'server/Post.php', true);
+    xhr.open('POST', '/server/Post.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
     if(this.responseText) {
@@ -109,27 +111,24 @@ function livesearch(){
 xhr.send('search='+searchcon+'&action=SearchPost');
 }    
 function SearchResult(data) {
-    if(document.getElementById("search-form")){
-        var element = document.getElementById("search-form");
+    if(document.getElementById("search-content")){
+        var element = document.getElementById("search-content");
     element.parentNode.removeChild(element);
     }
-    var x = document.getElementById("search-content");
-    var my_form = document.createElement('FORM');
-    my_form.name='myForm';
-    my_form.method='POST';
-    my_form.setAttribute("id", "search-form");
-    my_form.className ='search-form';
-    my_form.action='searchContent';
-    x.appendChild(my_form);
+    var x = document.getElementById("search-tab");
+    var searchSpan = document.createElement('span');
+    searchSpan.className ="search-list"
+    searchSpan.setAttribute("id", "search-content");
+    x.appendChild(searchSpan);
     if(data.length>0){
         data.forEach(function(item){
-            my_tb=document.createElement('INPUT');
-            my_tb.type='submit';
-            my_tb.name='search';
-            my_tb.className ='search-item';
-            my_tb.setAttribute("id", "search-item");
-            my_tb.value= item.Title;
-            my_form.appendChild(my_tb);
+        var createA = document.createElement('a');
+        var createAText = document.createTextNode(item.Title);
+        createAText.className ='search-item';
+        var link = '/searchContent/?q='+item.Title;
+        createA.setAttribute('href', link);
+        createA.appendChild(createAText);
+        searchSpan.appendChild(createA);
         });
     }  
 }      

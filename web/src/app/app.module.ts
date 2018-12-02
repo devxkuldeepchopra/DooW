@@ -28,6 +28,7 @@ import { ListCategoryComponent } from './_components/admin/post/category/list-ca
 import { AuthGuard } from './_auth/auth.guard';
 import { AuthInterceptor } from './_auth/auth.interceptor';
 import { HeaderAdminComponent } from './_layout/header-admin/header-admin.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,10 @@ import { HeaderAdminComponent } from './_layout/header-admin/header-admin.compon
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,
       multi : true
+    },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
     },
   ],
   bootstrap: [AppComponent]
