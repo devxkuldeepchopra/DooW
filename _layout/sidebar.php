@@ -1,36 +1,31 @@
 <?php
-$arrRN = array();
-function chkDN($arrR,$n){
-    global $arrRN;
-    $arrSize = sizeof($arrRN);
-    for($i=0; $i<$arrSize; $i++){
-	if($arrR[$i] == $n) {
-	    return true;
-	}			
-    }
-    array_push($arrRN,$n);
-    return false;
+$arrRandIds = array();
+
+function isElementExist($el,$arrIds){
+    if (in_array($el, $arrIds))
+      {
+          return true;
+      }
+    else
+      {
+          return false;
+      }
 }
 
 function sidebar($httpRequest, $totalRows, $Post, $uploadImgPath){
-global $arrRN;
-for($pg=0; $pg<3; $pg++){
-	$rN = rand(0,$totalRows-1);
-	if(empty($arrRN)){
-	array_push($arrRN,$rN);
-	}
-	else if(sizeof($arrRN)>=1) {
-		while(chkDN($arrRN,$rN)){
-			$rN = rand(0,$totalRows-1);
-		}
-	}
-}
-
-    $sidebar='';
-foreach($arrRN as $randPage){
-    $Data = $Post->GetPost(0,1, $randPage);
-    if($Data) {
-   
+    global $arrRandIds;
+    $sidebar=''; 
+    $sidePostCount = 0;
+    $y = "";
+    while($sidePostCount < 4){
+        $randomNumber = rand(0,$totalRows-1);
+        if(sizeof($arrRandIds)>=1){
+            while(isElementExist($randomNumber,$arrRandIds)){
+                $randomNumber = rand(0,$totalRows-1);
+            }
+        }
+        $Data = $Post->GetPost(0,1, $randomNumber);
+        if($Data['post']){        
             foreach($Data['post'] as $post){
                 $sidebar.='<div class="side-box">
                                 <a href="/'.$post['Url'].'">
@@ -39,8 +34,11 @@ foreach($arrRN as $randPage){
                                 <span class="title" title="'.$post['Title'].'">'.$post['Title'].'</span>
                             </a></div>';
             }
+            array_push($arrRandIds,$randomNumber);
+            $sidePostCount++;
         }
-}
+    }
+    
     return  $sidebar;
 }
 $tutorial = '<div class="side-box tutorials"><a href="http://tutorial.doomw.com"><div class="tutorial"></div></a></div>';

@@ -128,7 +128,7 @@ class Post
 	public function GetPostById() {}
 
 	public function PostPagination() {
-		$query = $this->conn->prepare("SELECT COUNT(*) as total FROM `post`");
+		$query = $this->conn->prepare("SELECT COUNT(*) as total FROM `post` WHERE `IsActive` = 1 ");
 		$query->execute();
 		$count = $query->fetchAll(PDO::FETCH_ASSOC);
 		$data = $count;
