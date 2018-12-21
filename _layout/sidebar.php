@@ -16,8 +16,17 @@ function sidebar($httpRequest, $totalRows, $Post, $uploadImgPath){
     global $arrRandIds;
     $sidebar=''; 
     $sidePostCount = 0;
-    $y = "";
-    while($sidePostCount < 4){
+    $totalContent;
+    if($totalRows >= 5){
+        $totalContent = 4;
+    }
+    else if($totalRows > 2) {
+        $totalContent = 3;
+    }
+    else {
+        $totalContent = 0;
+    }
+    while($sidePostCount < $totalContent){
         $randomNumber = rand(0,$totalRows-1);
         if(sizeof($arrRandIds)>=1){
             while(isElementExist($randomNumber,$arrRandIds)){
