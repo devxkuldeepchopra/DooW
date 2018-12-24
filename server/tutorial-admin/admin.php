@@ -1,6 +1,7 @@
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Analyse</title>
   <meta charset="utf-8">
@@ -19,9 +20,9 @@
             float: left;
             width: 18px;
         }
-        a.btn.btn-info.pull-right {
+        a.btn.pull-right {
             padding: 2px;
-            font-size: 13px;
+            font-size: 11px;
             margin: 3px;
             width: 46px;
         }
@@ -31,12 +32,56 @@
             font-family: monospace;
         }
     </style>
+    <?php
+
+ $url = $_SERVER["REQUEST_URI"];
+ $urlExplode = explode("/",$url);
+ $path = explode(".",$urlExplode[1])[0];
+ $token = "kul@4@651@";
+if(isset($_GET["logout"]) && $_GET["logout"]=="true"){
+    $_SESSION['token']="";
+    header('Location: /admin.php');
+    exit;
+ }
+ else if($path == "admin" && isset($_POST["uname"]) && isset($_POST["pwd"])){
+       if($_POST["uname"]!="devx.kuldeep@gmail.com" || $_POST["pwd"]!= $token){      
+        header('Location: /');
+        exit;
+       }
+       else {
+             $_SESSION['token'] =  $token;
+        }
+}
+ else if($path == "admin"){
+    if($_SESSION['token'] != $token){
+        echo '<div class="container"><form action="/admin.php" method="post">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" name="uname" id="email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" name="pwd" id="pwd">
+        </div>
+        <input type="submit" class="btn btn-default" name="submit" value="submit" >
+      </form></div>';
+      exit;
+     }
+
+}
+else{
+  header('Location: /');
+}
+
+?>
 </head>
 <body>
     <input type="hidden" id="ViewBy" value="<?php echo $_GET['viewby']; ?>">
 <div class="container">
+<a href="/admin.php?logout=true" class="btn btn-warning pull-right">Logout</a>
 <a href="/admin.php?viewby=all" class="btn btn-info pull-right">All</a>
 <a href="/admin.php?viewby=current" class="btn btn-info pull-right">Today</a>
+
     <?php 
     include 'conn.php';
     $sql = "SELECT DISTINCT `ip` FROM `visitor`";
@@ -285,8 +330,6 @@ function formatTime(data) {
         '</table>' +
         '</div>';
 }
-
-
 
 
 </script>

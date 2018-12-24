@@ -1,9 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Audiowide|Boogaloo|Fredericka+the+Great|Monoton|Russo+One|Muli:700|Righteous');
+@font-face {
+    font-family:'Proxima Nova Alt Rg';
+    src: url('../fonts/Proxima Nova Alt Rg Regular.eot');
+	src: url('../fonts/Proxima Nova Alt Rg Regular.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Proxima Nova Alt Rg Regular.woff2') format('woff2'),
+		url('../fonts/Proxima Nova Alt Rg Regular.woff') format('woff'),
+		url('../fonts/Proxima Nova Alt Rg Regular.svg#Proxima Nova Alt Rg Regular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-00FE;
+}
 body {
     float: left;
     width: 100%;
     margin: 0px 0;
     background: #ffffff;
+}
+.post-article p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 2;
 }
 .search-list {
     position: absolute;
@@ -59,7 +76,8 @@ span.doomw-1 {font-family: Audiowide,sans-serif;color: #00b107;}
     right: 0;
     width: 26%;
     color: #34805a;
-	background: #f3f3f3;
+    background: #f3f3f3;
+    z-index: 99 !important;
 }
 .header-doom {
     float: left;
@@ -107,7 +125,8 @@ span.serach-icon-1 {
 .menu-1 {
     width: 11px;
     height: 11px;
-    background: black;
+    background: url(../images/menu.svg) no-repeat center ;
+    background-size: 6px 18px;
     position: absolute;
     right: 2%;
     top: 7px;
@@ -361,6 +380,7 @@ input.input-search:focus {
     float: left;
     margin-top: 0;
     width: 100%;
+    background: #f3f3f3;
 }
 .col-1 {
     background: #f3f3f3;
@@ -481,7 +501,8 @@ input.input-search:focus {
     float: left;
     width: 97%;
     margin: 5px 8px;
-    font-family: 'Roboto',sans-serif;
+    /* font-family: 'Roboto',sans-serif; */
+    font-family: 'Proxima Nova Alt Rg' !important;
     font-size: 0.9em;
     color: #111111;
     white-space: pre-wrap;
@@ -676,8 +697,8 @@ input.input-search:focus {
         background: #019b9f;
         position: absolute;
         border-radius: 38px;
-        right: 3%;
-        top: 20px;
+        right: 2.8%;
+        top: 7px;
         height: 15px;
     }
     .search {
@@ -724,7 +745,7 @@ input.input-search:focus {
      }
      .menu-1 {
         width: 22px;
-        height: 25px;
+        height: 24px;
          display: block;
          top: 2px;
      }

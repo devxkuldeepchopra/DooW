@@ -17,7 +17,9 @@
             </form>
             <div class="search-content-form" id="search-content"></div>           
         </div>
-        <div class="menu-1" id="menu-btn" onClick="showMenu()"></div>
+        <div class="menu-1" id="menu-btn" onClick="showMenu()">
+        <i class="fas fa-ellipsis-v"></i>
+        </div>
         <div class="close"  onClick="showMenu()" id="close">
             <svg viewbox="0 0 40 40">
                 <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
