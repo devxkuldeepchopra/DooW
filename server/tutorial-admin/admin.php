@@ -15,6 +15,8 @@
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
     <script src="https://canvasjs.com/assets/script/jquery-ui.1.11.2.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         td img {
             float: left;
@@ -31,20 +33,30 @@
             background: #f7f7f775;
             font-family: monospace;
         }
+        td.last-column {
+            font-size: 0px;
+        }
+        th#desc {
+            width: 2px !important;
+            /* display: none; */
+        }
+        /* td.last-column.sorting_1 {
+            display: none;
+        } */
     </style>
     <?php
 
  $url = $_SERVER["REQUEST_URI"];
  $urlExplode = explode("/",$url);
  $path = explode(".",$urlExplode[1])[0];
- $token = "kul@4@651@";
+ $token = "bb60b984756bb992d98f7a9233fcc83a";
 if(isset($_GET["logout"]) && $_GET["logout"]=="true"){
     $_SESSION['token']="";
     header('Location: /admin.php');
     exit;
  }
  else if($path == "admin" && isset($_POST["uname"]) && isset($_POST["pwd"])){
-       if($_POST["uname"]!="devx.kuldeep@gmail.com" || $_POST["pwd"]!= $token){      
+       if($_POST["uname"]!="devx.kuldeep" || md5($_POST["pwd"]) != $token){      
         header('Location: /');
         exit;
        }
@@ -56,8 +68,8 @@ if(isset($_GET["logout"]) && $_GET["logout"]=="true"){
     if($_SESSION['token'] != $token){
         echo '<div class="container"><form action="/admin.php" method="post">
         <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" class="form-control" name="uname" id="email">
+          <label for="email">UserName:</label>
+          <input type="text" class="form-control" name="uname" id="email">
         </div>
         <div class="form-group">
           <label for="pwd">Password:</label>
@@ -122,6 +134,7 @@ echo'<table class="table table-striped">
                 <th>Created On</th>
                 <th>Updated On</th>
                 <th>Visited Page</th>
+                <th id="desc"><i class="fa fa-sort" aria-hidden="true"></i></th>
             </tr>
         </thead>
     </table>
@@ -155,6 +168,14 @@ if(viewby == "" || viewby == "current"){ viewby = "current";}
 else{viewby="";}
    table =  $('#visitor-detail').DataTable({
     "destroy": true,
+    "order": [[ 4, "desc" ]],
+    "columnDefs": [
+    {
+        "targets": [ -1 ],
+        "visible": true,
+        "className": 'last-column'
+    }
+  ],
     "initComplete": function(settings, json) {
         debugger;
         json.aaData.forEach(function(x){
@@ -183,9 +204,6 @@ else{viewby="";}
     "lengthMenu": [
         [10, 20, 50, -1],
         [10, 20, 50, "All"]
-    ],
-    "order": [
-        [0, "asc"]
     ],
     "filter": true,
     "ajax": {
@@ -222,7 +240,16 @@ else{viewby="";}
         "data": "pagevisit",
         "name": "0",
         "autoWidth": true
-    }
+    },
+    {
+        "data": "updatedon",
+        "name": "0",
+        "autoWidth": true,   
+        "render": function (data, type, row) {
+                  return Date.parse(data);
+                  //= formatTime(data);
+              }
+    },
     ]
 });
     $('#visitor-detail tbody').on('click', 'td.details-control', function () {
