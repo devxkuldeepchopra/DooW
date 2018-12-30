@@ -32,7 +32,7 @@ export class PostService {
       .replace(/-*$/, '');             // Remove trailing dashes
   }
   Login(val): Observable<any> {
-    debugger;
+    
     var reqdata = {
       'action': 'token',
       'username': val.userName,
@@ -66,7 +66,7 @@ export class PostService {
   }
 
   AddPost(fileToUpload: File, data) {
-    debugger;
+    
     const form_data: FormData = new FormData();
     if (fileToUpload != null) {
       var file_data = fileToUpload;

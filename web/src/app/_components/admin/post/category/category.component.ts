@@ -31,7 +31,7 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
+    
      let id = this.activeRoute.snapshot.params.id;
      this.Form();
      if(id)
@@ -40,9 +40,9 @@ export class CategoryComponent implements OnInit {
   }
 
   GetCategoryById(id) {
-    debugger;
+    
     this.postservice.GetCategoryById(id).subscribe((data:any) => {
-      debugger;
+      
       console.log(data);
       let body = data[0];      
       if(body.Icon != null) {
@@ -85,9 +85,9 @@ export class CategoryComponent implements OnInit {
   }
 
   AddCategory(value) {
-    debugger;
+    
     this.postservice.AddCategory(this.fileToUpload,value).subscribe((data: any)=>{
-    debugger;
+    
     var updated = "Updated.";
     if(data == "0"){ this.toastr.success(updated); return;}
     this.toastr.success("Added :"+data);

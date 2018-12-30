@@ -33,7 +33,7 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
+    
      let id = this.activeRoute.snapshot.params.id;
      this.Form();
      if(id)
@@ -42,9 +42,9 @@ export class AccountComponent implements OnInit {
   }
 
   GetCategoryById(id) {
-    debugger;
+    
     this.postservice.GetCategoryById(id).subscribe((data:any) => {
-      debugger;
+      
       console.log(data);
       let body = data[0];      
       if(body.Icon != null) {
@@ -91,9 +91,9 @@ export class AccountComponent implements OnInit {
   }
 
   Login(value) {
-    debugger;
+    
     this.postservice.Login(value).subscribe((data: any)=>{
-    debugger;
+    
     if(data) {
       localStorage.setItem('userToken',data);
       this.router.navigateByUrl('/admin/posts');

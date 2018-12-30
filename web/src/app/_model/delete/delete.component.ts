@@ -14,7 +14,7 @@ export class DeleteComponent implements OnInit {
   ngOnInit() {
   }
   Delete(){
-    debugger;
+    
     this.dataservice.DeleteData(this.postId);
     this.btnClose.nativeElement.click();
   }

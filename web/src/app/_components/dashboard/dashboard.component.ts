@@ -22,13 +22,13 @@ PostId:any;
     this.spinner.show();
     this._post.GetPost().subscribe((data:any)=>{
       this.spinner.hide();
-      debugger;
+      
       this.data = data.post;
     })
 
     this.dataservice.deleteData.subscribe(id=>{
       this.spinner.show();
-      debugger;
+      
       if(id>0){
       this.data = this.data.filter(c=>c.Id !== id);
       this._post.DeletePost(id).subscribe((res:any)=>{ 
@@ -43,7 +43,7 @@ PostId:any;
     })
   }
   getId(data){
-    debugger;
+    
     this.PostId = data.Id;
   }
 }

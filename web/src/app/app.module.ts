@@ -29,6 +29,7 @@ import { AuthGuard } from './_auth/auth.guard';
 import { AuthInterceptor } from './_auth/auth.interceptor';
 import { HeaderAdminComponent } from './_layout/header-admin/header-admin.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
       confirmButtonType: 'danger' // set defaults here
     }),
     FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
+    FroalaViewModule.forRoot(),
+    CKEditorModule
 
   ],
   providers: [  

@@ -11,7 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (req.headers.get('No-Auth') == "True"){
-            debugger;
+            
         //  req.headers.delete("no-auth");
           req.headers.normalizedNames.delete("no-auth");
       //    var chk = req.headers.get('No-Auth');
@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
             return next.handle(req.clone());}
 
         if (localStorage.getItem('userToken') != null) {
-            debugger;
+            
             const clonedreq = req.clone({
                 headers: req.headers.set("Authorization", localStorage.getItem('userToken'))
             });
@@ -27,7 +27,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 tap(
                     succ => { },
                     err => {
-                        debugger;
+                        
                         if (err.status === 401)
                             this.router.navigateByUrl('');
                     }
@@ -36,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
         }
         else {
-            debugger;
+            
            // return next.handle(req.clone());
            this.router.navigateByUrl('');
         }

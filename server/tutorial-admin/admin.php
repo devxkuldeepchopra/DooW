@@ -177,7 +177,7 @@ else{viewby="";}
     }
   ],
     "initComplete": function(settings, json) {
-        debugger;
+        
         json.aaData.forEach(function(x){
             //ipChart.push({x: new Date(x.updatedon), y: parseInt(x.pagevisit), label: x.ip});     
             ipChart.push({ y: parseInt(x.pagevisit), label: x.ip}); 
@@ -268,7 +268,7 @@ else{viewby="";}
                 url: "http://api.ipstack.com/"+ row.data().ip+"?access_key=e13cc36bdacb7b405882ecccb5ee41f2",
                 dataType: "json",
                 success: function (response) {
-                    debugger;
+                    
                     var data = response;
 
                     // Open this row
@@ -288,7 +288,7 @@ else{viewby="";}
     });
     
 function formatTime(data) {
-    debugger;
+    
     if (typeof (data) != "undefined") {
         var dt = new Date(data);
         var utc = dt.getTime();
@@ -302,7 +302,14 @@ function formatTime(data) {
     }
 }
     function format(d) {
- 
+        var lang = "";
+        if(d.location.languages){
+            d.location.languages.forEach(function(y){
+                lang += y.name +" ";
+            });
+            lang = lang.trim().replace(/\s/,",");
+        } 
+           
     return '<div class="slider-alter">' +
     '<table cellpadding="5" cellspacing="0" border="0" class="new-st">' +
 
@@ -346,7 +353,7 @@ function formatTime(data) {
         '<td class="tdhead">calling_code :</td>' +
         '<td>' + d.location.calling_code + '</td>' +
              '<td class="tdhead">languages :</td>' +
-        '<td>' + d.location.languages.name + '</td>' +
+        '<td>' + lang + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td class="tdhead">country_flag :</td>' +
@@ -358,5 +365,7 @@ function formatTime(data) {
         '</div>';
 }
 
+function showLang(x){
 
+}
 </script>

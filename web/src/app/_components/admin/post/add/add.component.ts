@@ -1,10 +1,11 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router, Routes, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { PostService } from '../../../../_services/post/post.service';
 import { formControlBinding } from '@angular/forms/src/directives/ng_model';
 import { ToastrService } from 'ngx-toastr';
-
+import { find } from 'rxjs/operators';
+declare var $: any;
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -20,12 +21,17 @@ export class AddComponent implements OnInit {
   thumbnailPath: string = "assets/images/thumbnaillogo.png";
   fileToUpload: File = null;
   addPost : string ;
+  ckeConfig: any;
+  log: string = '';
+  @ViewChild("myckeditor") ckeditor: any;
+
   // public editorContent: string = 'My Document\'s Title'
   // Constructor 
   constructor(private activeRoute : ActivatedRoute,
     private fb:FormBuilder,
     private postservice : PostService,
-    private toastr : ToastrService, private ef:ElementRef ) { }
+    private toastr : ToastrService, private ef:ElementRef ) {
+     }
 
   // Validation Message For Reactive Form
   validation_messages = {
@@ -44,11 +50,11 @@ export class AddComponent implements OnInit {
     imageAllowedTypes: ['jpeg', 'jpg', 'png'],
     events: {
       'froalaEditor.initialized':  function () {
-        debugger;
+        
       console.log('initialized');
     },
       'froalaEditor.image.beforeUpload':  function  (e,  editor,  images) {
-        debugger;
+        
         if  (images.length) {
         const  reader  =  new  FileReader();
         reader.onload  =  (ev)  =>  {
@@ -64,8 +70,54 @@ export class AddComponent implements OnInit {
 }
   }
 
+  loadJquery(){
+   
+    $("ckeditor").ready(function(){
+      
+      var id = setInterval(function(){       
+        if($(document).find(".cke_button__image_icon")){
+          $(".cke_button__image_icon").click(function(){
+            
+            if($(".cke_dialog_ui_hbox_last").find("#img-up").length > 0){
+              //return false;
+            }else{
+              var fbtn = setInterval(function(){
+                if( $(".cke_dialog_ui_hbox_last")){
+                  $(".cke_dialog_ui_hbox_last").each(function(i,e){
+                    if(i==0){
+                      $(this).append("<input type='file' id='img-up' />");
+                      $("#img-up").change(function() {
+                        var reader = new FileReader();
+                          reader.onload = (event:any) => {
+                            $(".cke_dialog_image_url").find(".cke_dialog_ui_input_text").val(event.target.result);
+                                console.log(event.target.result);
+                          }
+                          reader.readAsDataURL($(this)[0].files[0]);
+                      });
+                      clearInterval(fbtn);
+                      return false;
+                    }
+                  });
+                }
+              },1);
+            }
+
+          });
+          clearInterval(id);
+        }
+        }, 
+         1000);
+    });
+  }
+
   ngOnInit() {
+    this.loadJquery();
     this.GetCategory();
+    this.ckeConfig = {
+      allowedContent: false,
+      extraPlugins: 'divarea',
+      forcePasteAsPlainText: true
+    };
     this.addPost="Add Post";
      let url = this.activeRoute.snapshot.params.id;
      this.Form();
@@ -78,7 +130,7 @@ RemoveNull(val){
 }
   GetPostByUrl(url){
     this.postservice.GetPostByUrl(url).subscribe((data:any)=>{
-      debugger;
+      
       this.addPost = "Update Post";
       let body = data[0];
       this.PostForm.reset({
@@ -126,9 +178,9 @@ RemoveNull(val){
   }
 
   AddPost(value) {
-    debugger;
+    
     this.postservice.AddPost(this.fileToUpload,value).subscribe((data: any)=>{
-    debugger; 
+     
     var updated = "Updated.";
     if(data == "0"){ this.toastr.success(updated); return;}
     this.toastr.success("Added :"+data);
@@ -138,11 +190,14 @@ RemoveNull(val){
   }
 
   GetCategory() {
-    debugger;
+    
     this.postservice.GetCategory().subscribe((data: any)=>{
-    debugger;
+    
     this.categories = data;
     })
   }
-
+  onChange($event: any): void {
+    console.log("onChange");
+    //this.log += new Date() + "<br />";
+  }
 }

@@ -39,7 +39,7 @@ echo '<!DOCTYPE html>
         <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Rubik:500|Roboto:100,400,500,900|Sawarabi+Gothic|Economica:700|Yanone+Kaffeesatz" rel="stylesheet">
        <script>
        function showMenu() {
-        debugger;
+        
         var x = document.getElementById("menu-content").style ;
         var m = document.getElementById("menu-btn").style;
         var c = document.getElementById("close").style;

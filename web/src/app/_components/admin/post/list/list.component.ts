@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
     ngOnInit() {
       this.spinner.show();
       this._post.GetPost().subscribe((data:any)=>{
-        debugger;
+        
         this.spinner.hide();        
         this.data = data.post;
       })
@@ -48,7 +48,7 @@ export class ListComponent implements OnInit {
       })
     }
     getId(data){     
-      debugger; 
+       
       this.PostId = data.Id;
     }
     ConfirmDelete(Delete) {
@@ -57,7 +57,7 @@ export class ListComponent implements OnInit {
       this._post.DeletePost(Delete.Id).subscribe((res:any) => { 
         this.spinner.hide();
         if(res > 0) {  
-          debugger;
+          
           this.data = this.data.filter(c=>c.Id !== Delete.Id);         
           this.toastr.success('Deleted.', '');
         }
@@ -68,12 +68,12 @@ export class ListComponent implements OnInit {
       });
     }
     Active(id,activate){
-      debugger;
+      
       this._post.ActivatePost(id,activate).subscribe((data:any)=>{
-        debugger;
+        
         if(data == "0") {
           this.data.filter(x=>{ if(x.Id==id) {
-            debugger;
+            
             x.IsActive = activate==1?0:1;
           } });
         }
