@@ -1,8 +1,17 @@
 <?php
-
-    $html->header  =  '
-    
-    
+$categoriesDiv = "";
+$closeIcon = '<svg viewbox="0 0 40 40">
+<path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
+</svg>';
+$categories = $Post->GetCategory();
+if($categories){
+    $categoriesDiv .= '<div class="categories" id="categoriesid"><div class="close-cat" onClick="hideCategory()">'.$closeIcon.'</div><ul>';
+    foreach($categories as $category){
+        $categoriesDiv .= '<li><a href="/category/?c='.$category["Name"].'">'.$category["Name"].'</a></li>';
+    }
+    $categoriesDiv .= '</ul></div>';
+}
+    $html->header  =  '<div class="black-bc" id="blackBc"></div>
     <div class="header-doom">
         <div class="logo-1 pb-1-4">
             <a href="'.$headContent->baseUrl.'" class="doomw-link-1">
@@ -21,17 +30,16 @@
         <i class="fas fa-ellipsis-v"></i>
         </div>
         <div class="close"  onClick="showMenu()" id="close">
-            <svg viewbox="0 0 40 40">
-                <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
-            </svg>
+            '.$closeIcon.'
         </div>
         <div class="left-content-1 pb-1-4" id="menu-content">
             <ul class="nav-content-1">
-                <li class="nav-list-1">Home</li>
-                <li class="nav-list-1">Category</li>
+                <li class="nav-list-1"><a href="'.$headContent->baseUrl.'">Home</a></li>
+                <li class="nav-list-1 category-dd" onClick="showCategory()">Category &#9660;</li>
                 <li class="nav-list-1">Contact</li>
                 <li class="nav-list-1">About</li>
             </ul>
+            '.$categoriesDiv.'
         </div>
     </div>
     

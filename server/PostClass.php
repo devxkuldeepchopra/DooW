@@ -28,7 +28,7 @@ class Post
 	}
 
 	public function GetPostAdmin() {
-		$query = $this->conn->prepare("SELECT * FROM `post`");			
+		$query = $this->conn->prepare("SELECT * FROM `post` ORDER BY post.Id DESC");			
 		$query->execute();
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		$data['post'] = $result;	
@@ -48,7 +48,7 @@ class Post
 
 	public function GetPostByPath($url) {		
 		//$query = $this->conn->prepare("SELECT * FROM `post` LEFT OUTER JOIN `postvideo` ON `post`.`Id` = `postvideo`.`PostId` WHERE `post`.`Url` = :url");	
-		$query = $this->conn->prepare("SELECT post.Id AS PostId, Title,Description,Post,Url,ImageUrl,PostOn,post.View,IsActive, postcategory.Id As PostCatId, category.Id As CatId, category.Name AS CatName, category.Icon AS CatIcon FROM ((`post` LEFT OUTER JOIN `postcategory` ON `post`.`Id` = `postcategory`.`PostId`)LEFT OUTER JOIN category ON postcategory.CateogyId = category.Id) WHERE `post`.`Url` = :url");	
+		$query = $this->conn->prepare("SELECT post.Id AS PostId, Title,Description,Post,Url,ImageUrl,PostOn,post.View,IsActive, postcategory.Id As PostCatId, category.Id As CatId, category.Name AS CatName, category.Icon AS CatIcon FROM ((`post` LEFT OUTER JOIN `postcategory` ON `post`.`Id` = `postcategory`.`PostId`)LEFT OUTER JOIN category ON postcategory.CateogyId = category.Id) WHERE `post`.`Url` = :url ORDER BY post.Id DESC ");	
 		$query->bindParam(':url', $url);
 		$query->execute();		
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);	
@@ -152,9 +152,9 @@ class Post
 	}
 
 	public function Search($sQuery)	{
-		$search = explode(' ' , $sQuery);
+		$search = explode(' ' , $sQuery.trim());
 		$sizeS = sizeof($search);
-		$qs = "SELECT `Id`,`Title`,`Url`,`ImageUrl`, `View` FROM `post` WHERE ";
+		$qs = "SELECT `Id`,`Title`,`Url`,`ImageUrl`, `View` FROM `post` WHERE (";
 		$i=0;
 		$sArr = array();
 		foreach($search as $s)
@@ -164,13 +164,44 @@ class Post
 			{
 				$or = ""; 
 			}
-			//$qs.= "`Title` LIKE :".$s." ".$or;
-			$qs.= "`Title` LIKE ?".$or;
-			$sPush = "%".$s."%";
-			array_push($sArr,$sPush);
+			$s = strtolower($s);
+			if(	$s && $s != "to"
+				&& $s != "of"
+				&& $s != "in"
+				&& $s != "as"
+				&& $s != "at"
+				&& $s != "this"
+				&& $s != "that"
+				&& $s != "have"
+				&& $s != "we"
+				&& $s != "you"
+				&& $s != "they"
+				&& $s != "are"
+				&& $s != "will"
+				&& $s != "can"
+				&& $s != "should"
+				&& $s != "ll"
+				&& $s != "has"
+				&& $s != "am"
+				&& $s != "the"
+				&& $s != "and"
+                && strlen($s) > 1				
+			)
+			{
+				$qs.= "`Title` LIKE ?".$or;
+				$sPush = "%".$s."%";
+				array_push($sArr,$sPush);
+			}
+			else
+			{
+				$qs.= "`Title` LIKE ?".$or;
+				$sPush = "";
+				array_push($sArr,$sPush);
+			}
 			$i++;
 		} 
-		$qs.="AND `isActive` = 1";
+        array_push($sArr,0);
+		$qs.=") AND IsActive NOT LIKE ?";
 		$query= $this->conn->prepare($qs); 
 		$query->execute($sArr);
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);	
@@ -236,7 +267,14 @@ class Post
 			return $ex.getMessage();
 		}
 	}
-
+	public function GetPostByCategoryName($catName) {		
+		//$query = $this->conn->prepare("SELECT * FROM `post` LEFT OUTER JOIN `postvideo` ON `post`.`Id` = `postvideo`.`PostId` WHERE `post`.`Url` = :url");	
+		$query = $this->conn->prepare("SELECT post.Id AS PostId, Title,Description,Post,Url,ImageUrl,PostOn,post.View,IsActive, postcategory.Id As PostCatId, category.Id As CatId, category.Name AS CatName, category.Icon AS CatIcon FROM ((`post` LEFT OUTER JOIN `postcategory` ON `post`.`Id` = `postcategory`.`PostId`)LEFT OUTER JOIN category ON postcategory.CateogyId = category.Id) WHERE `category`.`Name` = :catname AND `post`.`IsActive` = 1  ORDER BY post.Id DESC");	
+		$query->bindParam(':catname', $catName);
+		$query->execute();		
+		$result = $query->fetchAll(PDO::FETCH_ASSOC);	
+        return $result;
+	}
 
 
 }

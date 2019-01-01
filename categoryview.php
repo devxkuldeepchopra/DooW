@@ -1,14 +1,13 @@
 <?php 
-   if(isset($_GET['q']) && $_GET['q']!="") 
+   if(isset($_GET['c']) && $_GET['c']!="") 
    {
-        $search = $_GET['q'];
-        $contentHome = '<div class="col-1" id="post-col"><h2>'.$search.'</h2><div class="grid-bd"></div>'; 
-        $post = $Post->Search($search);
+        $category = $_GET['c'];
+        $contentHome = '<div class="col-1" id="post-col"><h2>Category &raquo; '.$category.'</h2><div class="grid-bd"></div>'; 
+        $post = $Post->GetPostByCategoryName($category);
         if(sizeof($post)>0) 
         {    
             $post = json_encode($post);
             $post = json_decode($post);
-           
             foreach($post as $post)
             {
                 $contentHome .=  '<div class="grid-box">
@@ -30,6 +29,6 @@
     }
     else
     {
-       header('Location: /');
+      // header('Location: /');
     }
 ?>

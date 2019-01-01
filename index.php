@@ -10,21 +10,24 @@ include '_layout/footer.php';
     $urlExplode = explode("/",$url);
     $urlLength = sizeof($urlExplode);
     $path = $urlExplode[1];
-    if($path !="admin" && $path != "" && $path != "searchContent"){ 
+    if($path !="admin" && $path != "" && $path != "searchContent" && $path != "category"){ 
         require_once("postview.php");
     }   
-    else if($path == "admin"){
-        include 'admin.php';
-    }
+    // else if($path == "admin"){
+    //     include 'admin.php';
+    // }
     else if(!$path) {
         require_once("home.php");  
     }
     else if($path == "searchContent"){
         require_once("search.php");  
     }
+    else if($path == "category"){
+        require_once("categoryview.php");  
+    }
     else{    
-        echo 'Not Found.........';
-      // header('Location: /');
+      //  echo 'Not Found.........';
+       header('Location: /');
     }
 if($path != "admin"){
 echo '<!DOCTYPE html>
@@ -38,14 +41,33 @@ echo '<!DOCTYPE html>
         <link rel="stylesheet" href="/css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Rubik:500|Roboto:100,400,500,900|Sawarabi+Gothic|Economica:700|Yanone+Kaffeesatz" rel="stylesheet">
        <script>
-       function showMenu() {
-        
-        var x = document.getElementById("menu-content").style ;
-        var m = document.getElementById("menu-btn").style;
-        var c = document.getElementById("close").style;
-        x.display == "block" ? (x.display = "none",c.display = "none", m.display = "block") : (x.display = "block", c.display = "block", m.display = "none");
-    } 
-       
+       function showMenu() {        
+            var x = document.getElementById("menu-content").style ;
+            var m = document.getElementById("menu-btn").style;
+            var c = document.getElementById("close").style;
+            var bb = document.getElementById("blackBc").style ;
+            x.display == "block" ? (x.display = "none",c.display = "none", m.display = "block", bb.display = "none") : (x.display = "block", c.display = "block", m.display = "none",  bb.display = "block");
+        } 
+        </script>
+        <script>
+            function showCategory() {
+                debugger;
+                var x = document.getElementById("categoriesid").style ;
+                var bb = document.getElementById("blackBc").style ;
+                var c = document.getElementById("close").style
+                if(c.display=="block" || c.display=="none" || c.display == ""){ bb.display = "block";}
+                x.display = "block";
+                
+            }
+            function hideCategory() {
+                debugger;
+                var x = document.getElementById("categoriesid").style ;
+                var bb = document.getElementById("blackBc").style ;
+                var c = document.getElementById("close").style
+                if(c.display=="block"){ bb.display = "block";}
+                else if( c.display == "" || c.display == "none"){bb.display = "none";}
+                x.display = "none";
+            }
         </script>
         </head>
     <body>

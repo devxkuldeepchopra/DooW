@@ -15,7 +15,7 @@
         // }
         $postContent = RemoveNull($post[0]->Post);
         //$postContent = $post[0]->Post != "null" ? $post[0]->Post : "";
-        $postViewConntent = '<div class="post-col" id="post-col"><h1>'.$post[0]->Title.'</h1>
+        $postViewConntent = '<div class="post-col" id="post-col"><h2>Home &raquo; '.$post[0]->CatName.'</h2><h1>'.$post[0]->Title.'</h1>
             <div class="post-article post-des">'.RemoveNull($post[0]->Description).'</div>
             <div class="ads">'.$ads.'</div>
             <div class="views">view :'.$views.'</div>
