@@ -4,7 +4,7 @@
     if(!$post){return false;}
     $post = json_encode($post);
     $post = json_decode($post);
-    $contentHome = '<ul class="col-1" id="post-col"><div class="ads">'.$ads.'</div>'; 
+    $contentHome = '<ul class="col-1" id="post-col"><div class="ads ads-head">'.$ads.'</div>'; 
     if($post){
     foreach($post->post as $post){
         $contentHome .=  '<div class="grid-box">

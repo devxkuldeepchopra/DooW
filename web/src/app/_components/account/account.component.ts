@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { formControlBinding } from '@angular/forms/src/directives/ng_model';
 import { ToastrService } from 'ngx-toastr';
 import { PostService } from 'src/app/_services/post/post.service';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -14,6 +14,7 @@ export class AccountComponent implements OnInit {
   PostForm : FormGroup;
   id: FormControl;
   post : any = {};
+  cookieValue = 'UNKNOWN';
   thumbnailPath: string = "assets/images/thumbnaillogo.png";
   fileToUpload: File = null;
 
@@ -21,7 +22,8 @@ export class AccountComponent implements OnInit {
     private fb:FormBuilder,
     private router:Router,
     private postservice : PostService,
-    private toastr : ToastrService ) { }
+    private toastr : ToastrService,
+    private cookieService: CookieService ) { }
 
   validation_messages = {
     'userName': [
@@ -33,11 +35,19 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-     let id = this.activeRoute.snapshot.params.id;
-     this.Form();
-     if(id)
-       this.GetCategoryById(id)
+    debugger;
+   // this.cookieService.set( 'Test', 'Hello World' );
+   // this.cookieValue = this.cookieService.get('Test');
+    if(localStorage.getItem('userToken') != null){
+      this.router.navigateByUrl('/admin/posts');
+      return;
+    }
+    let id = this.activeRoute.snapshot.params.id;
+    this.Form();
+    if(id) {
+      this.GetCategoryById(id)
+    }
+        
   
   }
 
@@ -64,13 +74,13 @@ export class AccountComponent implements OnInit {
 
   Form() {
     this.PostForm = this.fb.group({
-      userName : new FormControl('',{
+      userName : new FormControl('devx.kuldeep',{
         validators : Validators.compose([
           Validators.required
         ]),        
         updateOn: 'change'
       }),
-      password : new FormControl('',{
+      password : new FormControl('D3v!1xdw',{
         validators : Validators.compose([
           Validators.required
         ]),        
@@ -91,7 +101,7 @@ export class AccountComponent implements OnInit {
   }
 
   Login(value) {
-    
+    debugger;
     this.postservice.Login(value).subscribe((data: any)=>{
     
     if(data) {
@@ -109,4 +119,5 @@ export class AccountComponent implements OnInit {
       console.log(error);
     })
   }
+
 }

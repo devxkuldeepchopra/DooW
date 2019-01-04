@@ -30,6 +30,7 @@ import { AuthInterceptor } from './_auth/auth.interceptor';
 import { HeaderAdminComponent } from './_layout/header-admin/header-admin.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -65,10 +66,11 @@ import { CKEditorModule } from 'ng2-ckeditor';
     }),
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
-    CKEditorModule
+    CKEditorModule,
 
   ],
   providers: [  
+    CookieService,
     AuthGuard,
     {
       provide : HTTP_INTERCEPTORS,
@@ -78,7 +80,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
-    },
+    }  
   ],
   bootstrap: [AppComponent]
 })

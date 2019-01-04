@@ -3,7 +3,7 @@
       
           <div class="form-group">
               <label class="label-lg">Username<span class="sign-astric">*</span></label>
-              <input type="text" formControlName="userName" class="form-control" id="userName">  
+              <input  type="text" formControlName="userName" class="form-control" id="userName">  
           </div>
           <span *ngFor="let validation of validation_messages.userName">
                   <span class="text-danger-error field-validation-error" *ngIf="PostForm.get('userName').hasError(validation.type) 
@@ -12,7 +12,7 @@
           </span>
           <div class="form-group">
               <label class="label-lg">Password<span class="sign-astric">*</span></label>
-              <input type="password" formControlName="password" class="form-control" id="password">  
+              <input  type="password" formControlName="password" class="form-control" id="password">  
           </div>
           <span *ngFor="let validation of validation_messages.password">
                   <span class="text-danger-error field-validation-error" *ngIf="PostForm.get('password').hasError(validation.type) 

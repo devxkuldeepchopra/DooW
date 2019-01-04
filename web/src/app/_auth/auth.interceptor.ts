@@ -3,42 +3,45 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import {   Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router) { }
+    constructor(private router: Router,
+        private toastr : ToastrService,
+        ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (req.headers.get('No-Auth') == "True"){
-            
-        //  req.headers.delete("no-auth");
-          req.headers.normalizedNames.delete("no-auth");
-      //    var chk = req.headers.get('No-Auth');
-          //console.log(chk);
-            return next.handle(req.clone());}
-
-        if (localStorage.getItem('userToken') != null) {
-            
+        debugger;
+        let rediredtoLogin = false;    
+        if(req.headers.get('No-Auth') == "True") {
+            req.headers.normalizedNames.delete("no-auth");
+            return next.handle(req.clone());
+        }
+        if(localStorage.getItem('userToken') != null) {
             const clonedreq = req.clone({
                 headers: req.headers.set("Authorization", localStorage.getItem('userToken'))
             });
             return next.handle(clonedreq).pipe(
-                tap(
-                    succ => { },
-                    err => {
-                        
-                        if (err.status === 401)
-                            this.router.navigateByUrl('');
-                    }
-                    )
-            )
-
+                tap(succ => { },
+                    err => {                                           
+                        if (err.status === 401 ){
+                            rediredtoLogin = true;
+                        }
+                        else if(err.status === 400){
+                            this.toastr.warning("Session Expired.");
+                            rediredtoLogin = true;
+                        }
+                    })
+                )
         }
         else {
-            
-           // return next.handle(req.clone());
-           this.router.navigateByUrl('');
+            rediredtoLogin = true;
         }
+        if(rediredtoLogin){
+            this.router.navigateByUrl('');
+        }
+
     }
 }

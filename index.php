@@ -84,7 +84,6 @@ echo '<!DOCTYPE html>
 }
 ?>
 <script> 
-
 var screenResolution = (prop) =>{ 
         var w = window,
         d = document,
@@ -95,7 +94,63 @@ var screenResolution = (prop) =>{
         if(prop == "height")  return  y;
         if(prop == "width") return x;
         
-    }   
+    } 
+//     var input = document.getElementsByTagName("img");
+//     input= Array.prototype.slice.call(input);
+    
+//     var screenReslusn = screenResolution("width");
+// input.forEach(responsiveImgs);
+// function responsiveImgs(value, index, ar) { 
+//     debugger;
+//     console.log(value.width);
+//     let promise  = getImgSize(value.src);
+//         promise.then(
+//         script => console.log(script.setAttribute("style","width:100%")),
+//         error => alert(error)
+//     );
+//     var myPromise = MakeQuerablePromise(promise);
+//     console.log("Initial fulfilled:", myPromise.isFulfilled());//false
+// console.log("Initial rejected:", myPromise.isRejected());//false
+// console.log("Initial pending:", myPromise.isPending());//true
+//     while(myPromise.isPending()){
+//         myPromise = MakeQuerablePromise(promise)
+
+//     }
+// }
+// function getImgSize(imgSrc) {
+   
+//         return new Promise(function(resolve, reject) {
+//             var imgRes = new Image();
+//             imgRes.onload = function() {
+//                 resolve(imgRes);
+//             }
+//             imgRes.src = imgSrc; 
+//         });
+    // if(screenReslusn < 321 && imgRes.width > 100){
+    //         value.setAttribute("style","width:100%");
+    //     }
+    //     else if(screenReslusn > 321 && imgRes.width < 300){
+    //         value.setAttribute("style","width:auto");
+    //     }
+    //     else if(screenReslusn > 321 && imgRes.width > 300 && screenReslusn < 600){
+    //         value.setAttribute("style","width:100%");
+    //     }
+    //     else if(screenReslusn > 600 && imgRes.width > 500){
+    //         value.setAttribute("style","width:100%");
+    //     }
+    //     else if(screenReslusn > 600 && imgRes.width < 600){
+    //         value.setAttribute("style","width:auto");
+    //     }
+    //     else if(screenReslusn > 800 && imgRes.width < 800){
+    //         value.setAttribute("style","width:auto");
+    //     }
+    //     else{
+    //         value.setAttribute("style","width:100%");
+    //     }
+
+
+//}
+  
     if(screenResolution("width")>747) {
     let adload = setInterval(() => {
         let ads = document.getElementById("ads"); 
@@ -153,7 +208,35 @@ function SearchResult(data) {
         searchSpan.appendChild(createA);
         });
     }  
-}      
+}    
+function MakeQuerablePromise(promise) {
+    // Don't modify any promise that has been already modified.
+    if (promise.isResolved) return promise;
+
+    // Set initial state
+    var isPending = true;
+    var isRejected = false;
+    var isFulfilled = false;
+
+    // Observe the promise, saving the fulfillment in a closure scope.
+    var result = promise.then(
+        function(v) {
+            isFulfilled = true;
+            isPending = false;
+            return v; 
+        }, 
+        function(e) {
+            isRejected = true;
+            isPending = false;
+            throw e; 
+        }
+    );
+
+    result.isFulfilled = function() { return isFulfilled; };
+    result.isPending = function() { return isPending; };
+    result.isRejected = function() { return isRejected; };
+    return result;
+}  
 </script>
 
 

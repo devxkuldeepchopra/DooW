@@ -1,5 +1,6 @@
 <?php 
 session_start();
+$_SESSION["token"];
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
@@ -32,9 +33,9 @@ $model;
 			$username = $model ? $model->username : $_POST["username"];
 			$password = $model ? $model->password : $_POST["password"];
 			if (md5($password) == "4e5c44c32a2ccd77d089c9006299d62b" && md5($username) == "5a8a322c63333a78f40c03ec5a0205de") {
-				//$_SESSION['nwstrp'] = "4e5c44c32a2ccd77d089c9006299d62b";  
 				$token = generateRandomString(50,md5($password));
-				echo json_encode($token);
+				$_SESSION["token"] = $token;
+				echo json_encode($_SESSION["token"]);
 			}
 			else {
 			}
@@ -175,6 +176,9 @@ $model;
 			$Data = $Post->DeleteCategoryById($id);
 			echo json_encode($Data);
 		}
+		if($action == 'checkUserCookie') {
+			
+		}
 	}
 
 	
@@ -214,24 +218,48 @@ function GetAuthorized() {
 
 function isAuthorized()
 {
+	$isAuth = true;
+	$isSession = true;
 	$authCode = GetAuthorized();
-	$key = "4e5c44c32a2ccd77d089c9006299d62b";
-	if($authCode){
-		$isPosAuth = strpos($authCode, $key);
-		if($isPosAuth !== false) {
-			http_response_code(201);
+	if(!isset($_SESSION["token"])) 
+	{
+		$isSession = false;
+	} 
+	else 
+	{
+		if($_SESSION["token"] == $authCode) {
+			$key = "4e5c44c32a2ccd77d089c9006299d62b";
+			if($authCode) {
+				$isPosAuth = strpos($authCode, $key);
+				if($isPosAuth === false) {
+					$isAuth = false;
+				}
+			}
+			else {
+				$isAuth = false;
+			}
 		}
 		else {
-			header("HTTP/1.1 401 Unauthorized");
-			exit;
+			$isAuth = false;
 		}
+   	}
+	if(isAuth) {
+		http_response_code(200);
+	}
+	else if(!$isSession) 
+	{
+		http_response_code(400);
+		exit;
 	}
 	else {
-		header("HTTP/1.1 401 Unauthorized");
+		//header("HTTP/1.1 401 Unauthorized");
+		http_response_code(401);
 		exit;
 	}
 	
 }
+
+
 
 
 ?>

@@ -4,15 +4,17 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { PostService } from '../../../../_services/post/post.service';
 import { formControlBinding } from '@angular/forms/src/directives/ng_model';
 import { ToastrService } from 'ngx-toastr';
+import { PlatformLocation } from '@angular/common' 
 import { find } from 'rxjs/operators';
 declare var $: any;
+declare var CKEDITOR:any;
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-
+  
   PostForm : FormGroup;
   id: FormControl;
   postcatid : FormControl;
@@ -25,59 +27,25 @@ export class AddComponent implements OnInit {
   log: string = '';
   @ViewChild("myckeditor") ckeditor: any;
 
-  // public editorContent: string = 'My Document\'s Title'
-  // Constructor 
   constructor(private activeRoute : ActivatedRoute,
     private fb:FormBuilder,
     private postservice : PostService,
-    private toastr : ToastrService, private ef:ElementRef ) {
+    private toastr : ToastrService, private ef:ElementRef,
+    private location: PlatformLocation
+    ) {
      }
 
-  // Validation Message For Reactive Form
   validation_messages = {
     'title': [
       { type: 'required', message: 'Title is required' }
     ]
   }
 
-  public options: Object = {
-    charCounterCount: true,
-    imageUploadParam: 'image_param',
-    imageUploadURL: 'assets/uploads',
-    imageUploadParams: {id: 'my_editor'},
-    imageUploadMethod: 'POST',
-    imageMaxSize: 5 * 1024 * 1024,
-    imageAllowedTypes: ['jpeg', 'jpg', 'png'],
-    events: {
-      'froalaEditor.initialized':  function () {
-        
-      console.log('initialized');
-    },
-      'froalaEditor.image.beforeUpload':  function  (e,  editor,  images) {
-        
-        if  (images.length) {
-        const  reader  =  new  FileReader();
-        reader.onload  =  (ev)  =>  {
-        const  result  =  ev.target['result'];
-        editor.image.insert(result,  null,  null,  editor.image.get());
-        console.log(ev,  editor.image,  ev.target['result'])
-      };
-      reader.readAsDataURL(images[0]);
-    }
-    return  false;
-  }
-
-}
-  }
-
-  loadJquery(){
-   
-    $("ckeditor").ready(function(){
-      
+  loadJquery(){  
+    $("ckeditor").ready(function(){      
       var id = setInterval(function(){       
         if($(document).find(".cke_button__image_icon")){
           $(".cke_button__image_icon").click(function(){
-            
             if($(".cke_dialog_ui_hbox_last").find("#img-up").length > 0){
               //return false;
             }else{
@@ -101,7 +69,6 @@ export class AddComponent implements OnInit {
                 }
               },1);
             }
-
           });
           clearInterval(id);
         }
@@ -111,23 +78,43 @@ export class AddComponent implements OnInit {
   }
 
   ngOnInit() {
+    let url = this.activeRoute.snapshot.params.id;
     this.loadJquery();
     this.GetCategory();
+    this.LoadCkeConfig();
+    this.handleBackBtn();
+    this.ckeditorInstaceReady();
+    this.addPost="Add Post";
+    this.Form();
+    if(url)
+      this.GetPostByUrl(url)
+  
+  }
+
+  LoadCkeConfig(){
     this.ckeConfig = {
       allowedContent: false,
       extraPlugins: 'divarea',
-      forcePasteAsPlainText: true
+      forcePasteAsPlainText: false,
+      tabSpaces:4,
+      wsc_cmd: 'thes',   //'spell', 'thes', 'grammar'
+      shiftEnterMode: 1,
+      enterMode: 2   //forceEnterMode = true
     };
-    this.addPost="Add Post";
-     let url = this.activeRoute.snapshot.params.id;
-     this.Form();
-     if(url)
-       this.GetPostByUrl(url)
-  
   }
-RemoveNull(val){
-  return val == "null" ? "" : val;
-}
+  ckeditorInstaceReady(){
+    CKEDITOR.on('instanceReady',
+    function( evt )
+      {
+        debugger;
+     var editor = evt.editor;
+     editor.execCommand('maximize');
+      });
+  }
+  RemoveNull(val){
+    return val == "null" ? "" : val;
+  }
+
   GetPostByUrl(url){
     this.postservice.GetPostByUrl(url).subscribe((data:any)=>{
       
@@ -196,8 +183,20 @@ RemoveNull(val){
     this.categories = data;
     })
   }
+
   onChange($event: any): void {
-    console.log("onChange");
+   // console.log("onChange");
     //this.log += new Date() + "<br />";
+  }
+
+  handleBackBtn(){
+    this.location.onPopState(() => {
+      debugger;//cke_button_on
+      if(CKEDITOR.document.find(".cke_button_on ").$[0])
+        CKEDITOR.document.find(".cke_button__maximize ").$[0].click();
+      //history.back();
+     // history.pushState(null, null, window.location.pathname);
+     return;
+  });
   }
 }

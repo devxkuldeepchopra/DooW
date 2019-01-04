@@ -18,8 +18,10 @@ body {
     background: #ffffff;
 }
 .post-article p {
-    /* margin: 0; */
-    font-size: 15px;
+    width: 100%;
+    font-size: 18px;
+    color: #465a5a;
+    float: left;
     line-height: 1.4 !important;
 }
 .black-bc {
@@ -31,9 +33,15 @@ body {
     background: rgba(17, 16, 16, 0.52);
     display: none;
 }
+.ads.ads-head {
+    width: 97% !important;
+    height: 90px !important;
+    background: url(../images/tutorials.svg) no-repeat center;
+    background-size: 42% 55px;
+}
 .categories {
     position: absolute;
-    background: #f3f3f3;
+    background: #ffffff;
     color: #056164;
     width: 100%;
     display: none;
@@ -65,9 +73,10 @@ body {
 }
 .search-list {
     position: absolute;
+    box-shadow: 0px 0px 8px #bdbdbd;
     width: 100%;
     left: 0%;
-    background: #f3f3f3;
+    background: #ffffff;
 }
 form.search-form {
     padding: 0;
@@ -117,13 +126,13 @@ span.doomw-1 {font-family: Audiowide,sans-serif; color: hsl(182, 94%, 28%);}
     right: 0;
     width: 50% !important;
     color: #34805a;
-    background: #f3f3f3;
+    background: #ffffff;
     z-index: 99 !important;
 }
 .header-doom {
     float: left;
     width: 100%;
-    background: #f3f3f3;
+    background: #ffffff;
     position: relative;
 }
 ul.nav-content-1 {
@@ -156,7 +165,7 @@ li.nav-list-1:hover {
     outline: none;
     border-bottom: 1px solid #b3b2b2;
     float: left;
-    background: #f3f3f3;
+    background: #ffffff;
     height: 24px;
     color: #04888c;
     padding: 0;
@@ -309,8 +318,9 @@ span.doomw {
 }
 .ads {
     float: left;
-    width: 100%;
-    margin: 8px 0px;
+    overflow: hidden;
+    width: 97%;
+    margin: 8px 1%;
 }
 .views {
     float: left;
@@ -394,21 +404,9 @@ input.input-search {
     -webkit-appearance: textfield;
 }
 input.input-search:focus {
-    /* background: none; */
     border: 0;
     outline: none;
 }
-/* .menu {
-    display: block;
-    float: left;
-    width: 13%;
-    background: url(../images/menu.svg) center no-repeat;
-    position: absolute;
-    right: 0px;
-    top: 11px;
-    height: 32px;
-    background-size: 23px 21px;
-} */
 .tutorial {
     background: url(../images/tutorials.svg) no-repeat center;
     background-size: 100% 88px;
@@ -437,10 +435,10 @@ input.input-search:focus {
     float: left;
     margin-top: 0;
     width: 100%;
-    background: #f3f3f3;
+    background: #ffffff;
 }
 .col-1 {
-    background: #f3f3f3;
+    background: #ffffff;
     float: left;
     width: 100%;
     display: unset;
@@ -477,7 +475,7 @@ input.input-search:focus {
     font-weight: 500;
 }
 .col-2 {
-    background: #f3f3f3;
+    background: #ffffff;
     float: left;
     width: 100%;
     display: unset;
@@ -497,7 +495,7 @@ input.input-search:focus {
     height: 100px;
     overflow: hidden;
     margin: 5px 2.3%;
-    background: #f3f3f3;
+    background: #ffffff;
 }
 .side-box img {
     float: left;
@@ -573,8 +571,8 @@ input.input-search:focus {
 .inactive {
     color: brown;
     background: white;
-    border: 1px solid black;
-    font-size: 15px;
+    border: 0px solid black;
+    font-size: 12px;
 }
 .active {
     background: #04888c;
@@ -809,16 +807,11 @@ input.input-search:focus {
     .search-icon {
         width: 17%;
     }
-
-
-
-
-
     .grid-box {
         float: left;
         width: 48%;
         height: 214px;
-        background: white;
+        background: #ffffff;
         overflow: hidden;
         margin: 13px 1%;
     }
@@ -850,8 +843,9 @@ input.input-search:focus {
         height: auto;
     }
     span.title {
-        width: 54%;
-        font-size: 0.9em;
+        width: 53%;
+        font-size: 0.8em;
+        font-weight: 500;
     }
     .grid-box {
         height: 194px;
@@ -870,8 +864,10 @@ input.input-search:focus {
     }
 }
 @media only screen and (min-width: 600px) {
-    /* .menu {
-        width: 8%;
+    /* .left-ads.ads {
+        width: 336px;
+        height: 280px;
+        margin: 1px 13% 13px;
     } */
     .nav-content {
         display: none;
@@ -922,7 +918,7 @@ input.input-search:focus {
 }
 @media only screen and (min-width: 748px) {
     .logo-1 {
-        font-size: 36px !important;
+        font-size: 53px !important;
     }
     .left-content-1 {
         top: auto !important;
@@ -941,7 +937,9 @@ input.input-search:focus {
         width: 44% !important;
     }
     .header-doom {
-           height: 44px;
+        height: 58px;
+        /* border-bottom: 1px solid #f3f3f3; */
+        margin-bottom: 12px;
     }
     .menu-1 {
         display: none;
@@ -953,21 +951,11 @@ input.input-search:focus {
     .search-icon {
         width: 5% !important;
     }
-
-
-
-
-
-
-
-
-
-
     body {
         float: left;
         width: 92%;
-        margin: 0px 4%;
-        background: #d2d2d2;
+        margin: 0px 8%;
+        background: #ffffff;
     }
     .header {
         border-top: 10px solid #019b9f;
@@ -1058,12 +1046,15 @@ input.input-search:focus {
     .container {
         float: left;
         margin-top: 0px;
-        width: 100%;
+        width: 98%;
+        box-shadow: 0px 0px 8px #dedede;
     }
     .col-1 {
-        background: #f3f3f3;
+        background: #ffffff;
         float: left;
-        width: 65%;
+        border-top: 6px solid #04888c;
+        width: 70%;
+        box-shadow: 0px 0px 1px #d8d8d8;
         list-style-type: none;
         padding: 10px 0px;
         margin: 0;
@@ -1078,7 +1069,7 @@ input.input-search:focus {
         float: left;
         width: 31%;
         height: 214px;
-        background: #f3f3f3;
+        background: #ffffff;
         overflow: hidden;
         margin: 13px 1%;
     }
@@ -1098,7 +1089,9 @@ input.input-search:focus {
     }
     .col-2 {
         float: left;
-        width: 35%;
+        border-top: 6px solid #04888c;
+        width: 29%;
+        box-shadow: 0px 0px 1px #d8d8d8;
         display: unset;
         list-style-type: none;
         margin: 0;
@@ -1109,19 +1102,20 @@ input.input-search:focus {
         -webkit-margin-end: 0px;
         -webkit-padding-start: 0px;
         padding-left: 0px;
-        margin-left: 0;
+        margin-left: 1%;
     }
     .side-box {
         float: left;
         width: 95%;
-        height: 100px;
+        height: 97px;
         overflow: hidden;
         margin: 5px 2.3%;
+        border-bottom: 1px solid #e6e6e6;
     }
     .side-box img {
         float: left;
-        width: 44%;
-        height: 100px;
+        width: 45%;
+        height: 79px;
     }
     .side-box li.title {
         float: left;
@@ -1133,12 +1127,13 @@ input.input-search:focus {
         font-stretch: expanded;
         font-family: 'Roboto', sans-serif;
     }
-    /* post view page */
     .post-col {
         float: left;
         padding: 17px 0px;
-        width: 65%;
-        background: #f3f3f3;
+        box-shadow: 0px 0px 1px #d8d8d8;
+        border-top: 6px solid #04888c;
+        width: 70%;
+        background: #ffffff;
         margin-right: 0%;
     }
     .post-col h1 {
@@ -1146,7 +1141,7 @@ input.input-search:focus {
         width: 98%;
         font-family: 'Proxima Nova Alt Rg' !important;
         font-size: 1.5em;
-        margin: 11px 8px 0px;
+        margin: 11px 8px 10px;
     }
     .post-col img {
         float: left;
@@ -1205,7 +1200,8 @@ input.input-search:focus {
         float: left;
         width: 100%;
         margin-top: 6px;
-        background: #f3f3f3;
+        background: #ffffff;
+        border-top: 1px solid #dedede;
     }
     .side-box.tutorials {
         height: 76px;
