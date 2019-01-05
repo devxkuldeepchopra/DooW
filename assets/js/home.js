@@ -32,7 +32,7 @@ function GetPost(page,content){
 
     var body = JSON.stringify(reqdata);
 
-	debugger; 	
+	 	
 
     $.ajax({
 
@@ -46,7 +46,7 @@ function GetPost(page,content){
 
         success: function (data) {
 
-            debugger;
+            
 
             $("#post-grid").children().remove();
 
@@ -138,7 +138,7 @@ function Pagination(content) {
 
 function GetPostByPage(page){
 
-    debugger;
+    
 
     GetPost(page,content);
 

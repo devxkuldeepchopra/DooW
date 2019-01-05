@@ -10,7 +10,7 @@
         $headContent->url = RemoveNull($post[0]->Url);
         $headContent->thumbImage = 'web/assets/images/uploads/'.RemoveNull($post[0]->ImageUrl);           
         $postContent = RemoveNull($post[0]->Post);
-        $postViewConntent = '<div class="post-col" id="post-col"> <div class="ads ads-head">'.$ads.'</div><h2>Home &raquo; '.$post[0]->CatName.'</h2><h1>'.$post[0]->Title.'</h1>
+        $postViewConntent = '<div class="post-col" id="post-col"><a href="http://tutorial.doomw.com"><div class="ads ads-head">'.$ads.'</div></a><h2>Home &raquo; '.$post[0]->CatName.'</h2><h1>'.$post[0]->Title.'</h1>
             <div class="post-article post-des">'.RemoveNull($post[0]->Description).'</div>
             <div class="views">view :'.$views.'</div>
             <div class="post-article">'.$postContent.'</div>'; 

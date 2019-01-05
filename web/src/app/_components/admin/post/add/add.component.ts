@@ -83,7 +83,7 @@ export class AddComponent implements OnInit {
     this.GetCategory();
     this.LoadCkeConfig();
     this.handleBackBtn();
-    this.ckeditorInstaceReady();
+    //this.ckeditorInstaceReady();
     this.addPost="Add Post";
     this.Form();
     if(url)
@@ -99,14 +99,15 @@ export class AddComponent implements OnInit {
       tabSpaces:4,
       wsc_cmd: 'thes',   //'spell', 'thes', 'grammar'
       shiftEnterMode: 1,
-      enterMode: 2   //forceEnterMode = true
+      enterMode: 2,   //forceEnterMode = true
+      height:'400px'
     };
   }
   ckeditorInstaceReady(){
     CKEDITOR.on('instanceReady',
     function( evt )
       {
-        debugger;
+      
      var editor = evt.editor;
      editor.execCommand('maximize');
       });
@@ -191,12 +192,7 @@ export class AddComponent implements OnInit {
 
   handleBackBtn(){
     this.location.onPopState(() => {
-      debugger;//cke_button_on
-      if(CKEDITOR.document.find(".cke_button_on ").$[0])
-        CKEDITOR.document.find(".cke_button__maximize ").$[0].click();
-      //history.back();
-     // history.pushState(null, null, window.location.pathname);
-     return;
+     location.reload();
   });
   }
 }

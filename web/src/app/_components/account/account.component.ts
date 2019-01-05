@@ -35,7 +35,7 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
+    
    // this.cookieService.set( 'Test', 'Hello World' );
    // this.cookieValue = this.cookieService.get('Test');
     if(localStorage.getItem('userToken') != null){
@@ -74,13 +74,13 @@ export class AccountComponent implements OnInit {
 
   Form() {
     this.PostForm = this.fb.group({
-      userName : new FormControl('devx.kuldeep',{
+      userName : new FormControl('',{
         validators : Validators.compose([
           Validators.required
         ]),        
         updateOn: 'change'
       }),
-      password : new FormControl('D3v!1xdw',{
+      password : new FormControl('',{
         validators : Validators.compose([
           Validators.required
         ]),        
@@ -101,7 +101,7 @@ export class AccountComponent implements OnInit {
   }
 
   Login(value) {
-    debugger;
+    
     this.postservice.Login(value).subscribe((data: any)=>{
     
     if(data) {

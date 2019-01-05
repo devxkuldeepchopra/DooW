@@ -1,8 +1,6 @@
-
 <div class="container">
-                <h1 class="text-primary bg-light text-dark">{{addPost}}</h1>
-<form [formGroup]="PostForm" novalidate (ngSubmit)="AddPost(PostForm.value)" autocomplete="off">    
-  
+    <h1 class="text-primary bg-light text-dark">{{addPost}}</h1>
+    <form [formGroup]="PostForm" novalidate (ngSubmit)="AddPost(PostForm.value)" autocomplete="off">    
       <div class="form-group">
           <label class="label-lg">Title<span class="sign-astric">*</span></label>
           <input type="text" formControlName="title" class="form-control" id="title">  
@@ -12,8 +10,6 @@
                   && (PostForm.get('title').dirty || PostForm.get('title').touched)">{{validation.message}}
               </span>
       </span>
-
-  
     <div class="form-group des">
         <label class="label-lg">Description<span class="sign-astric">*</span></label>
         <input type="text" formControlName="description" class="form-control" id="description">  
@@ -24,74 +20,25 @@
           <option *ngFor="let category of categories" [value]="category.Id">{{category.Name}}</option>
         </select>
         <a [routerLink]="['/admin/addCategory']"><button type="button" class="btn fa fa-plus add-category">Add Category</button></a>
-      </div>
-    <!-- <span *ngFor="let validation of validation_messages.description">
-            <span class="text-danger-error field-validation-error" *ngIf="PostForm.get('description').hasError(validation.type) 
-                && (PostForm.get('description').dirty || PostForm.get('description').touched)">{{validation.message}}
-            </span>
-    </span> -->
-
-  <!-- <div class="form-group">
-      <label class="label-lg">Video Embed:<span class="sign-astric">*</span></label>
-      <input type="text" formControlName="video" class="form-control" id="video">  
-  </div> -->
-
-  <!-- <span *ngFor="let validation of validation_messages.video">
-          <span class="text-danger-error field-validation-error" *ngIf="PostForm.get('video').hasError(validation.type) 
-              && (PostForm.get('video').dirty || PostForm.get('video').touched)">{{validation.message}}
-          </span>
-  </span> -->
-
-  <!-- <div class="form-group">
-    <label  class="label-lg">Thumbnail</label>
-     
-      <div class="profile-image">
-            <img [src]="logo" class="img-circle img-circle">
-       <label class="btn-bs-file btn-browse-file  button-custom">
-                Browse
-                <input type="file" accept="image/*" (change)="handleFileInput($event.target.files)" />
-            </label>
-            </div>
-     
-  </div> -->
-
-
-  <div class="form-group">
-      <label class="label-lg">MyPost
-          <!-- <span class="sign-astric">*</span> -->
-        </label>
-      <!-- <textarea [froalaEditor]='options'  formControlName="mypost"></textarea> -->
-
-    <div class="form-group has-feedback" id="ckid">
-            <!-- <div class="form-group has-feedback" [ngClass]="{ 'has-error': myckeditor.invalid && myckeditor.touched }"> -->
-            <!-- <ckeditor [(ngModel)]="mycontent" #myckeditor="ngModel" name="myckeditor" [config]="ckeConfig"  debounce="500"  (change)="onChange($event)"></ckeditor> -->
-	    <ckeditor formControlName="mypost"  [config]="ckeConfig"  debounce="500"  (change)="onChange($event)"></ckeditor>
-        <!-- <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block">Required field.</div> -->
     </div>
-
-      <!-- <input type="text" formControlName="mypost" class="form-control" id="mypost">   -->
-  </div>
-  <!-- <span *ngFor="let validation of validation_messages.mypost">
-          <span class="text-danger-error field-validation-error" *ngIf="PostForm.get('mypost').hasError(validation.type) 
-              && (PostForm.get('mypost').dirty || PostForm.get('mypost').touched)">{{validation.message}}
-          </span>
-  </span> -->
-  <!-- <div [froalaEditor]='options' [(froalaModel)]="editorContent" (keyup)="feditor()"></div> -->
-
-  <div class="form-group group thumb">
+    <div class="form-group">
+        <label class="label-lg">MyPost</label>
+        <div class="form-group has-feedback" id="ckid">
+            <!-- <ckeditor [(ngModel)]="mycontent" #myckeditor="ngModel" name="myckeditor" [config]="ckeConfig"  debounce="500"  (change)="onChange($event)"></ckeditor> -->
+	        <ckeditor formControlName="mypost"  [config]="ckeConfig"  debounce="500"  (change)="onChange($event)"></ckeditor>
+        </div>
+    </div>
+    <div class="form-group group thumb">
     <label class="control-label col-sm-2" for="thumbnail">Thumbnail:</label>
     <div class="col-sm-10 col-img">
         <input type="file" accept="image/*" class="styled" id="thumbnail" (change)="handleFileInput($event.target.files)" />
       <!-- <input type="file" name="logo" id="pic" class="styled"> -->
       <img [src]="thumbnailPath" class="uploaded-img" id="uploaded-img"/>
     </div>
-  </div>
-
+    </div>
     <div class="form-group mt10 cus-btn">
         <label class="label-lg"></label>
         <input [disabled]="!PostForm.valid" class="btn btn-primary" type="submit" />
     </div>
-
-
-</form>
+    </form>
 </div>

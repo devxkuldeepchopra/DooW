@@ -1,6 +1,18 @@
 /* body {
         background: url("/src/assets/images/jiofoxbg.svg") no-repeat center;
 } */
+html{
+    position: inherit !important;
+    z-index: inherit !important;
+    width: 100% !important;
+    height: auto !important;
+}
+body{
+    position: inherit !important;
+    z-index: inherit !important;
+    width: 100% !important;
+    height: auto !important;
+}
 .col-sm-4.grid-gap {
     padding: 0.3% !important;
 }
