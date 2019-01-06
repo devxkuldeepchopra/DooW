@@ -2,7 +2,7 @@
    if(isset($_GET['c']) && $_GET['c']!="") 
    {
         $category = $_GET['c'];
-        $contentHome = '<div class="col-1" id="post-col"><h2>Category &raquo; '.$category.'</h2><div class="grid-bd"></div>'; 
+        $contentHome = '<div class="col-1" id="post-col"><h2><a href="/">Home</a> &raquo; '.$category.'</h2><div class="grid-bd"></div>'; 
         $post = $Post->GetPostByCategoryName($category);
         if(sizeof($post)>0) 
         {    
@@ -23,12 +23,12 @@
         }
         else
         {
-            $contentHome .= '<h3> &#x261B; No Result Found</h3>';
+            $contentHome .= '<h3> &#x261B; Not Found</h3>';
             $html->content = $contentHome.'<div class="ads">'.$ads.'</div></div>';
         }                
     }
     else
     {
-      // header('Location: /');
+       header('Location: /');
     }
 ?>

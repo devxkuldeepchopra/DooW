@@ -66,5 +66,6 @@
     function RemoveNull($value) {
         return $value != "null" ? $value : "";
     }
+    $catlink = "/category/?c=";
 
 ?>

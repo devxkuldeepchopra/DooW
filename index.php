@@ -7,6 +7,9 @@ include '_layout/footer.php';
         $content->page = $_POST['page'];
     }
     $url = $_SERVER["REQUEST_URI"];
+    if (strpos($url, '?') !== false) {
+      $url = str_replace("?","/",$url);
+    }
     $urlExplode = explode("/",$url);
     $urlLength = sizeof($urlExplode);
     $path = $urlExplode[1];
@@ -95,15 +98,17 @@ var screenResolution = (prop) =>{
     if(screenResolution("width")>747) {
     let adload = setInterval(() => {
         let ads = document.getElementById("ads"); 
-        let script = ads.getElementsByTagName("script"); 
-        if (script) {
-            var postColHeight = document.getElementById("post-col").clientHeight;
-            var colHeight = document.getElementById("col-2").clientHeight;
-            if(postColHeight > colHeight) document.getElementById("col-2").style.height = postColHeight.toString()+"px";
-            else document.getElementById("post-col").style.height = colHeight.toString()+"px";
-            clearInterval(adload);
-        } else { 
-          console.log("Waiting for onloadDoSomething to load");
+        if(ads.getElementsByTagName("script")){
+            let script = ads.getElementsByTagName("script"); 
+            if (script) {
+                var postColHeight = document.getElementById("post-col").clientHeight;
+                var colHeight = document.getElementById("col-2").clientHeight;
+                if(postColHeight > colHeight) document.getElementById("col-2").style.height = postColHeight.toString()+"px";
+                else document.getElementById("post-col").style.height = colHeight.toString()+"px";
+                clearInterval(adload);
+            } else { 
+            console.log("screenreslutin");
+            }
         }
       }, 100);
     }
@@ -179,7 +184,3 @@ function MakeQuerablePromise(promise) {
     return result;
 }  
 </script>
-
-
-
-

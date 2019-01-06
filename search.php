@@ -24,7 +24,7 @@
         }
         else
         {
-            $contentHome .= '<h3> &#x261B; No Result Found</h3>';
+            $contentHome .= '<h3> &#x261B; Not Found</h3>';
             $html->content = $contentHome.'<div class="ads">'.$ads.'</div></div>';
         }                
     }
