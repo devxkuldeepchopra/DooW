@@ -11,11 +11,71 @@
     font-stretch: normal;
     unicode-range: U+0020-00FE;
 }
+.blog-categories {
+    float: left;
+}
+.blog-categories ul {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.blog-categories ul li {
+    float: left;
+    padding: 26px 4px;
+    background: rgba(27,127,204,.8);
+    margin: 1%;
+    width: 30%;
+    color: white;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 17px;
+    overflow: hidden;
+    border-radius: 7px;
+}
+.blog-categories ul li a {
+    text-decoration: none;
+    color: #eceaea;
+    font-family: 'Proxima Nova Alt Rg' !important;
+    font-size: 18px;
+}
+li.purple {
+    background: rgba(70, 45, 111, 0.8) !important;
+}
+li.green {
+    background: rgba(21, 134, 29, 0.8) !important;
+}
+li.blue {
+    background: rgba(19, 80, 128, 0.8) !important;
+}
+li.yellow {
+    background: rgba(121, 90, 2, 0.8) !important;
+}
+li.dcyan {
+    background: rgba(2, 121, 99, 0.8) !important;
+}
+li.dred {
+    background: rgba(119, 0, 39, 0.8) !important;
+}
 body {
     float: left;
     width: 100%;
     margin: 0px 0;
     background: #ffffff;
+}
+hr {
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 100%;
+    border: 0.4px solid #e4e4e4;
+}
+.post-article h4 {
+    float: left;
+    width: 98%;
+    margin: 13px 0px;
 }
 .post-col h2 a {
     text-decoration: none;
@@ -67,6 +127,7 @@ code {
     overflow: hidden;
     width: 97%;
     background: #fbfbfb;
+    scrollbar-width: thin;
 }
 code:hover {
     overflow: scroll;
@@ -138,12 +199,13 @@ code:hover {
     box-shadow: 0px 0px 8px #bdbdbd;
     width: 100%;
     left: 0%;
+    top: 23px;
     background: #ffffff;
 }
 form.search-form {
     padding: 0;
     margin: 0;
-    height: 25px;
+    height: 0px;
 }
 .search-icon {
     width: 5%;
@@ -326,7 +388,7 @@ span.doomw {
 }
 .col-1 h2 {
     font-family: 'Proxima Nova Alt Rg' !important;
-    font-size: 15px;
+    font-size: 11px;
     float: left;
     width: auto;
     padding: 2px 5px;
@@ -689,7 +751,7 @@ img.less-400 {
         width: 97% !important;
         height: 32px !important;
         background-size: 92% 21px;
-        margin: 1px 1%;
+        margin: 12px 1%;
     }
     li.nav-list-1 {
         font-size: 10px;
@@ -705,7 +767,7 @@ img.less-400 {
         margin: 0;
         list-style-type: none;
         padding: 14px 5%;
-        font-size: 10px;
+        font-size: 12px;
     }
     .col-2 {
         border-top: 3px solid #04888c;
@@ -716,9 +778,9 @@ img.less-400 {
     }
     .search-list a {
         float: left;
-        width: 98%;
+        width: 94%;
         font-size: 10px;
-        padding: 4px 1px;
+        padding: 13px 7px;
         border-bottom: 1px solid #e8e8e8;
     }
     span.side-view {
@@ -809,7 +871,7 @@ img.less-400 {
         font-size: 8px;
         width: auto;
         padding: 1px 1%;
-        margin: 3px 1%;
+        margin: 5px 1%;
     }
     .post-col h1 {
         width: 99%;
@@ -836,7 +898,7 @@ img.less-400 {
     .post-article p {
         width: 100%;
         font-size: 9px;
-        margin: 4px 0px !important;
+        margin: 7px 0px !important;
         color: #465a5a;
         float: left;
         line-height: normal;
@@ -912,12 +974,13 @@ img.less-400 {
         box-shadow: 0px 1px 10px #000000;
         width: 98%;
         margin: 1% 1%;
+        top: 58px;
     }
     code span {
         font-size: 12px;
     }
     .post-col h2 {
-        font-size: 10px;
+        font-size: 11px;
     }
     .post-col h1 {
         font-size: 15px;
@@ -930,7 +993,7 @@ img.less-400 {
     }
     .post-article p {
         width: 100%;
-        font-size: 14px;
+        font-size: 15px;
     }
     .post-article  {
         font-size: 14px;
@@ -953,7 +1016,7 @@ img.less-400 {
     }
     .logo-1 {
         float: left;
-        margin-left: 1%;
+        margin: 1px 1% -4px;
         width: 62%;
         font-size: 22px;
     }
@@ -1063,8 +1126,9 @@ img.less-400 {
 @media only screen and (min-width: 300px) {
     .search-list {
         position: absolute;
-        width: 190%;
+        width: 196%;
         left: -64%;
+        top: 29px;
     }
     code {
         padding: 1px 1%;
@@ -1100,7 +1164,7 @@ img.less-400 {
         width: auto;
     }
      .search-content-1 {
-        left: 35%;
+        left: 33%;
         width: 48% !important;
         position: absolute;
     }
@@ -1109,7 +1173,7 @@ img.less-400 {
      }
      .menu-1 {
         width: 23px;
-        height: 19px;
+        height: 21px;
         background-size: 6px 16px;
         display: block;
         top: 3px;
@@ -1329,7 +1393,7 @@ img.less-400 {
         line-height: normal !important;
     }  */
     .search-content-1 {
-        left: 33%;
+        left: 28%;
         width: 55% !important;
     }
     .header-doom {
@@ -1345,7 +1409,7 @@ img.less-400 {
         height: 24px;
     }
     .search-icon {
-        width: 21px !important;
+        width: 31px !important;
         height: 25px;
     }
     body {
@@ -1589,6 +1653,12 @@ img.less-400 {
     .side-box.tutorials {
         height: 76px;
     }
+    .search-list {
+        position: absolute;
+        width: 94%;
+        left: -1%;
+        top: 30px;
+    }
 }
 @media only screen and (min-width: 1148px) {
     img.less-400 {
@@ -1606,16 +1676,26 @@ img.less-400 {
         width: 28% !important;
     }
     .cs-input-1 {      
-        width: 95%;
+        width: 93%;
     }
     .search-icon {
-        width: 5% !important;
+        width: 7% !important;
     }
     .search-content-1 {
-        left: 27%;
-        width: 44% !important;
+        left: 71%;
+        width: 25% !important;
     }
     li.nav-list-1 {
         font-size: 15px !important;
+    }
+    .search-list {
+        position: absolute;
+        width: 115%;
+        left: -3px;
+        top: 30px;
+    }
+    .search-list a {
+        float: left;
+        width: 96%;
     }
 }

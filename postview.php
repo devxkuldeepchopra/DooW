@@ -2,6 +2,19 @@
     $post = $Post->GetPostByPath($path);
     $post = json_encode($post);
     $post = json_decode($post);
+    $categories = $Post->GetCategory();
+    $categoriesDiv = "";
+    if($categories){
+        $i = 0;
+        $colorClass = array("blue", "purple", "green","yellow","dcyan","dred"); 
+        $categoriesDiv .= '<div class="blog-categories" id="blogCategoriesid"><ul>';
+        foreach($categories as $category){
+            $rclass = rand(0,5);
+            $categoriesDiv .= '<li  class="'. $colorClass[$rclass].'"><a href="/category/?c='.$category["Name"].'">'.$category["Name"].'</a></li>';
+            $i++;
+        }
+        $categoriesDiv .= '</ul></div>';
+    }
     if($post){
     $views = $post[0]->View+1;
    	$UpdateView = $Post->AddView($views,$post[0]->PostId);
@@ -19,6 +32,9 @@
 
             if(sizeof(explode( "\n", $post[0]->Post))>5){
                  $postViewConntent.='<div class="ads ">'.$ads.'</div>';
+                }
+                else{
+                    $postViewConntent.= $categoriesDiv;
                 }
                 $postViewConntent.='</div>';
         $html->content =  $postViewConntent;   
