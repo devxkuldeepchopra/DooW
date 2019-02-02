@@ -15,8 +15,6 @@ if($categories){
     <div class="header-doom">
         <div class="logo-1 pb-1-4">
             <a href="'.$headContent->baseUrl.'" class="doomw-link-1">
-                <span class="doom-1">Doom</span>
-                <span class="doomw-1">w</span>
             </a>
         </div>
         <div class="search-content-1 pb-1-4" id="search-tab">
@@ -35,15 +33,12 @@ if($categories){
         <div class="left-content-1 pb-1-4" id="menu-content">
             <ul class="nav-content-1">
                 <li class="nav-list-1"><a href="'.$headContent->baseUrl.'">Home</a></li>
-                <li class="nav-list-1 category-dd" onClick="showCategory()">Category &#9660;</li>
+                <li class="nav-list-1 category-dd" onClick="showCategory()">Category&#9662;</li>
                 <li class="nav-list-1">Contact</li>
                 <li class="nav-list-1">About</li>
             </ul>
             '.$categoriesDiv.'
         </div>
     </div>
-    
-
 '
-
 ?>

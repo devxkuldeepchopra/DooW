@@ -227,6 +227,9 @@ form.search-form {
 a.doomw-link-1 {
     text-decoration: none;
     text-shadow: 0px 0px 0px #66823b;
+    background: url(../images/doom-logo.svg) no-repeat center;
+    width: 100%;
+    float: left;
 }
 a.doomw-link-1:hover {
     text-shadow: 0px 0px 4px #f7ff96;
@@ -245,6 +248,7 @@ span.doomw-1 {font-family: Audiowide,sans-serif; color: hsl(182, 94%, 28%);}
 .logo-1 {
     float: left;
     margin-left: 1%;
+    width:23%;
 }
 .left-content-1 {
     position: absolute;
@@ -724,6 +728,10 @@ img.less-400 {
     height: auto !important;
 }
 @media only screen and (min-width: 0px) {
+    a.doomw-link-1 {
+        background-size: 100% 14px;
+        height: 17px;
+    }
     .left-content-1 {
         top: 19px !important;
         width: 100% !important;
@@ -964,6 +972,10 @@ img.less-400 {
     }
 }
 @media only screen and (min-width: 200px) {
+    a.doomw-link-1 {
+        background-size: 100% 21px;
+        height: 25px;
+    }
     .menu-1 {
         width: 13px;
         height: 29px;
@@ -1159,13 +1171,17 @@ img.less-400 {
          font-size: 14px !important;
          line-height: 2em !important;
      }
+     a.doomw-link-1 {
+        background-size: 100% 22px;
+        height: 25px;
+    }
      .logo-1 {
         font-size: 21px !important;
-        width: auto;
+        width: 31%;
     }
-     .search-content-1 {
-        left: 33%;
-        width: 48% !important;
+    .search-content-1 {
+        left: 37%;
+        width: 46% !important;
         position: absolute;
     }
      .header-doom-1 {
@@ -1173,7 +1189,7 @@ img.less-400 {
      }
      .menu-1 {
         width: 23px;
-        height: 21px;
+        height: 17px;
         background-size: 6px 16px;
         display: block;
         top: 3px;
@@ -1247,6 +1263,14 @@ img.less-400 {
     }
 }
 @media only screen and (min-width: 600px) {
+    .logo-1 {
+        font-size: 21px !important;
+        width: 19%;
+    }
+    a.doomw-link-1 {
+        background-size: 100% 23px;
+        height: 25px;
+    }
     .left-content-1 {
         width: 50% !important;
     }
@@ -1336,7 +1360,12 @@ img.less-400 {
         padding: 10px 2%;
     }
     .logo-1 {
-        font-size: 50px !important;
+        font-size: 45px !important;
+        width: 26%;
+    }
+    a.doomw-link-1 {
+        background-size: 100% 40px;
+        height: 71px;
     }
     img.less-300 {
         float: left;
@@ -1661,11 +1690,16 @@ img.less-400 {
     }
 }
 @media only screen and (min-width: 1148px) {
+    a.doomw-link-1 {
+        background-size: 100% 41px;
+        height: 66px;
+    }
     img.less-400 {
         width: auto !important;
     }
     .logo-1 {
         font-size: 53px !important;
+              width: 19%
     }
     img.less-300 {
         float: left;
