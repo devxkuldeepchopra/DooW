@@ -126,7 +126,7 @@ code {
     white-space: pre !important;
     line-height: 1 !important;
     font-size: 13px !important;
-    height: 338px;
+    max-height: 338px;
 }
 code:hover {
     overflow: scroll;

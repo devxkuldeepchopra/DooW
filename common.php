@@ -20,7 +20,7 @@
     );
     $content= (object) array(
         'page'=>1,
-        'limit'=>9,
+        'limit'=>12,
         'randPage'=>''
     );
     $headContent = (object) array(

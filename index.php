@@ -115,6 +115,10 @@ var screenResolution = (prop) =>{
     var timeout;
     var searchcon = "";
 function Search(search) {
+    if(document.getElementById("search-content") && search==""){
+        var element = document.getElementById("search-content");
+        element.parentNode.removeChild(element);
+    }
     searchcon = search;
     clearTimeout(timeout);
     timeout = setTimeout(livesearch.bind(this), 2000); 
@@ -134,6 +138,7 @@ function livesearch(){
 xhr.send('search='+searchcon+'&action=SearchPost');
 }    
 function SearchResult(data) {
+
     if(document.getElementById("search-content")){
         var element = document.getElementById("search-content");
     element.parentNode.removeChild(element);
@@ -155,32 +160,4 @@ function SearchResult(data) {
         });
     }  
 }    
-function MakeQuerablePromise(promise) {
-    // Don't modify any promise that has been already modified.
-    if (promise.isResolved) return promise;
-
-    // Set initial state
-    var isPending = true;
-    var isRejected = false;
-    var isFulfilled = false;
-
-    // Observe the promise, saving the fulfillment in a closure scope.
-    var result = promise.then(
-        function(v) {
-            isFulfilled = true;
-            isPending = false;
-            return v; 
-        }, 
-        function(e) {
-            isRejected = true;
-            isPending = false;
-            throw e; 
-        }
-    );
-
-    result.isFulfilled = function() { return isFulfilled; };
-    result.isPending = function() { return isPending; };
-    result.isRejected = function() { return isRejected; };
-    return result;
-}  
 </script>

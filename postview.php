@@ -30,7 +30,7 @@
             <div class="views">view :'.$views.'</div>
             <div class="post-article">'.$postContent.'</div>'; 
 
-            if(sizeof(explode( "\n", $post[0]->Post))>5){
+            if(sizeof(explode( "\n", $post[0]->Post))>9){
                  $postViewConntent.='<div class="ads ">'.$ads.'</div>';
                 }
                 else{

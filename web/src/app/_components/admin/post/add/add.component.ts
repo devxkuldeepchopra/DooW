@@ -100,7 +100,7 @@ export class AddComponent implements OnInit {
       wsc_cmd: 'thes',   //'spell', 'thes', 'grammar'
       shiftEnterMode: 1,
       enterMode: 2,   //forceEnterMode = true
-      height:'400px'
+      height:'300px'
     };
   }
   ckeditorInstaceReady(){

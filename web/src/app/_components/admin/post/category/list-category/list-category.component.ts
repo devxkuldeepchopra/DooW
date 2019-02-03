@@ -27,7 +27,7 @@ export class ListCategoryComponent implements OnInit {
   GetCategory() {
     
     this._post.GetCategory().subscribe((data: any)=>{
-    
+    debugger;
     this.categories = data;
     })
   }
