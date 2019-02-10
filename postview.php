@@ -1,4 +1,5 @@
 <?php 
+    include "ip.php";
     $post = $Post->GetPostByPath($path);
     $post = json_encode($post);
     $post = json_decode($post);
@@ -16,8 +17,11 @@
         $categoriesDiv .= '</ul></div>';
     }
     if($post){
-    $views = $post[0]->View+1;
-   	$UpdateView = $Post->AddView($views,$post[0]->PostId);
+        $views = $post[0]->View;
+        if(!$isIpExist) {
+            $views = $views+1;
+            $UpdateView = $Post->AddView($views,$post[0]->PostId);
+        }
         $headContent->title = $post[0]->Title;
         $headContent->description = RemoveNull($post[0]->Description);
         $headContent->url = RemoveNull($post[0]->Url);

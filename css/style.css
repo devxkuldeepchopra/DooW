@@ -969,8 +969,21 @@ img.less-400 {
         margin: 28px 0%;
         width: 95%;
     }
+    .blog-categories ul li a {
+        font-size: 9px;
+    }
+    
+    .blog-categories ul li {
+        padding: 0px 2px;
+        margin: 1%;
+        width: 44.8%;
+        height: 23px;
+    }
 }
-@media only screen and (min-width: 200px) {
+@media only screen and (min-width: 200px) { 
+    .blog-categories ul li {
+        width: 46%;
+    }
     a.doomw-link-1 {
         background-size: 100% 21px;
         height: 25px;
@@ -1135,6 +1148,9 @@ img.less-400 {
     }
 }
 @media only screen and (min-width: 300px) {
+    .blog-categories ul li {
+        width: 30%;
+    }
     .search-list {
         position: absolute;
         width: 196%;
@@ -1262,6 +1278,12 @@ img.less-400 {
     }
 }
 @media only screen and (min-width: 600px) {
+    .blog-categories ul li a {
+        font-size: 14px;
+    }
+    .blog-categories ul li {
+        padding: 7px 2px;
+    }
     .logo-1 {
         font-size: 21px !important;
         width: 19%;
