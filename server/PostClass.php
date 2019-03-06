@@ -275,8 +275,17 @@ class Post
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);	
         return $result;
 	}
-
-
+	public function GetBlogRandom(){
+		$countQ = $this->conn->prepare("SELECT COUNT(*) as total FROM `blog`");	
+		$countQ->execute();		
+		$count = $countQ->fetchAll(PDO::FETCH_ASSOC);	
+		$id = rand(1, $count[0]['total']);
+		$query = $this->conn->prepare("SELECT * FROM `blog` WHERE blogid = :blogid");	
+		$query->bindParam(':blogid', $id);
+		$query->execute();		
+		$result = $query->fetchAll(PDO::FETCH_ASSOC);	
+        return $result;
+	}
 }
 
 ?>

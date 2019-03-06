@@ -1,6 +1,5 @@
 <?php
 $arrRandIds = array();
-
 function isElementExist($el,$arrIds){
     if (in_array($el, $arrIds))
       {
@@ -11,7 +10,19 @@ function isElementExist($el,$arrIds){
           return false;
       }
 }
-
+function blogCleanLink($title) {
+    $strLower =strtolower($title); 
+    $strClean =preg_replace("/[^a-z0-9_\s-]/", " ", $strLower);
+    $strClean =preg_replace("/\s\s+/", " ", $strClean);
+    $strClean = preg_replace("/[\s-]+/", "-", $strClean);
+    $strLength=strlen($strClean);
+    $cleanedLink="";
+    for($i=0; $i<$strLength-1; $i++)
+    {
+         $cleanedLink = $cleanedLink.$strClean[$i];
+    }
+    return $cleanedLink;
+}
 function sidebar($httpRequest, $totalRows, $Post, $uploadImgPath){
     global $arrRandIds;
     $sidebar=''; 
@@ -33,21 +44,35 @@ function sidebar($httpRequest, $totalRows, $Post, $uploadImgPath){
                 $randomNumber = rand(0,$totalRows-1);
             }
         }
+        $blog = $Post->GetBlogRandom();
+        while(empty($blog)) {
+            $blog = $Post->GetBlogRandom();
+        }
+        $blog = $blog[0]['blog'];
+        $blogSplit = explode("\n",$blog);
+        $link =  blogCleanLink($blogSplit[0]);
+        $sidebar.='
+        <div class="side-box">
+                <a href="/blog/'.$link.'" target="_blank">
+                    <img src="/blog/img/'.$blogSplit[1].'" alt="'.$blogSplit[0].'"/>
+                    <span class="title" title="'.$blogSplit[0].'">'.$blogSplit[0].'</span>
+                </a>
+        </div>';
         $Data = $Post->GetPost(0,1, $randomNumber);
         if($Data['post']){        
             foreach($Data['post'] as $post){
                 $sidebar.='<div class="side-box">
                                 <a href="/'.$post['Url'].'">
-                                <img src="/'.$uploadImgPath.$post['ImageUrl'].'" alt="'.$post['Title'].'"/>
-                                <span class="side-view">view '.$post['View'].'</span>
-                                <span class="title" title="'.$post['Title'].'">'.$post['Title'].'</span>
-                            </a></div>';
+                                    <img src="/'.$uploadImgPath.$post['ImageUrl'].'" alt="'.$post['Title'].'"/>
+                                    <span class="side-view">view '.$post['View'].'</span>
+                                    <span class="title" title="'.$post['Title'].'">'.$post['Title'].'</span>
+                                </a>
+                            </div>';
             }
             array_push($arrRandIds,$randomNumber);
             $sidePostCount++;
         }
     }
-    
     return  $sidebar;
 }
 $tutorial = '<div class="side-box tutorials"><a href="http://tutorial.doomw.com"><div class="tutorial"></div></a></div>';

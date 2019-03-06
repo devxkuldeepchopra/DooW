@@ -1,5 +1,5 @@
 <?php 
-    include "ip.php";
+  //  include "ip.php";
     $post = $Post->GetPostByPath($path);
     $post = json_encode($post);
     $post = json_decode($post);
@@ -18,10 +18,10 @@
     }
     if($post){
         $views = $post[0]->View;
-        if(!$isIpExist) {
+        //if(!$isIpExist) {
             $views = $views+1;
             $UpdateView = $Post->AddView($views,$post[0]->PostId);
-        }
+       // }
         $headContent->title = $post[0]->Title;
         $headContent->description = RemoveNull($post[0]->Description);
         $headContent->url = RemoveNull($post[0]->Url);
