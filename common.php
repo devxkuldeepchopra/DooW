@@ -1,7 +1,10 @@
 <?php
     require_once('server/PostClass.php');
     require_once('server/conn.php');
- 
+    $baseUrl = 'http://doomw.com';
+    $url = $_SERVER["REQUEST_URI"];
+    $pageUrl =  $baseUrl.$url;
+    $tutorialLink = 'http://tutorial.doomw.com';
     $ads = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- devx -->
     <ins class="adsbygoogle"
@@ -28,7 +31,7 @@
         'websiteName'=>'doomw.com',
         'description'=>'',
         'keyword'=>'',
-        'baseUrl'=>'http://doomw.com/',
+        'baseUrl'=> $baseUrl.'/',
         'favicon'=>'',
         'thumbImage'=>'doomwthumb.jpg',
         'url'=>''
@@ -67,5 +70,5 @@
         return $value != "null" ? $value : "";
     }
     $catlink = "/category/?c=";
-
+    $fb = '<iframe src="https://www.facebook.com/plugins/like.php?href='.$pageUrl.'&width=124&layout=button_count&action=like&size=small&show_faces=true&share=true&height=46&appId" width="124" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>';
 ?>

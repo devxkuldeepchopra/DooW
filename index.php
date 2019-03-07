@@ -6,7 +6,7 @@ include '_layout/footer.php';
     if(isset($_POST['page'])){
         $content->page = $_POST['page'];
     }
-    $url = $_SERVER["REQUEST_URI"];
+    //$url = $_SERVER["REQUEST_URI"];
     if (strpos($url, '?') !== false) {
       $url = str_replace("?","/",$url);
     }
@@ -46,6 +46,10 @@ echo '<!DOCTYPE html>
           enable_page_level_ads: true
      });
 </script>
+<script> 
+        window._izq = window._izq || []; window._izq.push(["init"]); 
+</script>
+<script src="https://cdn.izooto.com/scripts/1d7e4b9e726d9ad2df20f240852ec1a6f60e4d78.js"></script>      
         <meta name="viewport" content="width=device-width, initial-scale=1">
            '.head($headContent).' 
         <link rel="stylesheet" href="/css/style.css">
@@ -91,7 +95,7 @@ echo '<!DOCTYPE html>
 }
 ?>
 <script> 
-var screenResolution = (prop) =>{ 
+function screenResolution(prop) { 
         var w = window,
         d = document,
         e = d.documentElement,
@@ -103,7 +107,7 @@ var screenResolution = (prop) =>{
         
     } 
     if(screenResolution("width")>747) {
-    let adload = setInterval(() => {
+    let adload = setInterval(function() {
         let ads = document.getElementById("ads"); 
         if(ads.getElementsByTagName("script")){
             let script = ads.getElementsByTagName("script"); 
@@ -117,7 +121,7 @@ var screenResolution = (prop) =>{
             console.log("screenreslutin");
             }
         }
-      }, 100);
+      }, 1000);
     }
     var timeout;
     var searchcon = "";
@@ -166,5 +170,21 @@ function SearchResult(data) {
         searchSpan.appendChild(createA);
         });
     }  
-}    
+}   
+    getCurrentIPVisitPage();
+     function getCurrentIPVisitPage() {
+		try {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					console.log(this.responseText);
+				}
+			};
+			xhttp.open("GET", "tutorial/wp-content/themes/twentysixteen/ad.php", true);
+			xhttp.send();
+		}
+		catch(err) {
+			console.log(err);
+		}
+     }
 </script>

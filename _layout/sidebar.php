@@ -55,7 +55,7 @@ function sidebar($httpRequest, $totalRows, $Post, $uploadImgPath){
         <div class="side-box">
                 <a href="/blog/'.$link.'" target="_blank">
                     <img src="/blog/img/'.$blogSplit[1].'" alt="'.$blogSplit[0].'"/>
-                    <span class="title" title="'.$blogSplit[0].'">'.$blogSplit[0].'</span>
+                    <span class="title" title="'.$blogSplit[0].'">'.str_replace("////", "'", $blogSplit[0]).'</span>
                 </a>
         </div>';
         $Data = $Post->GetPost(0,1, $randomNumber);
@@ -75,7 +75,7 @@ function sidebar($httpRequest, $totalRows, $Post, $uploadImgPath){
     }
     return  $sidebar;
 }
-$tutorial = '<div class="side-box tutorials"><a href="http://tutorial.doomw.com"><div class="tutorial"></div></a></div>';
-$html->sidebar = '<div class="col-2" id="col-2">'.$tutorial.'<div class="left-ads ads" id="ads">'.$ads.'</div>'.sidebar($httpRequest, $totalRows, $Post,$uploadImgPath).'<div class="left-ads ads">'.$ads.'</div></div>';
+$tutorial = '<div class="side-box tutorials"><a href="'.$tutorialLink.'"><div class="tutorial"></div></a></div>';
+$html->sidebar = '<div class="col-2" id="col-2"><span class="fblikeshare">'.$fb.'</span>'.$tutorial.'<div class="left-ads ads" id="ads">'.$ads.'</div>'.sidebar($httpRequest, $totalRows, $Post,$uploadImgPath).'<div class="left-ads ads">'.$ads.'</div></div>';
 
 ?>

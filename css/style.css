@@ -11,6 +11,12 @@
     font-stretch: normal;
     unicode-range: U+0020-00FE;
 }
+span.fblikeshare {
+    float: left;
+    width: 98%;
+    height: 19px;
+    padding: 5px 1%;
+}
 .blog-categories {
     float: left;
 }
@@ -1602,7 +1608,7 @@ img.less-400 {
         display: unset;
         list-style-type: none;
         margin: 0;
-        padding: 29px 0px;
+        padding: 10px 0px;
         -webkit-margin-before: 0em;
         -webkit-margin-after: 0em;
         -webkit-margin-start: 0px;
