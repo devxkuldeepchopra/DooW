@@ -1,12 +1,11 @@
 <?php 
 function youtubeConfig($content) {
-    $newContent = "";
     $youtubeEmbed = 'https://www.youtube.com/embed/';
     $attribute = '<iframe  allowfullscreen allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"';
     if(strpos($content, $youtubeEmbed) !== false) {
-        $newContent = str_replace("<iframe",$attribute,$content);
+        $content = str_replace("<iframe",$attribute,$content);
     }
-    return $newContent;
+    return $content;
 }
   //  include "ip.php";
     $post = $Post->GetPostByPath($path);
