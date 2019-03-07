@@ -1321,9 +1321,9 @@ img.less-400 {
     .categories ul {
         font-size: 12px;
     }
-    .ads.ads-head {
+   .ads.ads-head {
         background-size: 73% 41px;
-        height: 46px !important;
+        height: 84px !important;
     }
     .side-box img {
         width: 33%;
