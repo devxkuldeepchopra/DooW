@@ -76,6 +76,6 @@ function sidebar($httpRequest, $totalRows, $Post, $uploadImgPath){
     return  $sidebar;
 }
 $tutorial = '<div class="side-box tutorials"><a href="'.$tutorialLink.'"><div class="tutorial"></div></a></div>';
-$html->sidebar = '<div class="col-2" id="col-2"><span class="fblikeshare">'.$fb.'</span>'.$tutorial.'<div class="left-ads ads" id="ads">'.$ads.'</div>'.sidebar($httpRequest, $totalRows, $Post,$uploadImgPath).'<div class="left-ads ads">'.$ads.'</div></div>';
+$html->sidebar = '<div class="col-2 col-lb" id="col-2"><span id="fbk" class="fblikeshare">'.$fb.'</span>'.$tutorial.'<div class="left-ads ads" id="ads">'.$ads.'</div>'.sidebar($httpRequest, $totalRows, $Post,$uploadImgPath).'<div class="left-ads ads">'.$ads.'</div></div>';
 
 ?>

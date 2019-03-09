@@ -23,7 +23,7 @@
     );
     $content= (object) array(
         'page'=>1,
-        'limit'=>12,
+        'limit'=>18,
         'randPage'=>''
     );
     $headContent = (object) array(
@@ -63,12 +63,24 @@
     }
     $totalRows = $Post->PostPagination();
     $totalRows = $totalRows[0]['total'];
-    
-    // $ads='';
-   
+
     function RemoveNull($value) {
         return $value != "null" ? $value : "";
     }
     $catlink = "/category/?c=";
     $fb = '<iframe src="https://www.facebook.com/plugins/like.php?href='.$pageUrl.'&width=124&layout=button_count&action=like&size=small&show_faces=true&share=true&height=46&appId" width="124" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>';
+    $disqus = '<script>
+    var disqus_config = function () {
+    this.page.url = "'. $pageUrl.'"; 
+    this.page.identifier = "'. $pageUrl.'"; 
+    };
+    (function() {'."
+    var d = document, s = d.createElement('script');
+    s.src = 'https://doomw-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>".'
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    ';
 ?>

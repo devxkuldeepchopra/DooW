@@ -84,9 +84,9 @@ echo '<!DOCTYPE html>
     <body>
         <div class="container">';
                 if($html->content) {
-                    echo $html->header.
+                    echo $html->header.'<div class="row">'.
                         $html->content.
-                        $html->sidebar.
+                        $html->sidebar.'</div>'.
                         $html->footer;
                 }        
        echo' </div>

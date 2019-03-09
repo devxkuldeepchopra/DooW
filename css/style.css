@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Audiowide|Boogaloo|Fredericka+the+Great|Monoton|Russo+One|Muli:700|Righteous');
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Boogaloo|Fredericka+the+Great|Monotonhttps://www.meteor.com/tutorials/react/creating-an-app|Russo+One|Muli:700|Righteous');
 @font-face {
     font-family:'Proxima Nova Alt Rg';
     src: url('../fonts/Proxima Nova Alt Rg Regular.eot');
@@ -10,6 +10,27 @@
     font-style: normal;
     font-stretch: normal;
     unicode-range: U+0020-00FE;
+}
+.col-rb {
+    background: url(../images/side-border.svg) no-repeat;
+    background-size: 1px 100%;
+    background-position-x: 100%;
+}
+.col-lb {
+    background: url(../images/side-border.svg) no-repeat;
+    background-size: 1px 100%;
+}
+.row {
+    float: left;
+    width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+div#disqus_thread {
+    float: left;
+    width: 94%;
+    margin: 43px 3%;
+    border-top: 2px solid #c7c7c7;
 }
 span.fblikeshare {
     float: left;
@@ -575,11 +596,10 @@ input.input-search:focus {
     background: #ffffff;
 }
 .col-1 {
-    background: #ffffff;
+    background-color: #ffffff;
     float: left;
     width: 100%;
     display: unset;
-    list-style-type: none;
     margin: 0;
     -webkit-margin-before: 0;
     -webkit-margin-after: 0;
@@ -612,11 +632,10 @@ input.input-search:focus {
     font-weight: 500;
 }
 .col-2 {
-    background: #ffffff;
+    background-color: #ffffff;
     float: left;
     width: 100%;
     display: unset;
-    list-style-type: none;
     margin: 0;
     -webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
@@ -653,7 +672,7 @@ input.input-search:focus {
 .post-col {
     float: left;
     width: 100%;
-    background: #fffaed;
+    background-color: #ffffff;
     margin-right: 1%;
 }
 .post-col h1 {
@@ -857,9 +876,7 @@ img.less-400 {
         height: 16px;
     }
     .post-col {
-        float: left;
         width: 98%;
-        background: #ffffff;
         margin-right: 1%;
     }
     .post-col h1 {
@@ -877,7 +894,6 @@ img.less-400 {
         background: #e2e2e2;
     }
     .post-col {
-        float: left;
         width: 99%;
     }
     .post-col h2 {
@@ -1563,20 +1579,9 @@ img.less-400 {
         box-shadow: 0px 0px 8px #dedede;
     }
     .col-1 {
-        background: #ffffff;
-        float: left;
         border-top: 6px solid #04888c;
         width: 70%;
-        box-shadow: 0px 0px 1px #d8d8d8;
-        list-style-type: none;
         padding: 10px 0px;
-        margin: 0;
-        -webkit-margin-before: 0;
-        -webkit-margin-after: 0;
-        -webkit-margin-start: 0;
-        -webkit-margin-end: 0%;
-        -webkit-padding-start: 0;
-        padding-left: 0;
     }
     .grid-box {
         float: left;
@@ -1601,19 +1606,10 @@ img.less-400 {
         line-height: 1.4em;
     }
     .col-2 {
-        float: left;
         border-top: 6px solid #04888c;
         width: 29%;
-        box-shadow: 0px 0px 1px #d8d8d8;
         display: unset;
-        list-style-type: none;
-        margin: 0;
         padding: 10px 0px;
-        -webkit-margin-before: 0em;
-        -webkit-margin-after: 0em;
-        -webkit-margin-start: 0px;
-        -webkit-margin-end: 0px;
-        -webkit-padding-start: 0px;
         padding-left: 0px;
         margin-left: 1%;
     }
@@ -1641,12 +1637,9 @@ img.less-400 {
         font-family: 'Roboto', sans-serif;
     }
     .post-col {
-        float: left;
         padding: 17px 0px;
-        box-shadow: 0px 0px 1px #d8d8d8;
         border-top: 6px solid #04888c;
         width: 70%;
-        background: #ffffff;
         margin-right: 0%;
     }
     .post-col h1 {
