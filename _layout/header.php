@@ -26,8 +26,8 @@ if($categories){
             <div class="search-result" id="search-content"></div>           
         </div>
         <div class="nav-icon">
-            <div class="show-search" onClick="showSearch()"></div>
-            <div class="menu-1" id="menu-btn" onClick="showMenu()">
+            <div class="search-ico tabicon" onClick="showSearch()"></div>
+            <div class="menu-ico tabicon" id="menu-btn" onClick="showMenu()">
                 <i class="fas fa-ellipsis-v"></i>
             </div>
         </div>    
@@ -38,7 +38,7 @@ if($categories){
             <ul class="nav-content-1">
                 <li class="nav-list-1"><a href="'.$headContent->baseUrl.'">Home</a></li>
                 <li class="nav-list-1 category-dd" onClick="showCategory()">Category&#9662;</li>
-                <li class="nav-list-1">Contact</li>
+                <li class="nav-list-1"><a href="http://doomw.com/contact-us-doomwcom">Contact</a></li>
                 <li class="nav-list-1">About</li>
             </ul>
             '.$categoriesDiv.'
