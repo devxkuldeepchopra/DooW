@@ -17,16 +17,20 @@ if($categories){
             <a href="'.$headContent->baseUrl.'" class="doomw-link-1">
             </a>
         </div>
-        <div class="search-content-1 pb-1-4" id="search-tab">
-            <form class="search-form" action="searchContent/" method="get" autocomplete="off">            
-                <input class="cs-input-1" type="text" placeholder="Search" name="q" onkeyup="Search(this.value)"/>
-                <input class="search-icon" type="submit" value="" />               
+        <div class="search-row pb-1-4" id="search-tab" style="display:none;">
+            <form class="search-form-tab" action="searchContent/" method="get" autocomplete="off">
+                <span class="search-back" onClick="searchBack(this)"></span>            
+                <input class="search-input" id="searchInput" type="text" placeholder="Search" name="q" onkeyup="Search(this.value)"/>
+                <input class="search-submit-btn" type="submit" value="" />               
             </form>
-            <div class="search-content-form" id="search-content"></div>           
+            <div class="search-result" id="search-content"></div>           
         </div>
-        <div class="menu-1" id="menu-btn" onClick="showMenu()">
-        <i class="fas fa-ellipsis-v"></i>
-        </div>
+        <div class="nav-icon">
+            <div class="show-search" onClick="showSearch()"></div>
+            <div class="menu-1" id="menu-btn" onClick="showMenu()">
+                <i class="fas fa-ellipsis-v"></i>
+            </div>
+        </div>    
         <div class="close"  onClick="showMenu()" id="close">
             '.$closeIcon.'
         </div>
