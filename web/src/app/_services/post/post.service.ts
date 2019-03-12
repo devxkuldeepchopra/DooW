@@ -59,15 +59,16 @@ export class PostService {
 
   GetPostByUrl(url): Observable<any[]> {
     var reqdata = {
-      'action': 'GetPostByUrl',
+      'action': 'GetPostByUrlAdmin',
       'url': url,
     };
     return this.ResponseData(JSON.stringify(reqdata));
   }
 
   AddPost(fileToUpload: File, data) {
-    
+    debugger
     const form_data: FormData = new FormData();
+    let isPage = data.isPage?"1":"0";
     if (fileToUpload != null) {
       var file_data = fileToUpload;
       var fileSplit = file_data.name.split(".");
@@ -86,6 +87,7 @@ export class PostService {
 
     var url = this.ToSeoUrl(data.title);
     form_data.append('id', data.id);
+    form_data.append('isPage', isPage);
     form_data.append('action', 'InsertPost');
     form_data.append('title', data.title);
     form_data.append('description', data.description);

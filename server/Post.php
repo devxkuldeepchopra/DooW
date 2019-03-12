@@ -80,7 +80,11 @@ $model;
 			$url = $model ? $model->url : $_POST["url"];
 			$Data = $Post->GetPostByPath($url);
 			echo json_encode($Data);
-
+		}
+		if ($action == 'GetPostByUrlAdmin') {
+			$url = $model ? $model->url : $_POST["url"];
+			$Data = $Post->GetPostByPathAdmin($url);
+			echo json_encode($Data);
 		}
 
 		if ($action == 'InsertPost') {
@@ -98,13 +102,13 @@ $model;
 					if(move_uploaded_file($_FILES['file']['tmp_name'], $path . $newFile))
 					{
 						
-						$Data = $Post->InsertPost($_POST['id'],$_POST['postcatid'],$_POST['title'],$_POST['description'],$_POST['mypost'],$_POST['url'],$newFile,$_POST['catid']);
+						$Data = $Post->InsertPost($_POST['id'],$_POST['postcatid'],$_POST['title'],$_POST['description'],$_POST['mypost'],$_POST['url'],$newFile,$_POST['catid'],$_POST['isPage']);
 						echo json_encode($Data);
 					}
 				}	
 			}
 			else{
-				$Data = $Post->InsertPost($_POST['id'],$_POST['postcatid'],$_POST['title'],$_POST['description'],$_POST['mypost'],$_POST['url'],$_POST['filename'],$_POST['catid']);
+				$Data = $Post->InsertPost($_POST['id'],$_POST['postcatid'],$_POST['title'],$_POST['description'],$_POST['mypost'],$_POST['url'],$_POST['filename'],$_POST['catid'],$_POST['isPage']);
 				echo json_encode($Data);
 			}
 

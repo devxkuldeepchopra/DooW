@@ -6,9 +6,6 @@ class Post
 	public function __construct($conn) {
 		$this->conn = $conn;
 	}
-	// pubic function GenerateToken() {
-
-	// }
 	public function GetPost($page,$content,$rendPage) {
 		$limit = 0;
 		$upto = $content;
@@ -47,21 +44,28 @@ class Post
 	}
 
 	public function GetPostByPath($url) {		
-		//$query = $this->conn->prepare("SELECT * FROM `post` LEFT OUTER JOIN `postvideo` ON `post`.`Id` = `postvideo`.`PostId` WHERE `post`.`Url` = :url");	
-		$query = $this->conn->prepare("SELECT post.Id AS PostId, Title,Description,Post,Url,ImageUrl,PostOn,post.View,IsActive, postcategory.Id As PostCatId, category.Id As CatId, category.Name AS CatName, category.Icon AS CatIcon FROM ((`post` LEFT OUTER JOIN `postcategory` ON `post`.`Id` = `postcategory`.`PostId`)LEFT OUTER JOIN category ON postcategory.CateogyId = category.Id) WHERE `post`.`Url` = :url AND `post`.`IsActive` = 1  ORDER BY post.Id DESC ");	
+		$query = $this->conn->prepare("SELECT post.Id AS PostId, Title,Description,Post,Url,ImageUrl,isPage,PostOn,post.View,IsActive, postcategory.Id As PostCatId, category.Id As CatId, category.Name AS CatName, category.Icon AS CatIcon FROM ((`post` LEFT OUTER JOIN `postcategory` ON `post`.`Id` = `postcategory`.`PostId`)LEFT OUTER JOIN category ON postcategory.CateogyId = category.Id) WHERE `post`.`Url` = :url AND `post`.`IsActive` = 1  ORDER BY post.Id DESC ");	
 		$query->bindParam(':url', $url);
 		$query->execute();		
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);	
         return $result;
 	}
 
-	public function InsertPost($id,$postCatid,$title,$description,$post,$url,$ImageUrl,$catid) {
+	public function GetPostByPathAdmin($url) {		
+		$query = $this->conn->prepare("SELECT post.Id AS PostId, Title,Description,Post,Url,ImageUrl, isPage, PostOn,post.View,IsActive, postcategory.Id As PostCatId, category.Id As CatId, category.Name AS CatName, category.Icon AS CatIcon FROM ((`post` LEFT OUTER JOIN `postcategory` ON `post`.`Id` = `postcategory`.`PostId`)LEFT OUTER JOIN category ON postcategory.CateogyId = category.Id) WHERE `post`.`Url` = :url  ORDER BY post.Id DESC ");	
+		$query->bindParam(':url', $url);
+		$query->execute();		
+		$result = $query->fetchAll(PDO::FETCH_ASSOC);	
+        return $result;
+	}
+
+	public function InsertPost($id,$postCatid,$title,$description,$post,$url,$ImageUrl,$catid,$isPage) {
 		$stmt1;
 		$catPost;
         $postId;
 		if($id != "null" && $id){
 			$id = (int) $id;
-			$stmt1 = $this->conn->prepare("UPDATE `post` SET `Title` = :title, `Description` = :description, `Post` = :post, `Url` = :url, `ImageUrl` = :imageUrl WHERE `post`.`Id` = :id");			
+			$stmt1 = $this->conn->prepare("UPDATE `post` SET `Title` = :title, `Description` = :description, `Post` = :post, `Url` = :url, `ImageUrl` = :imageUrl, `isPage` = :ispage WHERE `post`.`Id` = :id");			
 			$stmt1->bindParam(':id', $id);
 			// if($video)
 			// {
@@ -71,7 +75,7 @@ class Post
 			// }
 		}
 		else{
-			$stmt1 = $this->conn->prepare("INSERT INTO `post` (`Title`, `Description`, `Post`, `Url`, `ImageUrl`) VALUES (:title, :description, :post, :url, :imageUrl)");
+			$stmt1 = $this->conn->prepare("INSERT INTO `post` (`Title`, `Description`, `Post`, `Url`, `ImageUrl`,`isPage`) VALUES (:title, :description, :post, :url, :imageUrl, :ispage)");
 			// if($video)
 			// {
 			// 	$stmt2 = $this->conn->prepare("INSERT INTO `postvideo` (`PostId`, `Video`) VALUES (LAST_INSERT_ID(), :video);");
@@ -83,6 +87,7 @@ class Post
 		$stmt1->bindParam(':post', $post);
 		$stmt1->bindParam(':url', $url);
 		$stmt1->bindParam(':imageUrl', $ImageUrl);		
+		$stmt1->bindParam(':ispage', $isPage);		
 		$stmt1->execute();
 		$postId = $this->conn->lastInsertId();
 		$postReturn = $postId;
@@ -107,8 +112,6 @@ class Post
 		}
 		return $postReturn;
 	}
-
-	public function UpdatePost(){}
 
 	public function DeletePost($id) {
 		$query = $this->conn->prepare("DELETE FROM `postvideo` WHERE `PostId`= :id");

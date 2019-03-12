@@ -1,6 +1,11 @@
 <div class="container">
-    <h1 class="text-primary bg-light text-dark">{{addPost}}</h1>
-    <form [formGroup]="PostForm" novalidate (ngSubmit)="AddPost(PostForm.value)" autocomplete="off">    
+    <div class="back-btn"><a [routerLink]="['/admin/posts']"><i class="fa fa-arrow-left"></i></a></div>
+    <h3 class="text-primary text-dark">{{addPost}}</h3>
+    <form [formGroup]="PostForm" novalidate (ngSubmit)="AddPost(PostForm.value)" autocomplete="off">   
+            <div class="custom-control custom-checkbox">
+                    <input type="checkbox" formControlName="isPage" class="custom-control-input" id="isPage" >
+                    <label class="custom-control-label" for="isPage">Page</label>
+                </div>
       <div class="form-group">
           <label class="label-lg">Title<span class="sign-astric">*</span></label>
           <input type="text" formControlName="title" class="form-control" id="title">  
@@ -22,7 +27,6 @@
         <a [routerLink]="['/admin/addCategory']"><button type="button" class="btn fa fa-plus add-category">Add Category</button></a>
     </div>
     <div class="form-group">
-        <label class="label-lg">MyPost</label>
         <div class="form-group has-feedback" id="ckid">
             <!-- <ckeditor [(ngModel)]="mycontent" #myckeditor="ngModel" name="myckeditor" [config]="ckeConfig"  debounce="500"  (change)="onChange($event)"></ckeditor> -->
 	        <ckeditor formControlName="mypost"  [config]="ckeConfig"  debounce="500"  (change)="onChange($event)"></ckeditor>

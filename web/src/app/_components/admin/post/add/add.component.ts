@@ -118,7 +118,7 @@ export class AddComponent implements OnInit {
 
   GetPostByUrl(url){
     this.postservice.GetPostByUrl(url).subscribe((data:any)=>{
-      
+      debugger;
       this.addPost = "Update Post";
       let body = data[0];
       this.PostForm.reset({
@@ -128,7 +128,8 @@ export class AddComponent implements OnInit {
         description : this.RemoveNull(body.Description),
         mypost : this.RemoveNull(body.Post),
         category: body.CatId,
-        fileName : body.ImageUrl
+        fileName : body.ImageUrl,
+        isPage: body.isPage=="1"?true:false
       });
       // uncomment on live
       // this.thumbnailPath = 'assets/uploads/'+body.ImageUrl;
@@ -141,6 +142,7 @@ export class AddComponent implements OnInit {
   Form() {
     this.PostForm = this.fb.group({
       id: new FormControl(''),
+      isPage: new FormControl(false),
       postcatid: new FormControl(''),
       title : new FormControl('',{
         validators : Validators.compose([
@@ -166,7 +168,7 @@ export class AddComponent implements OnInit {
   }
 
   AddPost(value) {
-    
+    debugger;
     this.postservice.AddPost(this.fileToUpload,value).subscribe((data: any)=>{
      
     var updated = "Updated.";
