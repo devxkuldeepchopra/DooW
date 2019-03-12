@@ -19,7 +19,7 @@ class Post
 		if($rendPage){
 			$limit = $rendPage;
 		}		
-		$query = $this->conn->prepare("SELECT `Id`,`Title`,`Url`,`ImageUrl`, `View` FROM `post` WHERE `IsActive` = 1 ORDER BY post.Id DESC LIMIT $limit,$upto");			
+		$query = $this->conn->prepare("SELECT `Id`,`Title`,`Url`,`ImageUrl`, `View` FROM `post` WHERE `IsActive` = 1 AND `isPage`=0 ORDER BY post.Id DESC LIMIT $limit,$upto");			
 		$query->execute();
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		$data['post'] = $result;	
@@ -48,7 +48,7 @@ class Post
 
 	public function GetPostByPath($url) {		
 		//$query = $this->conn->prepare("SELECT * FROM `post` LEFT OUTER JOIN `postvideo` ON `post`.`Id` = `postvideo`.`PostId` WHERE `post`.`Url` = :url");	
-		$query = $this->conn->prepare("SELECT post.Id AS PostId, Title,Description,Post,Url,ImageUrl,PostOn,post.View,IsActive, postcategory.Id As PostCatId, category.Id As CatId, category.Name AS CatName, category.Icon AS CatIcon FROM ((`post` LEFT OUTER JOIN `postcategory` ON `post`.`Id` = `postcategory`.`PostId`)LEFT OUTER JOIN category ON postcategory.CateogyId = category.Id) WHERE `post`.`Url` = :url ORDER BY post.Id DESC ");	
+		$query = $this->conn->prepare("SELECT post.Id AS PostId, Title,Description,Post,Url,ImageUrl,PostOn,post.View,IsActive, postcategory.Id As PostCatId, category.Id As CatId, category.Name AS CatName, category.Icon AS CatIcon FROM ((`post` LEFT OUTER JOIN `postcategory` ON `post`.`Id` = `postcategory`.`PostId`)LEFT OUTER JOIN category ON postcategory.CateogyId = category.Id) WHERE `post`.`Url` = :url AND `post`.`IsActive` = 1  ORDER BY post.Id DESC ");	
 		$query->bindParam(':url', $url);
 		$query->execute();		
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);	
@@ -287,5 +287,4 @@ class Post
         return $result;
 	}
 }
-
 ?>

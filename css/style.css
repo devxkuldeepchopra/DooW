@@ -44,8 +44,9 @@
 }
 .search-form-tab {
     float: left;
-    width: 100%;
     margin: 1.6% 3%;
+    background-color: white;
+    border-radius: 3px;
 }
 .search-input {
     float: left;
@@ -65,13 +66,16 @@
     margin: 3px 6px;
 }
 .search-submit-btn {
-    float: left;
-    background: url(../images/search-icon.svg) no-repeat center;
+    float: right;
+    background: url(../images/search-ficon.svg) no-repeat center;
     border: 0;
     height: 21px;
     margin: 3px 18px;
     width: 4%;
     background-size: 100% 100%;
+}
+.search-input:focus {
+    outline: none;
 }
 .show-search {
     float: left;
@@ -1152,6 +1156,9 @@ img.less-400 {
         width: 44.8%;
         height: 23px;
     }
+    .search-form-tab {
+        width: 94%;
+    }
 }
 @media only screen and (min-width: 200px) { 
     .nav-icon {
@@ -1347,6 +1354,9 @@ img.less-400 {
     }
 }
 @media only screen and (min-width: 300px) {
+    .search-form-tab {
+        width: 78%;
+   }
     .tabicon {
         height: 24px;
         float: left;
@@ -1530,6 +1540,7 @@ img.less-400 {
 @media only screen and (min-width: 600px) {
     .search-form-tab {
         margin: 1.6% 3%;
+        width: 93%;
     }
     .search-back {
         background-size: 24px 18px;
@@ -1666,6 +1677,9 @@ img.less-400 {
     }
 }
 @media only screen and (min-width: 748px) {
+    .search-form-tab {
+        width: 78%;
+   }
     span.title {
         width: 47%;
         font-size: 0.8em;
@@ -1704,7 +1718,7 @@ img.less-400 {
         padding: 3px 7px;
     }
     .search-back {
-        background-size: 39px 18px;
+       background-size: 19px 14px;
         width: 10%;
         height: 29px;
         margin: 3px 7px 2px 4px;
