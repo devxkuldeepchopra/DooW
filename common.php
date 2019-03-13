@@ -15,7 +15,7 @@
     <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
     </script>';
-    $uploadImgPath = "web/assets/images/uploads/";
+    $uploadImgPath = "web/assets/images/thumbnail/";
 	$Post = new Post($conn);
     $httpRequest= (object) array(
         'apiUrl'=>'http://doomw.com/server/post.php',

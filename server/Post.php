@@ -88,7 +88,7 @@ $model;
 		}
 
 		if ($action == 'InsertPost') {
-			
+			include 'OptimizeImage.php';
 			if(isset($_FILES['file'])) {
 				if ( $_FILES['file']['error'] > 0 ) {
 					$Data  = $_FILES['file']['error'];
@@ -97,11 +97,14 @@ $model;
 				else {
 					$path = '../web/assets/images/uploads/';  //server path
 					//$path = '../web/src/assets/images/uploads/';  //local path
+					$pathThumb = '../web/assets/images/thumbnail/';
 			   		$d =	date("Y-m-d-h-i-s");
 			   		$newFile = $_POST['filename'].$d.".".$_POST['extension'];
 					if(move_uploaded_file($_FILES['file']['tmp_name'], $path . $newFile))
 					{
-						
+						$resize = new ResizeImage($path.$newFile);
+						$resize->resizeTo(266, 128,'exact');
+						$resize->saveAsThumbnail($pathThumb.$newFile,'70');
 						$Data = $Post->InsertPost($_POST['id'],$_POST['postcatid'],$_POST['title'],$_POST['description'],$_POST['mypost'],$_POST['url'],$newFile,$_POST['catid'],$_POST['isPage']);
 						echo json_encode($Data);
 					}
