@@ -58,8 +58,6 @@ $model;
 			catch (Exception $e){
 				echo json_encode($e.getMessage());
 			}
-			
-			
 		}
 
 		if ($action == 'ActivatePost') {
@@ -185,6 +183,16 @@ $model;
 		}
 		if($action == 'checkUserCookie') {
 			
+		}
+		if ($action == 'PushToken') {
+			$token = $model ? $model->search : $_POST["pushtoken"];
+			if(!$token){return false;}
+			$Data = $Post->PushToken($token);
+			echo json_encode($Data);
+		}
+		if ($action == 'GetPushToken') {
+			$Data = $Post->GetPushToken();
+			echo json_encode($Data);
 		}
 	}
 

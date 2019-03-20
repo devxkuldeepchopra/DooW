@@ -143,7 +143,6 @@ class Post
 		$query->bindParam(':ImageUrl', $image);
 		$query->execute();
 		return  $this->conn->lastInsertId();	
-
 	}
 	
 	public function AddView($view,$id) {
@@ -288,6 +287,18 @@ class Post
 		$query->execute();		
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);	
         return $result;
+	}
+	public function PushToken($token) {
+		$query = $this->conn->prepare("INSERT INTO `PushNotification` (`Token`) VALUES (:token);");
+		$query->bindParam(':token', $token);
+		$query->execute();
+		return  $this->conn->lastInsertId();	
+	}
+	public function GetPushToken() {
+		$query = $this->conn->prepare("SELECT * FROM  `PushNotification`");
+		$query->execute();
+		$result = $query->fetchAll(PDO::FETCH_ASSOC);	
+		return $result; 	
 	}
 }
 ?>

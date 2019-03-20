@@ -29,7 +29,7 @@ include '_layout/footer.php';
         require_once("categoryview.php");  
     }
     else{    
-      //  echo 'Not Found.........';
+      //  echo 'Not Found.........'  <!--<meta http-equiv="expires" content="1">;
        header('Location: /');
     }
 if($path != "admin"){
@@ -38,6 +38,8 @@ echo '<!DOCTYPE html>
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="window-target" content="_top">
+      
         <html lang="en-US" prefix="og: http://ogp.me/ns#">   
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
@@ -172,3 +174,5 @@ echo '<!DOCTYPE html>
     }
     getCurrentIPVisitPage();
 </script>
+<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+<script src="/push.js"></script>
