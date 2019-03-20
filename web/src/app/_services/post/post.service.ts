@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '../../../../node_modules/@angular/common/http';
 import { Observable } from '../../../../node_modules/rxjs';
 import { environment } from '../../../environments/environment';
+import { PushNotification } from 'src/app/dto/PushNotification';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -159,6 +160,25 @@ export class PostService {
       'id': id,
     };
     return this.ResponseData(JSON.stringify(reqdata));
+  }
+
+  GetPushToken() {
+    var reqdata = {
+      'action': 'GetPushToken',
+    };
+    return this.ResponseData(JSON.stringify(reqdata));
+  }
+
+  PushWeb(item:PushNotification): Observable<any[]> {
+    debugger;
+    const httpAuthOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+      'Authorization': 'key=AIzaSyDBJM_av8D9eJwAncwjKfaiEWq7JOom6Tk',
+      'No-Auth':'True'
+    })
+  };
+  let fcmUrl = 'https://fcm.googleapis.com/fcm/send';
+    return this.http.post<any[]>(fcmUrl, item, httpAuthOptions);
   }
 
 }

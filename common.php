@@ -1,7 +1,7 @@
 <?php
     require_once('server/PostClass.php');
     require_once('server/conn.php');
-    $baseUrl = 'http://doomw.com';
+    $baseUrl = 'https://doomw.com';
     $url = $_SERVER["REQUEST_URI"];
     $pageUrl =  $baseUrl.$url;
     $tutorialLink = 'http://tutorial.doomw.com';
@@ -18,7 +18,7 @@
     $uploadImgPath = "web/assets/images/thumbnail/";
 	$Post = new Post($conn);
     $httpRequest= (object) array(
-        'apiUrl'=>'http://doomw.com/server/post.php',
+        'apiUrl'=>'https://doomw.com/server/post.php',
         'Post'=>'POST', 'Get'=>'GET'
     );
     $content= (object) array(

@@ -3,6 +3,7 @@ import { PostService } from '../../../../_services/post/post.service';
 import { DataService } from '../../../../_services/data.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { PushNotification, NotificationContent } from 'src/app/dto/PushNotification';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class ListComponent implements OnInit {
   data : any[];
   PostId:any;
+  Tokens: any[] = [];
   public popoverTitle: string = 'Attention!';
   public popoverMessage: string = 'Are you sure to delete this Post?';
   public confirmClicked: boolean = false;
@@ -28,7 +30,7 @@ export class ListComponent implements OnInit {
     ngOnInit() {
       this.spinner.show();
       this._post.GetPost().subscribe((data:any)=>{
-        
+        debugger;
         this.spinner.hide();        
         this.data = data.post;
       })
@@ -47,10 +49,11 @@ export class ListComponent implements OnInit {
       }
       })
     }
-    getId(data){     
-       
+
+    getId(data){           
       this.PostId = data.Id;
     }
+
     ConfirmDelete(Delete) {
       this.spinner.show();
      
@@ -67,6 +70,7 @@ export class ListComponent implements OnInit {
         console.log(error);
       });
     }
+
     Active(id,activate){
       
       this._post.ActivatePost(id,activate).subscribe((data:any)=>{
@@ -80,4 +84,44 @@ export class ListComponent implements OnInit {
       })
     }
 
+    PushWeb(item) {
+    //  this.spinner.show();     
+      debugger;
+      if(this.Tokens.length>0){
+        this.SendNotifications(item,this.Tokens);
+      }
+      else{
+        this._post.GetPushToken().subscribe(x=>{
+          debugger;
+          x.forEach(e => {
+            this.Tokens.push(e.Token);
+          });
+          this.SendNotifications(item,this.Tokens);
+        });
+      }
+    }
+    SendNotifications(item:any,tokens:any[]){
+      let domain = "https://doomw.com/";
+      let url = domain+item.Url;
+      let pushObj = new PushNotification();
+      let notification = new NotificationContent();
+      notification.body = item.Description;
+      notification.click_action = url;
+      notification.icon = domain+'web/assets/images/thumbnail/'+item.ImageUrl;
+      notification.title = item.Title;
+      pushObj.priority = 10;
+      pushObj.registration_ids = tokens;
+      pushObj.notification = notification;
+      this._post.PushWeb(pushObj).subscribe((data:any)=>{
+        debugger;
+       // console.log(data);
+        this.spinner.hide();        
+      },
+      (error:any)=>{
+        //this.spinner.hide();   
+        console.log(error);     
+      }
+      )
+    }
 }
+

@@ -134,7 +134,7 @@ export class AddComponent implements OnInit {
       // uncomment on live
       // this.thumbnailPath = 'assets/uploads/'+body.ImageUrl;
       if(body.ImageUrl && body.ImageUrl != "null"){
-        this.thumbnailPath = 'http://doomw.com/web/assets/images/uploads/'+body.ImageUrl;
+        this.thumbnailPath = 'https://doomw.com/web/assets/images/uploads/'+body.ImageUrl;
       }     
     });
   }
@@ -170,12 +170,13 @@ export class AddComponent implements OnInit {
   AddPost(value) {
     debugger;
     this.postservice.AddPost(this.fileToUpload,value).subscribe((data: any)=>{
-     
     var updated = "Updated.";
     if(data == "0"){ this.toastr.success(updated); return;}
     this.toastr.success("Added :"+data);
     this.thumbnailPath = "assets/images/thumbnaillogo.png";
     this.PostForm.reset();
+    CKEDITOR.instances.editor1.setData('');
+
     })
   }
 

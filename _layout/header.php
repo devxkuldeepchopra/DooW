@@ -38,7 +38,7 @@ if($categories){
             <ul class="nav-content-1">
                 <li class="nav-list-1"><a href="'.$headContent->baseUrl.'">Home</a></li>
                 <li class="nav-list-1 category-dd" onClick="showCategory()">Category&#9662;</li>
-                <li class="nav-list-1"><a href="http://doomw.com/contact-us-doomwcom">Contact</a></li>
+                <li class="nav-list-1"><a href="/contact-us-doomwcom">Contact</a></li>
                 <li class="nav-list-1">About</li>
             </ul>
             '.$categoriesDiv.'

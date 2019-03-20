@@ -48,7 +48,7 @@ export class CategoryComponent implements OnInit {
       let body = data[0];      
       if(body.Icon != null) {
         // this.thumbnailPath = 'assets/images/icon/'+body.ImageUrl;
-        this.thumbnailPath = 'http://doomw.com/web/assets/images/icon/'+body.Icon;
+        this.thumbnailPath = 'https://doomw.com/web/assets/images/icon/'+body.Icon;
       }
       this.PostForm.reset({
         id : body.Id,

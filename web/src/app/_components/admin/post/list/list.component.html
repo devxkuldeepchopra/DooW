@@ -25,6 +25,7 @@
                     <span *ngIf="item.IsActive==0">OFF</span> -->
                   </button>  
             <button class="btn btn-primary fa fa-area-chart" routerLink="/admin/editpost/{{item.Url}}"> Edit </button>  &nbsp;
+            <button class="btn btn-primary fa fa-area-chart" (click)="PushWeb(item)"> Push </button>  &nbsp;
             <button
                 class="btn btn-danger fa fa-trash"
                 mwlConfirmationPopover
@@ -35,7 +36,7 @@
                 (cancel)="cancelClicked = true">
                 Delete
             </button>  &nbsp;  
-            <button class="btn btn-primary btn-primary-custom fa fa-eye"><a href="http://doomw.com/{{item.Url}}"> Preview </a> </button>      
+            <button class="btn btn-primary btn-primary-custom fa fa-eye"><a href="https://doomw.com/{{item.Url}}"> Preview </a> </button>      
         </td>
     </tr>
     </tbody>

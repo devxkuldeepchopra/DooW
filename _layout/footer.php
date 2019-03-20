@@ -4,7 +4,7 @@
             <a href="/">DOOMw.com</a>
         </div>
         <div class="othercontent">
-            <a href="http://doomw.com/dmca-information">
+            <a href="/dmca-information">
                 dmca information
             </a>
         </div>
