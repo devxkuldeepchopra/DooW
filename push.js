@@ -36,7 +36,6 @@ var config = {
     }
     
     function sendTokenToServer(currentToken) {
-        
         var sentToken = window.localStorage.getItem('token');
         var isValid = currentToken.includes(sentToken);
         if(!isValid){

@@ -43,6 +43,7 @@
         'sidebar'=>'',
         'footer'=>'',
     );
+   
     function Head( $headContent) {
         return $head = '   <title>'.$headContent->title.'</title>
         <meta name="description" content="'.$headContent->description.'"/>
@@ -83,4 +84,25 @@
     </script>".'
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     ';
+
+    $adsens = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5876716835770345",
+            enable_page_level_ads: true});
+        </script>';
+
+    function consMeta()
+    {
+        global $adsens;
+        return '<meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="window-target" content="_top">
+        <html lang="en-US" prefix="og: http://ogp.me/ns#">   
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        '.$adsens.'
+        <link rel="stylesheet" href="/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Rubik:500|Roboto:100,400,500,900|Sawarabi+Gothic|Economica:700|Yanone+Kaffeesatz" rel="stylesheet">
+        ';
+    }
 ?>
