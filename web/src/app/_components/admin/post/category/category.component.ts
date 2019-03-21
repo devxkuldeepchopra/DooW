@@ -34,7 +34,7 @@ export class CategoryComponent implements OnInit {
     
      let id = this.activeRoute.snapshot.params.id;
      this.Form();
-     debugger;
+     
      if(id)
        this.GetCategoryById(id)
   

@@ -30,7 +30,7 @@ export class ListComponent implements OnInit {
     ngOnInit() {
       this.spinner.show();
       this._post.GetPost().subscribe((data:any)=>{
-        debugger;
+        
         this.spinner.hide();        
         this.data = data.post;
       })
@@ -86,13 +86,13 @@ export class ListComponent implements OnInit {
 
     PushWeb(item) {
     //  this.spinner.show();     
-      debugger;
+      
       if(this.Tokens.length>0){
         this.SendNotifications(item,this.Tokens);
       }
       else{
         this._post.GetPushToken().subscribe(x=>{
-          debugger;
+          
           x.forEach(e => {
             this.Tokens.push(e.Token);
           });
@@ -113,12 +113,21 @@ export class ListComponent implements OnInit {
       pushObj.registration_ids = tokens;
       pushObj.notification = notification;
       this._post.PushWeb(pushObj).subscribe((data:any)=>{
-        debugger;
-       // console.log(data);
-        this.spinner.hide();        
+        
+        if(data){
+          let message = "total: [" + data.results.length + "] Failed: ["+ data.failure + "]";
+          let title = "Fcm Job";
+          this.toastr.success(message,title);
+          console.log(data); 
+        }
+        else{
+          let error = "Failed";
+            this.toastr.error(error)
+        }
+      
       },
       (error:any)=>{
-        //this.spinner.hide();   
+        this.toastr.error(error)
         console.log(error);     
       }
       )

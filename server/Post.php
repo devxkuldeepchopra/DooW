@@ -190,9 +190,25 @@ $model;
 			$Data = $Post->PushToken($token);
 			echo json_encode($Data);
 		}
+
 		if ($action == 'GetPushToken') {
-			$Data = $Post->GetPushToken();
-			echo json_encode($Data);
+			try 
+			{
+					if(isAuthorized()) 
+					{
+						httpResponseSend(200);
+						$Data = $Post->GetPushToken();
+						echo json_encode($Data);
+					}
+					else
+					{
+						httpResponseSend(401);
+					}
+			}
+			catch (Exception $e)
+			{
+				echo json_encode($e.getMessage());
+			}
 		}
 	}
 
@@ -233,48 +249,34 @@ function GetAuthorized() {
 
 function isAuthorized()
 {
-	$isAuth = true;
-	$isSession = true;
 	$authCode = GetAuthorized();
-	if(!isset($_SESSION["token"])) 
-	{
-		$isSession = false;
-	} 
-	else 
-	{
-		if($_SESSION["token"] == $authCode) {
-			$key = "4e5c44c32a2ccd77d089c9006299d62b";
-			if($authCode) {
-				$isPosAuth = strpos($authCode, $key);
-				if($isPosAuth === false) {
-					$isAuth = false;
-				}
-			}
-			else {
-				$isAuth = false;
-			}
-		}
-		else {
-			$isAuth = false;
-		}
-   	}
-	if(isAuth) {
-		http_response_code(200);
-	}
-	else if(!$isSession) 
-	{
-		http_response_code(400);
-		exit;
-	}
-	else {
-		//header("HTTP/1.1 401 Unauthorized");
-		http_response_code(401);
-		exit;
-	}
-	
+	$key = "4e5c44c32a2ccd77d089c9006299d62b";
+	return isset($_SESSION["token"]) ? IsTokenValid($_SESSION["token"],$authCode,$key) : false;
 }
 
+function IsTokenValid($token,$authCode,$key)
+{
+	return $token == $authCode ? ValidateToken($authCode, $key) : false;
+}
 
+function ValidateToken($authCode, $key)
+{
+	return strpos($authCode, $key);
+}
 
-
+function httpResponseSend($res)
+{
+	switch($res) 
+	{
+		case 200:
+			http_response_code(200);
+		break;
+		case 401:
+			http_response_code(401);
+		break;
+		default:
+			http_response_code(500);
+		break;
+	}
+}
 ?>

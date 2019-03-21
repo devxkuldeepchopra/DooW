@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
         ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        debugger;
+        
         let rediredtoLogin = false;    
         if(req.headers.get('No-Auth') == "True") {
             req.headers.normalizedNames.delete("no-auth");

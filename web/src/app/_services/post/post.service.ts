@@ -170,7 +170,7 @@ export class PostService {
   }
 
   PushWeb(item:PushNotification): Observable<any[]> {
-    debugger;
+    
     const httpAuthOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',
       'Authorization': 'key=AIzaSyDBJM_av8D9eJwAncwjKfaiEWq7JOom6Tk',

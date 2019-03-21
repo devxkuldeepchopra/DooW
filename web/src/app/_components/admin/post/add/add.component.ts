@@ -118,7 +118,7 @@ export class AddComponent implements OnInit {
 
   GetPostByUrl(url){
     this.postservice.GetPostByUrl(url).subscribe((data:any)=>{
-      debugger;
+      
       this.addPost = "Update Post";
       let body = data[0];
       this.PostForm.reset({
@@ -168,7 +168,7 @@ export class AddComponent implements OnInit {
   }
 
   AddPost(value) {
-    debugger;
+    
     this.postservice.AddPost(this.fileToUpload,value).subscribe((data: any)=>{
     var updated = "Updated.";
     if(data == "0"){ this.toastr.success(updated); return;}
@@ -176,14 +176,11 @@ export class AddComponent implements OnInit {
     this.thumbnailPath = "assets/images/thumbnaillogo.png";
     this.PostForm.reset();
     CKEDITOR.instances.editor1.setData('');
-
     })
   }
 
   GetCategory() {
-    
     this.postservice.GetCategory().subscribe((data: any)=>{
-    
     this.categories = data;
     })
   }
