@@ -3,48 +3,43 @@ include 'common.php';
 include '_layout/header.php';
 include '_layout/sidebar.php';
 include '_layout/footer.php';
-include 'route.php';
-
-    if(isset($_POST['page'])){
+    if(isset($_POST['page']))
+    {
         $content->page = $_POST['page'];
     }
-    $route = new Route($url);
-    $path = $route->GetRoute();
-    $pdfRoutes = $route->GetPredefinedRoutes();
-    $route->NavigateRoute($path,$pdfRoutes);
-    // if (strpos($url, '?') !== false) 
-    // {
-    //   $url = str_replace("?","/",$url);
-    // }
-    // $urlExplode = explode("/",$url);
-    // $urlLength = sizeof($urlExplode);
-    // $path = $urlExplode[1];
+    if (strpos($url, '?') !== false) 
+    {
+      $url = str_replace("?","/",$url);
+    }
+    $urlExplode = explode("/",$url);
+    $urlLength = sizeof($urlExplode);
+    $path = $urlExplode[1];
 
-    // if($path !="admin" && $path != "" && $path != "searchContent" && $path != "category")
-    // { 
-    //     require_once("postview.php");
-    // }   
-    // else if(!$path)
-    // {
-    //     require_once("home.php");  
-    // }
-    // else if($path == "searchContent")
-    // {
-    //     require_once("search.php");  
-    // }
-    // else if($path == "category")
-    // {
-    //     require_once("categoryview.php");  
-    // }
-    // else
-    // {    
-    //    header('Location: /');
-    // }
+    if($path !="admin" && $path != "" && $path != "searchContent" && $path != "category")
+    { 
+        require_once("postview.php");
+    }   
+    else if(!$path)
+    {
+        require_once("home.php");  
+    }
+    else if($path == "searchContent")
+    {
+        require_once("search.php");  
+    }
+    else if($path == "category")
+    {
+        require_once("categoryview.php");  
+    }
+    else
+    {    
+       header('Location: /');
+    }
 if($path != "admin"){
 echo '<!DOCTYPE html>
     <html>
-    <head>
-           '.consMeta().head($headContent).' 
+    <head>'.head($headContent).' 
+           <link rel="stylesheet" href="/css/style.css">
        <script>
             function showMenu() {        
                 var x = document.getElementById("menu-content").style ;
@@ -68,6 +63,12 @@ echo '<!DOCTYPE html>
                 else if( c.display == "" || c.display == "none"){bb.display = "none";}
                 x.display = "none";
             }
+        </script>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5876716835770345",
+            enable_page_level_ads: true});
         </script>
         </head>
     <body>

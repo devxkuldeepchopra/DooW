@@ -1,6 +1,7 @@
 <?php
     require_once('server/PostClass.php');
     require_once('server/conn.php');
+    $siteTitle = 'DOOMw.com';
     $baseUrl = 'https://doomw.com';
     $url = $_SERVER["REQUEST_URI"];
     $pageUrl =  $baseUrl.$url;
@@ -27,12 +28,12 @@
         'randPage'=>''
     );
     $headContent = (object) array(
-        'title'=>'DoomW',
-        'websiteName'=>'doomw.com',
-        'description'=>'',
-        'keyword'=>'',
+        'title'=> $siteTitle,
+        'websiteName'=> $siteTitle,
+        'description'=>'spread the knowledge and entertainment on the internet and all over the world with '.$siteTitle,
+        'keyword'=>$siteTitle,
         'baseUrl'=> $baseUrl.'/',
-        'favicon'=>'',
+        'favicon'=>'/images/favicon.png',
         'thumbImage'=>'doomwthumb.jpg',
         'url'=>''
     ); 
@@ -45,7 +46,14 @@
     );
    
     function Head( $headContent) {
-        return $head = '   <title>'.$headContent->title.'</title>
+        return $head = '   
+        <title>'.$headContent->title.'</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="window-target" content="_top">
+        <html lang="en-US" prefix="og: http://ogp.me/ns#">   
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Rubik:500|Roboto:100,400,500,900|Sawarabi+Gothic|Economica:700|Yanone+Kaffeesatz" rel="stylesheet">
         <meta name="description" content="'.$headContent->description.'"/>
         <meta name="title" content="'.$headContent->title.'"/>
         <meta property="og:type" content="blog.video" />
@@ -59,7 +67,7 @@
         <link rel="canonical" href="'.$headContent->baseUrl.$headContent->url.'"/>
         <meta property="og:image:alt" content="'.$headContent->url.'"/>
         <meta name="robots" content=" index, follow "/>
-        <link rel="icon" href="/images/favicon.png" sizes="16x16 32x32" type="image/png"> 
+        <link rel="icon" href="'.$headContent->favicon.'" sizes="16x16 32x32" type="image/png"> 
     ';
     }
     $totalRows = $Post->PostPagination();
@@ -84,25 +92,4 @@
     </script>".'
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     ';
-
-    $adsens = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-5876716835770345",
-            enable_page_level_ads: true});
-        </script>';
-
-    function consMeta()
-    {
-        global $adsens;
-        return '<meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta http-equiv="window-target" content="_top">
-        <html lang="en-US" prefix="og: http://ogp.me/ns#">   
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        '.$adsens.'
-        <link rel="stylesheet" href="/css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Rubik:500|Roboto:100,400,500,900|Sawarabi+Gothic|Economica:700|Yanone+Kaffeesatz" rel="stylesheet">
-        ';
-    }
 ?>
