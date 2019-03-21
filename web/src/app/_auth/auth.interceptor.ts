@@ -8,40 +8,32 @@ import { ToastrService } from "ngx-toastr";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router,
-        private toastr : ToastrService,
-        ) { }
+    constructor(private router: Router, private toastr : ToastrService) { }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
-        let rediredtoLogin = false;    
-        if(req.headers.get('No-Auth') == "True") {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> { 
+        if(req.headers.get('No-Auth') == "True") 
+        {
             req.headers.normalizedNames.delete("no-auth");
             return next.handle(req.clone());
         }
-        if(localStorage.getItem('userToken') != null) {
+        if(localStorage.getItem('userToken') != null) 
+        {
             const clonedreq = req.clone({
                 headers: req.headers.set("Authorization", localStorage.getItem('userToken'))
             });
-            return next.handle(clonedreq).pipe(
+            return next.handle(clonedreq).pipe
+            (
                 tap(succ => { },
-                    err => {                                           
-                        if (err.status === 401 ){
-                            rediredtoLogin = true;
-                        }
-                        else if(err.status === 400){
-                            this.toastr.warning("Session Expired.");
-                            rediredtoLogin = true;
-                        }
-                    })
-                )
+                err => {                                           
+                    if (err.status === 401 ) {
+                        this.router.navigateByUrl('');
+                    }
+                })
+            )
         }
-        else {
-            rediredtoLogin = true;
-        }
-        if(rediredtoLogin){
+        else 
+        {
             this.router.navigateByUrl('');
         }
-
     }
 }
