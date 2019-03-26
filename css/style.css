@@ -1740,7 +1740,8 @@ img.less-400 {
         width: 26%;
     }
     a.doomw-link-1 {
-        background-size: 70% 38px !important;
+        /* background-size: 70% 38px !important; */
+        background-size: 92% 60px!important;
         height: 74px;
     }
     img.less-300 {
